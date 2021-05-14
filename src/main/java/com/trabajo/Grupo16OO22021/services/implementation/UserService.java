@@ -76,7 +76,7 @@ public class UserService implements IUserService, UserDetailsService {
 	private List<GrantedAuthority> buildGrantedAuthorities(Set<UserRole> userRoles) {
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
 		for (UserRole userRole : userRoles) {
-			grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getName()));
+			grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getDescription()));
 		}
 		return new ArrayList<GrantedAuthority>(grantedAuthorities);
 	}
