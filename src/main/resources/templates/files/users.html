@@ -21,13 +21,14 @@
 			<li class="nav-item"><a class="nav-link" href="users.html">Users</a></li>
 			<li class="nav-item"><a class="nav-link" href="profiles.html">Profiles</a></li>
 			<li class="nav-item"><a class="nav-link" th:href="@{/manage}">Manage</a></li>
+			<li class="nav-item"><a class="nav-link"><span th:text="${#authentication.getPrincipal().getUsername()}"></a></li>
 			<form th:action="@{/logout}" method="post">
 				<input class="nav-link" type="submit" value="Log out" />
 			</form>
 		</ul>
 	</div>
 </nav>
-<table>
+<table border="4px" cellpadding="5" >
 	<thead>
 		<tr>
 			<th>Name</th>
@@ -35,6 +36,8 @@
 			<th>Documento</th>
 			<th>Email</th>
 			<th>Username</th>
+			<th>Role</th>
+
 
 		</tr>
 	</thead>
@@ -45,9 +48,12 @@
 			<td><span th:text="${user.document}" /></td>
 			<td><span th:text="${user.email}" /></td>
 			<td><span th:text="${user.username}" /></td>
+			<td><span th:text="${user.userRole.name}"/></td>
+
 		</tr>
 	</tbody>
 </table>
+
 
 
 <a class="btn btn-primary" th:href="@{/}">Go back</a>

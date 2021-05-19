@@ -19,23 +19,23 @@
 	<div id="page-content-wrapper">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 			<a class="btn btn-primary" th:href="@{/}">Home</a>
-			
+
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 					<li class="nav-item"><a class="nav-link" th:href="@{/}">Home</a></li>
 					<li class="nav-item"><a class="nav-link" href="users.html">Users</a></li>
 					<li class="nav-item"><a class="nav-link" href="profiles.html">Profiles</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/manage}">Manage</a></li>
+					<li class="nav-item"><a class="nav-link"><span th:text="${#authentication.getPrincipal().getUsername()}"></a></li>
 					<form th:action="@{/logout}" method="post">
 						<input class="nav-link" type="submit" value="Log out" />
 					</form>
 				</ul>
 			</div>
 		</nav>
-		<table>
+		<table border="4px" cellpadding="5">
 			<thead>
 				<tr>
-					<th>ID</th>
 					<th>Name</th>
 					<th>Description</th>
 
@@ -43,7 +43,6 @@
 			</thead>
 			<tbody>
 				<tr th:each="role : ${roles}">
-					<td><span th:text="${role.id}" /></td>
 					<td><span th:text="${role.name}" /></td>
 					<td><span th:text="${role.description}" /></td>
 
@@ -53,6 +52,7 @@
 		</table>
 
 	</div>
+	<a class="btn btn-primary" th:href="@{/}">Go back</a>
 	</div>
 	<!-- Bootstrap core JS-->
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>

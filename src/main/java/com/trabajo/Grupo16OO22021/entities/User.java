@@ -1,8 +1,6 @@
 package com.trabajo.Grupo16OO22021.entities;
 
-import java.util.HashSet;
 
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.JoinColumn;
 
@@ -43,17 +41,17 @@ public class User {
 	@Column(name = "enabled")
 	private boolean enabled;
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinTable(name = "user_roles",
 			joinColumns=@JoinColumn(name="user_id"),
 			inverseJoinColumns=@JoinColumn(name="user_role_id"))
-	private Set<UserRole> userRoles = new HashSet<UserRole>();
+	private UserRole userRole;
 
 	public User() {
 	}
 
 	public User(int id, String name, String lastname, int document, String email, String username, String password,
-			boolean enabled, Set<UserRole> userRoles) {
+			boolean enabled, UserRole userRole) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -63,11 +61,11 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
-		this.userRoles = userRoles;
+		this.userRole = userRole;
 	}
 
 	public User(String name, String lastname, int document, String email, String username, String password,
-			boolean enabled, Set<UserRole> userRoles) {
+			boolean enabled, UserRole userRole) {
 		super();
 		this.name = name;
 		this.lastname = lastname;
@@ -76,7 +74,7 @@ public class User {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
-		this.userRoles = userRoles;
+		this.userRole = userRole;
 	}
 
 	public int getId() {
@@ -143,12 +141,12 @@ public class User {
 		this.enabled = enabled;
 	}
 
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
+	public UserRole getUserRole() {
+		return userRole;
 	}
 
-	public void setUserRoles(Set<UserRole> userRoles) {
-		this.userRoles = userRoles;
+	public void setUserRoles(UserRole userRole) {
+		this.userRole = userRole;
 	}
 
 }

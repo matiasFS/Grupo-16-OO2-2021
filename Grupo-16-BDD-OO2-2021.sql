@@ -1,6 +1,6 @@
-create schema if not exists `Grupo-16-BDD-OO2-2021`;
+create schema if not exists `GRUPO-16-BDD-OO2-2021`;
 
-use `Grupo-16-BDD-OO2-2021`;
+use `grupo-16-BDD-OO2-2021`;
 
 insert into user values(1, 11111111, 'admin@gmail.com', true, 'admin', 'admin','$2a$10$qoqhe.Nqr9jNnKsXdBWZ3edShJHwkbJni4dnbHHnpSMiFdKm5hZUW','admin');
 insert into user values(2, 22222222, 'auditor@gmail.com', true, 'auditor', 'auditor','$2a$10$B9mfALrCwl7gNgksyajanuqhq2GpRAfcfTPN9iXrAAGN6BKB73hUy','auditor');

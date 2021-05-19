@@ -1,7 +1,6 @@
 package com.trabajo.Grupo16OO22021.models;
 
-import java.util.HashSet;
-import java.util.Set;
+
 
 import com.trabajo.Grupo16OO22021.entities.UserRole;
 
@@ -14,13 +13,13 @@ public class UserModel {
 	private String username;
 	private String password;
 	private boolean enabled;
-	private Set<UserRole> userRoles = new HashSet<UserRole>();
+	private UserRole userRole;
 
 	public UserModel() {
 	}
 
 	public UserModel(int id, String name, String lastname, int document, String email, String username, String password,
-			boolean enabled, Set<UserRole> userRoles) {
+			boolean enabled, UserRole userRole) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -30,7 +29,7 @@ public class UserModel {
 		this.username = username;
 		this.password = password;
 		this.enabled = enabled;
-		this.userRoles = userRoles;
+		this.userRole = userRole;
 	}
 
 	public int getId() {
@@ -97,12 +96,12 @@ public class UserModel {
 		this.enabled = enabled;
 	}
 
-	public Set<UserRole> getUserRoles() {
-		return userRoles;
+	public UserRole getUserRole() {
+		return userRole;
 	}
 
-	public void setUserRoles(Set<UserRole> userRoles) {
-		this.userRoles = userRoles;
+	public void setUserRoles(UserRole userRole) {
+		this.userRole = userRole;
 	}
 
 }

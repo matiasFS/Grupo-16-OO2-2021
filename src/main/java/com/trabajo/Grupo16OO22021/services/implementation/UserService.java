@@ -2,6 +2,7 @@ package com.trabajo.Grupo16OO22021.services.implementation;
 
 import java.util.ArrayList;
 
+
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -63,7 +64,7 @@ public class UserService implements IUserService, UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		com.trabajo.Grupo16OO22021.entities.User user = userRepository.findByUsernameAndFetchUserRolesEagerly(username);
-		return buildUser(user, buildGrantedAuthorities(user.getUserRoles()));
+		return buildUser(user, buildGrantedAuthorities(user.getUserRole()));
 	}
 
 	private User buildUser(com.trabajo.Grupo16OO22021.entities.User user, List<GrantedAuthority> grantedAuthorities) {
@@ -73,11 +74,10 @@ public class UserService implements IUserService, UserDetailsService {
 				true, grantedAuthorities);
 	}
 
-	private List<GrantedAuthority> buildGrantedAuthorities(Set<UserRole> userRoles) {
+	private List<GrantedAuthority> buildGrantedAuthorities(UserRole userRole) {
 		Set<GrantedAuthority> grantedAuthorities = new HashSet<GrantedAuthority>();
-		for (UserRole userRole : userRoles) {
-			grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getDescription()));
-		}
+		grantedAuthorities.add(new SimpleGrantedAuthority(userRole.getDescription()));
+		
 		return new ArrayList<GrantedAuthority>(grantedAuthorities);
 	}
 
