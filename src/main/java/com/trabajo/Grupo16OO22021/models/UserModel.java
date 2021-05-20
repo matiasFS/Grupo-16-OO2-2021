@@ -100,7 +100,7 @@ public class UserModel {
 		return userRole;
 	}
 
-	public void setUserRoles(UserRole userRole) {
+	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
 	}
 

@@ -145,7 +145,7 @@ public class User {
 		return userRole;
 	}
 
-	public void setUserRoles(UserRole userRole) {
+	public void setUserRole(UserRole userRole) {
 		this.userRole = userRole;
 	}
 
