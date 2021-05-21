@@ -2,22 +2,22 @@
  * 
  */
 
-let tableUser = document.getElementById("table-user");
+let tablePersons = document.getElementById("table-persons");
 let tableProfiles = document.getElementById("table-profiles");
-let btnUser = document.getElementById("btnPestañaUser");
+let btnPersons = document.getElementById("btnPestañaPersons");
 let btnProfiles = document.getElementById("btnPestañaProfiles");
 
 
 
-function pestañaUser(){
-	tableUser.classList.remove("noshow");
+function pestañaPersons(){
+	tablePersons.classList.remove("noshow");
 	tableProfiles.classList.remove("active");
-		btnUser.classList.remove("nocolor");
+		btnPersons.classList.remove("nocolor");
 	btnProfiles.classList.remove("color");
 }
 function pestañaProfiles(){
 	btnProfiles.classList.add("color");
-	btnUser.classList.add("nocolor");
+	btnPersons.classList.add("nocolor");
 	tableProfiles.classList.add("active");
-	tableUser.classList.add("noshow");
+	tablePersons.classList.add("noshow");
 }

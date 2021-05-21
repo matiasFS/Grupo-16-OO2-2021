@@ -29,15 +29,15 @@
 		</div>
 	</nav>
 	<div class="pestañas" >
-		<a  id="btnPestañaUser" onclick="pestañaUser()">User</a>
+		<a  id="btnPestañaPersons" onclick="pestañaPersons()">Persons</a>
 		<a  id="btnPestañaProfiles" onclick="pestañaProfiles()">Profiles</a>
 	</div>
 	<section id="tables">
 	
-		<div id="table-user" class="table-user">
-			<h3>User</h3>
+		<div id="table-persons" class="table-persons">
+			<h3>Persons</h3>
 			<div>
-				<a class="btn btn-primary" href="/newuser">Create new user</a>
+				<a class="btn btn-primary" href="/newuser">Create new person</a>
 			</div>
 			<table class="table"	  border="4px" cellpadding="5" >
 				
@@ -69,7 +69,6 @@
 					</tr>
 				</tbody>
 			</table>
-			<a th:href="@{/users/export/pdf}">Export Users to PDF</a>
 		</div>
 	
 		<div id="table-profiles" class="table-profiles">

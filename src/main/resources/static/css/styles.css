@@ -10329,14 +10329,14 @@ table tbody tr td form input{
 	position:absolute;
 
 }
-.table-user{
+.table-persons{
 	transition:0.8s;
 	opacity:1;
 	visibility:visible;
 	width:100%;
 
 }
-.table-user.noshow{
+.table-persons.noshow{
 	transition:0.2s;
 	opacity:0;
 	visibility:hidden;	

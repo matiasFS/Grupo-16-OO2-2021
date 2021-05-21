@@ -26,7 +26,7 @@ public class User {
 
 	@Column(name = "lastname")
 	private String lastname;
-	
+
 	private int document;
 
 	@Column(name = "email", unique = true, length = 45)
