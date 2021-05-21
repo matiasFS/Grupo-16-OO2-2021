@@ -13,4 +13,6 @@ public interface IRoleService {
 
 	public boolean remove(int id);
 
+	public boolean validate(UserRoleModel userRoleModel);
+
 }
