@@ -15,6 +15,4 @@ public interface IUserService {
 
 	public UserModel findById(int id);
 
-	public boolean validate(UserModel userModel);
-
 }

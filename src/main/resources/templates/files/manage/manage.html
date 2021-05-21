@@ -62,7 +62,7 @@
 			
 						<td>
 							<form action="#" th:action="@{/manage/delete/{id}(id=${user.id})}" method="post">
-								<a class="btn btn-info" th:href="@{/updateuser{id}(id=${user.id})}">Edit</a>
+								<a class="btn btn-info" th:href="@{/{id}(id=${user.id})}">Edit</a>
 								<input class="btn btn-danger" type="submit" value="Delete" />
 							</form>
 						</td>

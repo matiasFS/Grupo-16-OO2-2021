@@ -18,11 +18,5 @@ public class ViewRouteHelper {
 	public final static String PROFILE_NEW = "files/manage/newprofile";
 	public static final String PROFILE_UPDATE = "files/manage/updateprofile";
 
-	//ROOT
 	public final static String MANAGE_ROOT = "/manage";
-	public final static String USER_NEW_ROOT = "/newuser";
-	public static final String USER_UPDATE_ROOT = "/updateuser{id}";
-	public static final String PROFILE_NEW_ROOT = "/newprofile";
-	public static final String PROFILE_UPDATE_ROOT = "/updateprofile{id}";
-
 }
