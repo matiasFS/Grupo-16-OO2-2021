@@ -25,9 +25,8 @@
 									<h3 class="text-center font-weight-light my-4">Agregar usuario</h3>
 								</div>
 								<div class="card-body">
-									<form action="#" th:action="@{/manage/update}" th:object="${user}"
+									<form action="#" th:action="@{/manage/create}" th:object="${user}"
 										method="post">
-										<input type="hidden" th:field="*{id}" />
 										<div class="form-row">
 											<div class="col-md-6">
 												<div class="form-group">
@@ -45,7 +44,7 @@
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="small mb-1" for="inputDocumento">Documento</label>
+													<label class="small mb-1" for="inputDocumento">Document</label>
 													<input class="form-control py-4" id="inputDocumento" type="text"
 														placeholder="Enter document" th:field="*{document}" />
 												</div>
@@ -61,24 +60,23 @@
 										<div class="form-group">
 											<label class="small mb-1" for="inputUserName">Username</label>
 											<input class="form-control py-4" id="inputUserName" type="text"
-												aria-describedby="emailHelp" placeholder="Enter username"
-												th:field="*{username}" />
+												aria-describedby="emailHelp" placeholder="Enter username"  th:field="*{username}" />
 										</div>
 										<div class="form-row">
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="small mb-1" for="inputPassword">Password</label>
-													<input class="form-control py-4" id="inputPassword" type="text"
-														placeholder="Enter password" th:field="*{password}" />
+													<input class="form-control py-4" id="inputPassword" type="password"
+														placeholder="Enter password"  th:field="*{password}"/>
 												</div>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="small mb-1" for="inputPassword">Password</label>
+													<label class="small mb-1" for="inputPassword">Enabled?</label>
 													<input class="form-control py-4" id="inputEnabled" type="text"
-														placeholder="Is enabled?" th:field="*{enabled}" />
+														placeholder="True or False"  th:field="*{enabled}"/>
 												</div>
 											</div>
 										</div>
@@ -91,12 +89,8 @@
 												</option>
 											</select>
 										</div>
-										<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit"
-												Value="Edit" /> <a class="btn btn-primary" th:href="@{/manage}">Go back</a>
-										</div>
-										
+										<div class="form-group mt-4 mb-0"><input class="btn btn-primary" type="submit" Value="Crear" /> <a class="btn btn-primary" th:href="@{/manage}">Volver</a></div>
 									</form>
-									
 								</div>
 							</div>
 						</div>
