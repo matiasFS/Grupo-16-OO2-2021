@@ -51,4 +51,13 @@ public class RoleService implements IRoleService{
 	public UserRoleModel findById(int id) {
 		return roleConverter.entityToModel(roleRepository.findById(id));
 		}
+	@Override
+	public boolean validate(UserRoleModel userRoleModel) {
+		if(userRoleModel.getName().equals("")||userRoleModel.getDescription().equals("")) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 }

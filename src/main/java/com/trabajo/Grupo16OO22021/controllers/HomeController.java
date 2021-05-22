@@ -102,7 +102,7 @@ public class HomeController {
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
-	@GetMapping("/{id}")
+	@GetMapping("/updateuser{id}")
 	public ModelAndView get(@PathVariable("id") int id, Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.USER_UPDATE);
 		mAV.addObject("user", userService.findById(id));

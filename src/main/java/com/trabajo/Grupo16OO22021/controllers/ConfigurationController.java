@@ -3,6 +3,7 @@ package com.trabajo.Grupo16OO22021.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
 import com.trabajo.Grupo16OO22021.models.*;
+import com.trabajo.Grupo16OO22021.services.implementation.RoleService;
 
 import com.trabajo.Grupo16OO22021.repositories.*;
 import com.trabajo.Grupo16OO22021.services.*;
@@ -34,7 +36,7 @@ public class ConfigurationController {
 	
 	@Autowired
 	@Qualifier("roleService")
-	private IRoleService roleService;
+	private RoleService roleService;
 	
 	@GetMapping("")
 	public ModelAndView configuracion(Model model) {
@@ -46,28 +48,48 @@ public class ConfigurationController {
 	}
 	
 	
-	@PostMapping("/create")
+	@PostMapping("/createuser")
 	public RedirectView create(@ModelAttribute("user") UserModel userModel) {
-		userService.insertOrUpdate(userModel);
-		return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
-	}	
+		if(!userService.validate(userModel)) {
+			return new RedirectView(ViewRouteHelper.USER_NEW_ROOT);
+		}else {
+			userService.insertOrUpdate(userModel);
+			return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
+		}
+		
+	}		
 	
-	@PostMapping("/update")
-	public RedirectView update(@ModelAttribute("user") UserModel userModel) {
-		userService.insertOrUpdate(userModel);
-		return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
+	@PostMapping("/updateuser{id}")
+	public RedirectView update(@PathVariable("id") int id, @ModelAttribute("user") UserModel userModel, Model model) {
+		if(!userService.validate(userModel)) {
+			ModelAndView mAV = new ModelAndView();
+			mAV.addObject("user", userService.findById(id));
+			model.addAttribute("roles",roleRepository.findAll());
+			return new RedirectView(ViewRouteHelper.USER_UPDATE_ROOT);
+		}else {
+			userService.insertOrUpdate(userModel);
+			return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
+		}
 	}
 	
-	@PostMapping("/newprofile")
+	@PostMapping("/createprofile")
 	public RedirectView newProfile(@ModelAttribute("role") UserRoleModel userRoleModel) {
-		roleService.insertOrUpdate(userRoleModel);
-		return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
+		if(!roleService.validate(userRoleModel)) {
+			return new RedirectView(ViewRouteHelper.PROFILE_NEW_ROOT);
+		}else {
+			roleService.insertOrUpdate(userRoleModel);
+			return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
+		}
 	}
 	
-	@PostMapping("/updateprofile")
-	public RedirectView updateProfile(@ModelAttribute("role") UserRoleModel userRoleModel) {
-		roleService.insertOrUpdate(userRoleModel);
-		return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
+	@PostMapping("/updateprofile{id}")
+	public RedirectView updateProfile(@PathVariable("id") int id, @ModelAttribute("role") UserRoleModel userRoleModel) {
+		if(!roleService.validate(userRoleModel)) {
+			return new RedirectView(ViewRouteHelper.PROFILE_UPDATE_ROOT);
+		}else {
+			roleService.insertOrUpdate(userRoleModel);
+			return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
+		}
 	}
 	
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

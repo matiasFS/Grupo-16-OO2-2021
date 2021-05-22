@@ -91,6 +91,20 @@ public class UserService implements IUserService, UserDetailsService {
 		
 	return  userConverter.entityToModel(user);
 	}
+	
+	@Override
+	public boolean validate(UserModel userModel) {
+		if (userModel.getName().equals("") || userModel.getName().length() < 3 || userModel.getLastname().equals("")
+				|| userModel.getLastname().length() < 3 || userModel.getEmail().equals("")
+				|| userModel.getUsername().equals("") || userModel.getUsername().length() < 5
+				|| Integer.toString(userModel.getDocument()).length() < 7 || userModel.getPassword().equals("")
+				|| userModel.getPassword().length() < 5||userModel.getUserRole()==null) {
+			return false;
+		} else {
+			return true;
+		}
+
+	}
 
 	
 
