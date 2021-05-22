@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,11 +70,14 @@ public class ConfigurationController {
 		return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/delete/{id}")
 	public RedirectView delete(@PathVariable("id") int id) {
 		userService.remove(id);
 		return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
 	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/deleteprofile/{id}")
 	public RedirectView deleteprofile(@PathVariable("id") int id) {
 		roleService.remove(id);
