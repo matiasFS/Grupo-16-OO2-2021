@@ -208,6 +208,9 @@ svg {
 
 table {
   border-collapse: collapse;
+  border:none;
+  box-shadow:0 0 5px 0 #353535;
+  margin-top:20px;
 }
 
 caption {
@@ -10247,3 +10250,113 @@ body {
 .sb-sidenav-light .sb-sidenav-footer {
   background-color: #e9ecef;
 }
+
+
+
+#tables{
+	display:flex;
+	flex-direction:column;
+	width:100%;
+	padding:5px;
+	position:relative;
+		
+}
+
+
+
+
+
+
+table tbody tr td form{
+	display:flex;
+	justify-content:center;
+}
+table tbody tr td form a,
+table tbody tr td form input{
+	padding:20px;
+	margin:2px
+	
+}
+
+/*  Pestañas  de navegacion */
+.pestañas{
+	color:white;
+	display:flex;
+	border-bottom:solid;
+	border-width:0.1px;
+	padding-left:2px;
+	padding-right:2px;
+	
+}
+.pestañas a{
+	text-decoration:none;
+	transition:0.2s;
+	padding:10px;
+	cursor:pointer;
+	margin:0px 2px;
+	background-color:#77bbff;
+	display:block;
+	width:100%;
+	color:white;
+	height:100%;
+	border-radius:10px;
+	text-align:center;
+}
+.pestañas a:hover{
+	transition:0.8s;
+	background-color:#0074e8;
+}
+.pestañas a:nth-child(1){
+	background-color:#0074e8;
+}
+.pestañas a.color{
+	transition:0.2s;
+	color:white;
+	background-color:#0074e8;
+}
+.pestañas a.nocolor{
+	transition:0.2s;
+	color:white;
+	background-color:#77bbff;
+}
+
+.table-profiles{
+	transition:0.2s;
+	width:100%;
+	position:relative;
+	opacity:0;
+	visibility:hidden;	
+	position:absolute;
+
+}
+.table-user{
+	transition:0.8s;
+	opacity:1;
+	visibility:visible;
+	width:100%;
+
+}
+.table-user.noshow{
+	transition:0.2s;
+	opacity:0;
+	visibility:hidden;	
+	position:absolute;
+}
+.table-profiles.active{
+	transition:0.8s;
+	opacity:1;
+	visibility:visible;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
