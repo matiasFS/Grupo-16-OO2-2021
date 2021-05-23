@@ -7,7 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>Agregar usuario</title>
+	<title>Create profile</title>
 	<link href="css/styles.css" rel="stylesheet" />
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js"
 		crossorigin="anonymous"></script>
@@ -22,10 +22,10 @@
 						<div class="col-lg-7">
 							<div class="card shadow-lg border-0 rounded-lg mt-5">
 								<div class="card-header">
-									<h3 class="text-center font-weight-light my-4">Agregar perfil</h3>
+									<h3 class="text-center font-weight-light my-4">Create profile</h3>
 								</div>
 								<div class="card-body">
-									<form action="#" th:action="@{/manage/newprofile}" th:object="${role}"
+									<form action="#" th:action="@{/manage/createprofile}" th:object="${role}"
 										method="post">
 										<div class="form-row">
 											<div class="col-md-6">
@@ -33,6 +33,7 @@
 													<label class="small mb-1" for="inputName">Name</label>
 													<input class="form-control py-4" id="inputName" type="text"
 														placeholder="Enter name" th:field="*{name}" />
+													<label class="small mb-1">(Must not be blank)</label>
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -40,9 +41,10 @@
 													<label class="small mb-1" for="inputDescription">Description</label>
 													<input class="form-control py-4" id="inputDescription" type="text"
 														placeholder="Enter description" th:field="*{description}" />
+													<label class="small mb-1">(Must not be blank)</label>
 												</div>
 											</div>										
-										<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit" Value="Crear" /> <a class="btn btn-primary" th:href="@{/manage}">Volver</a></div>
+										<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit" Value="Create" /> <a class="btn btn-primary" th:href="@{/manage}">Go back</a></div>
 									</form>
 								</div>
 							</div>

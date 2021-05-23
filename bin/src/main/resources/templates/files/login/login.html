@@ -30,6 +30,7 @@
 										<p> Password: <input class="form-control py-4" name="password" id="password" type="password" placeholder="Password" /></p>
 										<input class="btn btn-primary" type="submit"  value="Login"/>
 									<form>
+									<div th:if="${error != null}" class="alert alert-danger">Invalid username or password</div>
 								</div>
 							</div>
 						</div>

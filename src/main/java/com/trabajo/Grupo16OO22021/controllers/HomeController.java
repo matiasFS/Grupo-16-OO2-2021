@@ -70,6 +70,7 @@ public class HomeController {
 		return ViewRouteHelper.INDEX;
 	}
 
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/users.html")
 	public ModelAndView users() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.USERS);
@@ -77,6 +78,7 @@ public class HomeController {
 		return mAV;
 	}
 
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/profiles.html")
 	public String profiles(Model model) {
 		model.addAttribute("roles", roleRepository.findAll());
@@ -140,6 +142,7 @@ public class HomeController {
 
 	}
 
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/profiles/export/pdf")
 	public void exportToPDFProfile(HttpServletResponse response) throws DocumentException, IOException {
 		response.setContentType("application/pdf");
