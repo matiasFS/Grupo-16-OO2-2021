@@ -1,6 +1,7 @@
 package com.trabajo.Grupo16OO22021;
 
 import java.awt.Color;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
 import com.lowagie.text.PageSize;
@@ -16,7 +18,6 @@ import com.lowagie.text.Phrase;
 import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
-import com.trabajo.Grupo16OO22021.entities.User;
 import com.trabajo.Grupo16OO22021.entities.UserRole;
 
 public class ProfilePDFExporter {
@@ -27,25 +28,47 @@ public class ProfilePDFExporter {
 	    }
 		private void writeTableHeader(PdfPTable table) {
 		    PdfPCell cell = new PdfPCell();
-		    cell.setBackgroundColor(Color.BLUE);
+		    cell.setBackgroundColor(Color.BLACK);
 		    cell.setPadding(3);
 		     
 		    Font font = FontFactory.getFont(FontFactory.HELVETICA);
 		    font.setColor(Color.WHITE);
 		     
-		     
-		    cell.setPhrase(new Phrase("Role", font));
-		    table.addCell(cell);
-		    
-		    cell.setPhrase(new Phrase("Description", font));
-		    table.addCell(cell);
+		   
+			Font fuenteTituloColumnas = FontFactory.getFont(FontFactory.HELVETICA_BOLD ,12,Color.BLACK);
+		    cell = new PdfPCell(new Phrase("ROLE", fuenteTituloColumnas));
+			cell.setBackgroundColor(Color.lightGray);
+			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			cell.setPadding(5);
+			table.addCell(cell);
+			
+			cell = new PdfPCell(new Phrase("DESCRIPTION", fuenteTituloColumnas));
+			cell.setBackgroundColor(Color.lightGray);
+			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell.setVerticalAlignment(Element.ALIGN_CENTER);
+			cell.setPadding(5);
+			table.addCell(cell);
+			
 		     
 		}
 		 
 		private void writeTableData(PdfPTable table) {
+			Font fuenteDataCeldas = FontFactory.getFont(FontFactory.COURIER ,10,Color.BLACK);
+		    PdfPCell cell = new PdfPCell();
+
 		    for (UserRole UserRole : listUserRole) {
-		        table.addCell(UserRole.getName());
-		        table.addCell(UserRole.getDescription());      
+		    	cell = new PdfPCell(new Phrase(UserRole.getName(), fuenteDataCeldas));
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cell.setVerticalAlignment(Element.ALIGN_CENTER);
+				cell.setPadding(5);
+				table.addCell(cell);
+				
+				cell = new PdfPCell(new Phrase(UserRole.getDescription(), fuenteDataCeldas));
+				cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+				cell.setVerticalAlignment(Element.ALIGN_CENTER);
+				cell.setPadding(5);
+				table.addCell(cell);    
 		    }
 		}
 		 
@@ -54,11 +77,10 @@ public class ProfilePDFExporter {
 		    PdfWriter.getInstance(document, response.getOutputStream());
 		     
 		    document.open();
-		    Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+		    Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Color.BLACK);
 		    font.setSize(18);
-		    font.setColor(Color.BLUE);
-		     
-		    Paragraph p = new Paragraph("List of Profiles", font);
+
+		    Paragraph p = new Paragraph("LIST OF PROFILES", font);
 		    p.setAlignment(Paragraph.ALIGN_CENTER);
 		     
 		    document.add(p);

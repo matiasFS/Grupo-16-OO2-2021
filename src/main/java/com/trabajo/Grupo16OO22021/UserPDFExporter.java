@@ -21,38 +21,85 @@ public class UserPDFExporter {
     }
  
     private void writeTableHeader(PdfPTable table) {
-        PdfPCell cell = new PdfPCell();
-        cell.setBackgroundColor(Color.BLUE);
-        cell.setPadding(3);
-         
-        Font font = FontFactory.getFont(FontFactory.HELVETICA);
-        font.setColor(Color.WHITE);
-         
-         
-        cell.setPhrase(new Phrase("Name", font));
-        table.addCell(cell);
-        
-        cell.setPhrase(new Phrase("Last Name", font));
-        table.addCell(cell);
-         
-        cell.setPhrase(new Phrase("E-mail", font));
-        table.addCell(cell);
-        
-        cell.setPhrase(new Phrase("Documento", font));
-        table.addCell(cell);
-         
-        cell.setPhrase(new Phrase("Username", font));
-        table.addCell(cell);       
+Font fuenteTituloColumnas = FontFactory.getFont(FontFactory.HELVETICA_BOLD ,12,Color.BLACK);
+		
+		
+		PdfPCell celda = null;
+		
+        celda = new PdfPCell(new Phrase("NAME", fuenteTituloColumnas));
+		celda.setBackgroundColor(Color.lightGray);
+		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setVerticalAlignment(Element.ALIGN_CENTER);
+		celda.setPadding(5);
+		table.addCell(celda);
+		
+		celda = new PdfPCell(new Phrase("LASTNAME", fuenteTituloColumnas));
+		celda.setBackgroundColor(Color.lightGray);
+		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setVerticalAlignment(Element.ALIGN_CENTER);
+		celda.setPadding(5);
+		table.addCell(celda);
+		
+		celda = new PdfPCell(new Phrase("DOCUMENT", fuenteTituloColumnas));
+		celda.setBackgroundColor(Color.lightGray);
+		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setVerticalAlignment(Element.ALIGN_CENTER);
+		celda.setPadding(5);
+		table.addCell(celda);
+		
+		celda = new PdfPCell(new Phrase("EMAIL", fuenteTituloColumnas));
+		celda.setBackgroundColor(Color.lightGray);
+		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setVerticalAlignment(Element.ALIGN_CENTER);
+		celda.setPadding(5);
+		table.addCell(celda);
+		
+		celda = new PdfPCell(new Phrase("USERNAME", fuenteTituloColumnas));
+		celda.setBackgroundColor(Color.lightGray);
+		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setVerticalAlignment(Element.ALIGN_CENTER);
+		celda.setPadding(5);
+		table.addCell(celda);
+		
+		celda = new PdfPCell(new Phrase("ROLE", fuenteTituloColumnas));
+		celda.setBackgroundColor(Color.lightGray);
+		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
+		celda.setVerticalAlignment(Element.ALIGN_CENTER);
+		celda.setPadding(5);
+		table.addCell(celda);
+		           
     }
      
     private void writeTableData(PdfPTable table) {
+    	PdfPCell celda = null;
+		Font fuenteDataCeldas = FontFactory.getFont(FontFactory.COURIER ,10,Color.BLACK);
+		
         for (User user : listUsers) {
-            table.addCell(user.getName());
-            table.addCell(user.getLastname());
-            table.addCell(user.getEmail());
-            table.addCell(String.valueOf(user.getDocument()));
-            table.addCell(user.getUsername());
-            
+        	celda = new PdfPCell(new Phrase(user.getName(), fuenteDataCeldas));
+			celda.setPadding(5);
+			table.addCell(celda);
+			
+			celda = new PdfPCell(new Phrase(user.getLastname(), fuenteDataCeldas));
+			celda.setPadding(5);
+			table.addCell(celda);
+			
+			celda = new PdfPCell(new Phrase(Integer.toString(user.getDocument()), fuenteDataCeldas));
+			celda.setPadding(5);
+			table.addCell(celda);
+			
+			celda = new PdfPCell(new Phrase(user.getEmail(), fuenteDataCeldas));
+			celda.setPadding(5);
+			table.addCell(celda);
+			
+			celda = new PdfPCell(new Phrase(user.getUsername(), fuenteDataCeldas));
+			celda.setPadding(5);
+			table.addCell(celda);
+			
+			celda = new PdfPCell(new Phrase(user.getUserRole().getName(), fuenteDataCeldas));
+			celda.setPadding(5);
+			table.addCell(celda);
+			
+		            
         }
     }
      
@@ -61,18 +108,17 @@ public class UserPDFExporter {
         PdfWriter.getInstance(document, response.getOutputStream());
          
         document.open();
-        Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
+        Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Color.BLACK);
         font.setSize(18);
-        font.setColor(Color.BLUE);
          
-        Paragraph p = new Paragraph("List of Users", font);
+        Paragraph p = new Paragraph("LIST OF USERS", font);
         p.setAlignment(Paragraph.ALIGN_CENTER);
          
         document.add(p);
          
-        PdfPTable table = new PdfPTable(5);
+        PdfPTable table = new PdfPTable(6);
         table.setWidthPercentage(100f);
-        table.setWidths(new float[] {1.5f, 3.5f, 3.0f, 3.0f, 1.5f});
+        table.setWidths(new float[] {1.2f, 1.4f, 1.6f, 2.5f, 1.5f , 1.0f});
         table.setSpacingBefore(10);
          
         writeTableHeader(table);

@@ -130,7 +130,7 @@ public class HomeController {
 		String currentDateTime = dateFormatter.format(new java.util.Date());
 
 		String headerKey = "Content-Disposition";
-		String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
+		String headerValue = "attachment; filename=UserList_" + currentDateTime + ".pdf";
 		response.setHeader(headerKey, headerValue);
 
 		List<com.trabajo.Grupo16OO22021.entities.User> listUsers = userService.getAll();
@@ -147,7 +147,7 @@ public class HomeController {
 		String currentDateTime = dateFormatter.format(new java.util.Date());
 
 		String headerKey = "Content-Disposition";
-		String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
+		String headerValue = "attachment; filename=ProfileList_" + currentDateTime + ".pdf";
 		response.setHeader(headerKey, headerValue);
 
 		List<com.trabajo.Grupo16OO22021.entities.UserRole> listUserRole = roleService.getAll();
