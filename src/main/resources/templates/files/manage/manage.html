@@ -13,7 +13,7 @@
 		<link href="css/styles.css" rel="stylesheet" />
 	</head>
 	<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-		<a class="btn btn-secondary" th:href="@{/}">Home</a>
+		<a class="btn btn-primary" th:href="@{/}">Home</a>
 	
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
@@ -37,7 +37,7 @@
 		<div id="table-user" class="table-user">
 			<h3>User</h3>
 			<div>
-				<a class="btn btn-success" href="/newuser">Create new user</a>
+				<a class="btn btn-primary" href="/newuser">Create new user</a>
 			</div>
 			<table class="table"	  border="4px" cellpadding="5" >
 				
@@ -69,14 +69,14 @@
 					</tr>
 				</tbody>
 			</table>
-			
+			<a th:href="@{/users/export/pdf}">Export Users to PDF</a>
 		</div>
 	
 		<div id="table-profiles" class="table-profiles">
 				<h3>Profiles</h3>
 			<div>
-			<a class="btn btn-success" href="/newprofile">Create new profile</a>
-			<a class="btn btn-info" th:href="@{/}">Go back</a>
+			<a class="btn btn-primary" href="/newprofile">Create new profile</a>
+			<a class="btn btn-primary" th:href="@{/}">Go back</a>
 			</div>
 		
 			<table class="table" border="4px" cellpadding="5" >
