@@ -12,3 +12,4 @@ import com.trabajo.Grupo16OO22021.entities.UserRole;
 public interface IRoleRepository extends JpaRepository<UserRole, Integer>{
 	
 }
+
