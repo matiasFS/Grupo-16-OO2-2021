@@ -3,7 +3,9 @@ package com.trabajo.Grupo16OO22021.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
+
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,10 +18,10 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
 import com.trabajo.Grupo16OO22021.models.*;
+import com.trabajo.Grupo16OO22021.services.implementation.RoleService;
 
 import com.trabajo.Grupo16OO22021.repositories.*;
 import com.trabajo.Grupo16OO22021.services.*;
-import com.trabajo.Grupo16OO22021.services.implementation.RoleService;
 
 @Controller
 @RequestMapping("/manage")
@@ -90,11 +92,14 @@ public class ConfigurationController {
 		}
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/delete/{id}")
 	public RedirectView delete(@PathVariable("id") int id) {
 		userService.remove(id);
 		return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
 	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/deleteprofile/{id}")
 	public RedirectView deleteprofile(@PathVariable("id") int id) {
 		roleService.remove(id);
