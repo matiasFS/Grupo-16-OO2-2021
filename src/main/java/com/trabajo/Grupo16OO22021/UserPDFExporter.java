@@ -118,7 +118,7 @@ Font fuenteTituloColumnas = FontFactory.getFont(FontFactory.HELVETICA_BOLD ,12,C
          
         PdfPTable table = new PdfPTable(6);
         table.setWidthPercentage(100f);
-        table.setWidths(new float[] {1.2f, 1.4f, 1.6f, 2.5f, 1.5f , 1.0f});
+        table.setWidths(new float[] {1.2f, 1.4f, 1.6f, 2.5f, 1.5f , 1.3f});
         table.setSpacingBefore(10);
          
         writeTableHeader(table);
