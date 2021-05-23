@@ -11,6 +11,14 @@ public class ViewRouteHelper {
 	public final static String PROFILES = "files/profiles";
 	public final static String USERS = "files/users";
 	
+	
+	//Admin routes
+	public final static String ADMIN_PROFILES = "files/adminProfiles";
+	public final static String ADMIN_USERS = "files/adminUsers";
+	public final static String ADMIN_INDEX = "files/admin";
+	
+	
+	
 	// Manage
 	public final static String MANAGE = "files/manage/manage";
 	public final static String USER_UPDATE = "files/manage/updateuser";

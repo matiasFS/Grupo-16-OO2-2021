@@ -64,6 +64,14 @@ public class HomeController {
 		modelAndView.addObject("users", userService.getAll());
 		return modelAndView;
 	}
+	@GetMapping("/admin")
+	public ModelAndView adminIndex() {
+		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.ADMIN_INDEX);
+		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		modelAndView.addObject("username", user.getUsername());
+		modelAndView.addObject("users", userService.getAll());
+		return modelAndView;
+	}
 
 	@GetMapping("/")
 	public String redirectToHomeIndex() {
@@ -76,12 +84,28 @@ public class HomeController {
 		mAV.addObject("users", userService.getAll());
 		return mAV;
 	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/adminUsers.html")
+	public ModelAndView Users() {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.ADMIN_USERS);
+		mAV.addObject("users", userService.getAll());
+		return mAV;
+	}
 
 	@GetMapping("/profiles.html")
 	public String profiles(Model model) {
 		model.addAttribute("roles", roleRepository.findAll());
 
 		return ViewRouteHelper.PROFILES;
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@GetMapping("/adminProfiles.html")
+	public String adminProfiles(Model model) {
+		model.addAttribute("roles", roleRepository.findAll());
+		
+		return ViewRouteHelper.ADMIN_PROFILES;
 	}
 
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
