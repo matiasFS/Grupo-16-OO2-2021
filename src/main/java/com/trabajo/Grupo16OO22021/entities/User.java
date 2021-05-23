@@ -2,16 +2,15 @@ package com.trabajo.Grupo16OO22021.entities;
 
 
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.JoinColumn;
 
 @Entity
 @Table(name = "user")
@@ -41,10 +40,7 @@ public class User {
 	@Column(name = "enabled")
 	private boolean enabled;
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinTable(name = "user_roles",
-			joinColumns=@JoinColumn(name="user_id"),
-			inverseJoinColumns=@JoinColumn(name="user_role_id"))
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
 	private UserRole userRole;
 
 	public User() {
