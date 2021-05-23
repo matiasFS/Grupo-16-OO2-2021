@@ -24,6 +24,7 @@ import com.trabajo.Grupo16OO22021.repositories.*;
 import com.trabajo.Grupo16OO22021.services.*;
 
 @Controller
+@PreAuthorize("hasRole('ROLE_ADMIN')")
 @RequestMapping("/manage")
 public class ConfigurationController {
 
@@ -47,7 +48,7 @@ public class ConfigurationController {
 		return mAV;
 	}
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/createuser")
 	public RedirectView create(@ModelAttribute("user") UserModel userModel) {
 		if(!userService.validate(userModel)) {
@@ -72,6 +73,7 @@ public class ConfigurationController {
 		}
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/createprofile")
 	public RedirectView newProfile(@ModelAttribute("role") UserRoleModel userRoleModel) {
 		if(!roleService.validate(userRoleModel)) {
