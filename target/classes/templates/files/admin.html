@@ -25,8 +25,6 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 					<li class="nav-item"><a class="nav-link" th:href="@{/admin}">Home</a></li>
-					<li class="nav-item"><a class="nav-link" href="adminUsers.html">Users</a></li>
-				<li class="nav-item"><a class="nav-link" href="adminProfiles.html">Profiles</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/manage}">Manage</a></li>
 					<li class="nav-item"><a class="nav-link"><span th:text="${#authentication.getPrincipal().getUsername()}"></a></li>
 					<form th:action="@{/logout}" method="post">
