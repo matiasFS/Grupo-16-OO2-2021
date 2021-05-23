@@ -18,13 +18,12 @@
 	<!-- Page Content-->
 	<div id="page-content-wrapper">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-			<a class="navbar-brand" th:href="@{/}">GESTION</a>
+			<a class="navbar-brand" th:href="@{/admin}">GESTION</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
 					class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-					<li class="nav-item"><a class="nav-link" th:href="@{/admin}">Home</a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/manage}">Manage</a></li>
 					<li class="nav-item"><a class="nav-link"><span th:text="${#authentication.getPrincipal().getUsername()}"></a></li>
 					<form th:action="@{/logout}" method="post">
@@ -36,10 +35,37 @@
 			</nav>
 			<div class="container-fluid">
 				<h1 class="mt-4">BIENVENIDO</h1>
-				<p>
-					Trabajo practico cuatrimestral, gestion de usuarios y perfiles
-					
-				</p>
+			<div class="row">
+				<div class="col-xl-3 col-md-6">
+					<div class="card bg-secondary text-white mb-4">
+						<div class="card-body">Manage</div>
+						<div class="card-footer d-flex align-items-center justify-content-between">
+							<a class="medium text-white stretched-link" th:href="@{/manage}">View</a>
+							<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-3 col-md-6">
+					<div class="card bg-secondary text-white mb-4">
+						<div class="card-body">User</div>
+						<div class="card-footer d-flex align-items-center justify-content-between">
+							<a class="medium text-white stretched-link" href="/newuser">Create</a>
+							<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-md-6">
+					<div class="card bg-secondary text-white mb-4">
+						<div class="card-body">Profiles</div>
+						<div class="card-footer d-flex align-items-center justify-content-between">
+							<a class="medium text-white stretched-link" href="/newprofile">Create</a>
+							<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+						</div>
+					</div>
+				</div>
+			</div>
 			</div>
 		</div>
 	

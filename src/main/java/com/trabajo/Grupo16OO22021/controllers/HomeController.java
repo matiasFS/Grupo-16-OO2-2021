@@ -55,7 +55,8 @@ public class HomeController {
 
 	@Autowired
 	private IRoleRepository roleRepository;
-
+	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/index")
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX);
@@ -64,6 +65,7 @@ public class HomeController {
 		modelAndView.addObject("users", userService.getAll());
 		return modelAndView;
 	}
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin")
 	public ModelAndView adminIndex() {
 		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.ADMIN_INDEX);
@@ -71,11 +73,6 @@ public class HomeController {
 		modelAndView.addObject("username", user.getUsername());
 		modelAndView.addObject("users", userService.getAll());
 		return modelAndView;
-	}
-
-	@GetMapping("/")
-	public String redirectToHomeIndex() {
-		return ViewRouteHelper.INDEX;
 	}
 
 	@PreAuthorize("hasRole('ROLE_AUDITOR')")
