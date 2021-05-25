@@ -1,6 +1,6 @@
 create schema if not exists `GRUPO-16-BDD-OO2-2021`;
 
-use `grupo-16-BDD-OO2-2021`;
+use `GRUPO-16-BDD-OO2-2021`;
 
 insert into user_role values(1,'2021-05-13', 'ROLE_ADMIN','ADMIN','2021-05-13');
 insert into user_role values(2,'2021-05-13', 'ROLE_AUDITOR','AUDITOR','2021-05-13');
