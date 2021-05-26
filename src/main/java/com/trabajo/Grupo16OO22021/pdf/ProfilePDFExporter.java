@@ -1,4 +1,4 @@
-package com.trabajo.Grupo16OO22021;
+package com.trabajo.Grupo16OO22021.pdf;
 
 import java.awt.Color;
 

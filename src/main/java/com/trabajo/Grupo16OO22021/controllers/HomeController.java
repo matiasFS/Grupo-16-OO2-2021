@@ -1,6 +1,7 @@
 package com.trabajo.Grupo16OO22021.controllers;
 
 import java.io.IOException;
+
 import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -28,12 +29,11 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.lowagie.text.DocumentException;
-import com.trabajo.Grupo16OO22021.ProfilePDFExporter;
-import com.trabajo.Grupo16OO22021.UserPDFExporter;
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
 import com.trabajo.Grupo16OO22021.models.UserModel;
 import com.trabajo.Grupo16OO22021.models.UserRoleModel;
-
+import com.trabajo.Grupo16OO22021.pdf.ProfilePDFExporter;
+import com.trabajo.Grupo16OO22021.pdf.UserPDFExporter;
 import com.trabajo.Grupo16OO22021.services.IUserService;
 
 import com.trabajo.Grupo16OO22021.repositories.IRoleRepository;
