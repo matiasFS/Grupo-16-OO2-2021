@@ -33,7 +33,7 @@ public class Permiso {
 	protected LocalDate fecha;
 	
 	@ManyToMany
-	@JoinTable(name="permiso_lugar"
+	@JoinTable(name="permisoxlugar"
 			, joinColumns=@JoinColumn(name="permisoId")
 			, inverseJoinColumns=@JoinColumn(name="lugarId")
 	)
