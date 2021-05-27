@@ -9,4 +9,5 @@ insert into user values(1, 11111111, 'admin@gmail.com', true, 'admin', 'admin','
 insert into user values(2, 22222222, 'auditor@gmail.com', true, 'auditor', 'auditor','$2a$10$B9mfALrCwl7gNgksyajanuqhq2GpRAfcfTPN9iXrAAGN6BKB73hUy','auditor',2);
 
 
-
+select * from rodado;
+select * from persona;
