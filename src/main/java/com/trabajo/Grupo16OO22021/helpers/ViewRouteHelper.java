@@ -33,5 +33,7 @@ public class ViewRouteHelper {
 	public static final String PROFILE_NEW_ROOT = "/newprofile";
 	public static final String PROFILE_UPDATE_ROOT = "/updateprofile{id}";
 
+	//Gestion
+	public static final String GESTION = "files/gestion";
 	
 }
