@@ -10,7 +10,6 @@ import com.trabajo.Grupo16OO22021.entities.PermisoDiario;
 
 @Repository("permisoDiarioRepository")
 public interface IPermisoDiarioRepository extends JpaRepository<PermisoDiario, Serializable> {
-		public abstract PermisoDiario findById(int id);
 		
 		public abstract	List<PermisoDiario> findAll();
 		

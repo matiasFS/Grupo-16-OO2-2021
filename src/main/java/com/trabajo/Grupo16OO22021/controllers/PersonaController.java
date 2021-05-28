@@ -24,9 +24,10 @@ public class PersonaController {
 	
 	@Autowired
 	@Qualifier("personaService")
-	private IPersonaService personaService;
+	private PersonaService personaService;
 	
 	@Autowired
+	@Qualifier("personaRepository")
 	private IPersonaRepository personaRepository;
 	
 	

@@ -13,16 +13,16 @@ import com.trabajo.Grupo16OO22021.models.PersonaModel;
 import com.trabajo.Grupo16OO22021.services.IPersonaService;
 
 
-@Qualifier("PersonaService")
+@Qualifier("personaService")
 @Service
 public class PersonaService implements IPersonaService{
 	
 	@Autowired
-	@Qualifier("PersonaRepository")
+	@Qualifier("personaRepository")
 	private IPersonaRepository personaRepository;
 	
 	@Autowired
-	@Qualifier("PersonaConverter")
+	@Qualifier("personaConverter")
 	private PersonaConverter personaConverter;
 	
 	@Override

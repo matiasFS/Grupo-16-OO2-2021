@@ -52,10 +52,7 @@ public class PermisoService implements IPermisoService {
 	}
 
 
-	@Override
-	public PermisoPeriodoModel findById(int id) {
-		return permisoConverter.entityToModel(permisoPeriodoRepository.findById(id));
-	}
+	
 
 	@Override
 	public PermisoDiarioModel insertOrUpdate(PermisoDiarioModel permisoDiarioModel) {

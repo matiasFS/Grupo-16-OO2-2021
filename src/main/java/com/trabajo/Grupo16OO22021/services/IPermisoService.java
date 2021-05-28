@@ -19,5 +19,4 @@ public interface IPermisoService {
 	
 	public PermisoDiarioModel insertOrUpdate(PermisoDiarioModel permisoDiarioModel);
 
-	public PermisoPeriodoModel findById(int id);
 }
