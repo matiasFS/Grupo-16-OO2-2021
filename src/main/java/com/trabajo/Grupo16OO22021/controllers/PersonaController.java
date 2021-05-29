@@ -30,6 +30,15 @@ public class PersonaController {
 	@Qualifier("personaRepository")
 	private IPersonaRepository personaRepository;
 	
-	
+	@PostMapping("/crearpersona")
+	public RedirectView create(@ModelAttribute("persona") PersonaModel personaModel) {
+		if(!personaService.validate(personaModel)) {
+			return new RedirectView(ViewRouteHelper.PERSONA_NEW_ROOT);
+		}else {
+			personaService.insertOrUpdate(personaModel);
+			return new RedirectView(ViewRouteHelper.PERSONA_ACT_ROOT);
+		}
+		
+	}	
 
 }
