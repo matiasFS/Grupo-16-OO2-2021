@@ -18,5 +18,9 @@ public interface IPermisoService {
 	public PermisoPeriodoModel insertOrUpdate(PermisoPeriodoModel permisoPeriodoModel);
 	
 	public PermisoDiarioModel insertOrUpdate(PermisoDiarioModel permisoDiarioModel);
+	
+	public boolean validatePermisoPeriodo(PermisoPeriodoModel permisoPeriodoModel);
+	public boolean validetePermisoDiario(PermisoDiarioModel permisoDiarioModel);
+
 
 }

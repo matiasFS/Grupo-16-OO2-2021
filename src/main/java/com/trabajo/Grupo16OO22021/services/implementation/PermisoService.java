@@ -62,6 +62,24 @@ public class PermisoService implements IPermisoService {
 		
 	return  permisoConverter.permisoDiarioEntityToModel(permiso);
 	}
+	@Override
+	public boolean validatePermisoPeriodo(PermisoPeriodoModel permisoPeriodoModel) {
+		if(permisoPeriodoModel.getPedido()==null||permisoPeriodoModel.getRodado()==null||permisoPeriodoModel.getCantDias()==0||permisoPeriodoModel.getFecha().toString().equals("")) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
+	@Override
+	public boolean validetePermisoDiario(PermisoDiarioModel permisoDiarioModel) {
+		if(permisoDiarioModel.getPedido()==null||permisoDiarioModel.getFecha().toString().equals("")||permisoDiarioModel.getMotivo().equals("")) {
+			return false;
+		}
+		else {
+			return true;
+		}
+	}
 
 	
 

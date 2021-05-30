@@ -2,6 +2,7 @@ package com.trabajo.Grupo16OO22021.services.implementation;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -41,6 +42,15 @@ public class RodadoService implements IRodadoService{
 		return rodadoConverter.entityToModel(rodadoRepository.findById(id));
 	}
 
+	@Override
+	public boolean validate(RodadoModel rodadoModel) {
+		if(rodadoModel.getDominio().equals("")||rodadoModel.getVehiculo().equals("")) {
+			return false;
+		} else {
+			return true;
+		}
+		
+	}
 
 
 }

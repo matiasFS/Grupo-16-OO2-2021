@@ -79,8 +79,15 @@ public class GestionController {
 
 	@PostMapping("/newrodado")
 	public RedirectView cargarrodados(RodadoModel rodadoModel) {
-		rodadoService.insertOrUpdate(rodadoModel);
-		return new RedirectView(ViewRouteHelper.GESTION_ROOT);
+		if(!rodadoService.validate(rodadoModel)) {
+			return new RedirectView(ViewRouteHelper.RODADO_ROOT);
+
+		}
+		else {
+			rodadoService.insertOrUpdate(rodadoModel);
+			return new RedirectView(ViewRouteHelper.GESTION_ROOT);
+		}
+		
 	}
 
 	@GetMapping("/createpermisoperiodo")
@@ -95,8 +102,14 @@ public class GestionController {
 
 	@PostMapping("/newpermiso")
 	public RedirectView cargarpermiso(PermisoPeriodoModel permisoPeriodoModel) {
-		permisoService.insertOrUpdate(permisoPeriodoModel);
-		return new RedirectView(ViewRouteHelper.GESTION_ROOT);
+		if(!permisoService.validatePermisoPeriodo(permisoPeriodoModel)) {
+			return new RedirectView(ViewRouteHelper.PERMISO_PERIODO_ROOT);
+		}
+		else {
+			permisoService.insertOrUpdate(permisoPeriodoModel);
+			return new RedirectView(ViewRouteHelper.GESTION_ROOT);
+		}
+		
 	}
 
 	@GetMapping("/createpermisodiario")
@@ -111,7 +124,13 @@ public class GestionController {
 
 	@PostMapping("/newpermisodiario")
 	public RedirectView cargarpermisoDiario(PermisoDiarioModel permisoDiarioModel) {
-		permisoService.insertOrUpdate(permisoDiarioModel);
-		return new RedirectView(ViewRouteHelper.GESTION_ROOT);
+		if(!permisoService.validetePermisoDiario(permisoDiarioModel)) {
+			return new RedirectView(ViewRouteHelper.PERMISO_DIARIO_ROOT);
+
+		}
+		else {
+			permisoService.insertOrUpdate(permisoDiarioModel);
+			return new RedirectView(ViewRouteHelper.GESTION_ROOT);
+		}
 	}
 }

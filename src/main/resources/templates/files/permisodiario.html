@@ -55,22 +55,7 @@
 												</div>
 											</div>
 
-											<div class="col-lg-9">
-												<select th:field="*{desdeHasta}" class="form-control" size="5">
-													<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
-														<td><span th:text="${lugar.lugar}" /></td>
-														<td><span th:text="${lugar.codPostal}" /></td>
-													</option>
-												</select>
-											</div>
-											<div class="col-lg-9">
-												<select th:field="*{desdeHasta}" class="form-control" size="5">
-													<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
-														<td><span th:text="${lugar.lugar}" /></td>
-														<td><span th:text="${lugar.codPostal}" /></td>
-													</option>
-												</select>
-											</div>
+											
 
 										</div>
 										<div class="form-group mt-4 mb-0"><input class="btn btn-primary" type="submit"
