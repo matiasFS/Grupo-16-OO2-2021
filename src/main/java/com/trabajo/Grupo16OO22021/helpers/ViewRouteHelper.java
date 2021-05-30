@@ -32,16 +32,19 @@ public class ViewRouteHelper {
 	public static final String USER_UPDATE_ROOT = "/updateuser{id}";
 	public static final String PROFILE_NEW_ROOT = "/newprofile";
 	public static final String PROFILE_UPDATE_ROOT = "/updateprofile{id}";
+	public static final String GESTION_ROOT = "/gestion";
 
 	//Personas ROOT
-		public final static String PERSONA_NEW_ROOT = "A DEFINIR";
-		public final static String PERSONA_ACT_ROOT = "A DEFINIR";
-	//Gestion
+	public final static String PERSONA_NEW_ROOT = "/personas/crearpersona";
+		
 	public static final String GESTION = "files/gestion";
+	public final static String PERSONA_NEW = "files/crearpersona";
+	public final static String RODADO = "files/crearrodado";
+	public final static String PERMISO = "files/permisoperiodo";
+	public final static String PERMISO_DIARIO = "files/permisodiario";
 	
-	//Personas
-	public final static String PERSONA_NEW = "A DEFINIR";
-	public final static String PERSONA_ACT = "A DEFINIR";
+	
+	
 	
 	
 	

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Inicio</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+
+	<!-- Page Content-->
+	<div id="page-content-wrapper">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+			<button class="btn btn-primary" th:href="@{/}">Home</button>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+				aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
+					class="navbar-toggler-icon"></span></button>
+			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+					<li class="nav-item"><a class="nav-link" th:href="@{/createperson}">Persona</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/createrodado}">Rodado</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/createpermisoperiodo}">Permiso Periodo</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/createpermisodiario}">Permiso Diario</a></li>
+				
+				</ul>
+			</div>
+		</nav>
+		<div class="container-fluid">
+			<h1 class="mt-4">BIENVENIDO</h1>
+			<p>
+				Trabajo practico cuatrimestral, gestion de permisos, personas y rodados
+
+			</p>
+			<div class="row">
+				<div class="col-xl-3 col-md-6">
+					<div class="card bg-secondary text-white mb-4">
+						<div class="card-body">Permiso periodo</div>
+						<div class="card-footer d-flex align-items-center justify-content-between">
+							<a class="medium text-white stretched-link" th:href="@{/createpermisoperiodo}">Crear</a>
+							<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-3 col-md-6">
+					<div class="card bg-secondary text-white mb-4">
+						<div class="card-body">Permiso diario</div>
+						<div class="card-footer d-flex align-items-center justify-content-between">
+							<a class="medium text-white stretched-link" th:href="@{/createpermisodiario}">Crear</a>
+							<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Bootstrap core JS-->
+	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+	<!-- Core theme JS-->
+	<script src="js/scripts.js"></script>
+</body>
+
+</html>
