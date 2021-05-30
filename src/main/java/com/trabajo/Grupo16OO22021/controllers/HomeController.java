@@ -30,6 +30,9 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.lowagie.text.DocumentException;
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
+import com.trabajo.Grupo16OO22021.models.PermisoModel;
+import com.trabajo.Grupo16OO22021.models.PersonaModel;
+import com.trabajo.Grupo16OO22021.models.RodadoModel;
 import com.trabajo.Grupo16OO22021.models.UserModel;
 import com.trabajo.Grupo16OO22021.models.UserRoleModel;
 import com.trabajo.Grupo16OO22021.pdf.ProfilePDFExporter;
@@ -56,13 +59,22 @@ public class HomeController {
 	@Autowired
 	private IRoleRepository roleRepository;
 	
+	
+	/*@GetMapping("/gestiondepermisos")
+	public ModelAndView gestionPermisos() {
+		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.GESTION_PERMISOS);
+		modelAndView.addObject("persona", new PersonaModel());
+		modelAndView.addObject("permiso", new PermisoModel());
+		modelAndView.addObject("rodado", new RodadoModel());
+		return modelAndView;
+	}*/
+	
 	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/index")
 	public ModelAndView index() {
 		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.INDEX);
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		modelAndView.addObject("username", user.getUsername());
-		modelAndView.addObject("users", userService.getAll());
+		modelAndView.addObject("persona", new PersonaModel());
+		modelAndView.addObject("permiso", new PermisoModel());
 		return modelAndView;
 	}
 	@PreAuthorize("hasRole('ROLE_ADMIN')")

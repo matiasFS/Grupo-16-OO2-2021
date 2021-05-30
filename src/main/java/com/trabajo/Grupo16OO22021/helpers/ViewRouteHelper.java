@@ -4,9 +4,9 @@ public class ViewRouteHelper {
 	public final static String INDEX = "files/index";
 
 	// Login and logout form
-	public final static String LOGIN = "files/login/login";
+	public final static String HOME = "files/home";
 	public final static String LOGOUT = "files/login/logout";
-
+	public final static String GESTION_PERMISOS = "files/gestiondepermisos";
 	// Users and profiles lists
 	public final static String PROFILES = "files/profiles";
 	public final static String USERS = "files/users";
