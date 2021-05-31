@@ -1,0 +1,18 @@
+<form action="#" th:action="@{/buscarfecha}" method="post">
+	<div class="col-md-6">
+		<div class="form-group">
+			<label class="small mb-1" for="inputFecha">Desde:</label>
+			<input class="form-control py-4" id="inputFirstName" type="date" th:name="fechaDesde"
+				th:object="${fechaDesde}" />
+		</div>
+	</div>
+	<div class="col-md-6">
+		<div class="form-group">
+			<label class="small mb-1" for="inputFecha">Hasta:</label>
+			<input class="form-control py-4" id="inputFirstName" type="date" th:name="fechaHasta"
+				th:object="${fechaHasta}" />
+		</div>
+	</div>
+	<div class="form-group mt-4 mb-0"><input class="btn btn-primary" type="submit" Value="Crear" /> <a
+			class="btn btn-primary" th:href="@{/gestion}">Volver</a></div>
+</form>
