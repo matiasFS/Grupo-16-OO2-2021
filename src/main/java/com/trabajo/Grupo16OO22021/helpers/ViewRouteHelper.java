@@ -4,9 +4,9 @@ public class ViewRouteHelper {
 	public final static String INDEX = "files/index";
 
 	// Login and logout form
-	public final static String LOGIN = "files/login/login";
+	public final static String HOME = "files/home";
 	public final static String LOGOUT = "files/login/logout";
-
+	public final static String GESTION_PERMISOS = "files/gestiondepermisos";
 	// Users and profiles lists
 	public final static String PROFILES = "files/profiles";
 	public final static String USERS = "files/users";
@@ -32,23 +32,17 @@ public class ViewRouteHelper {
 	public static final String USER_UPDATE_ROOT = "/updateuser{id}";
 	public static final String PROFILE_NEW_ROOT = "/newprofile";
 	public static final String PROFILE_UPDATE_ROOT = "/updateprofile{id}";
-	public static final String GESTION_ROOT = "/gestion";
 
 	//Personas ROOT
-	public final static String PERSONA_NEW_ROOT = "/personas/crearpersona";
-	
-	public final static String RODADO_ROOT = "/createrodado";
-	public final static String PERMISO_PERIODO_ROOT = "/createpermisoperiodo";
-	public final static String PERMISO_DIARIO_ROOT = "/createpermisodiario";
-
+		public final static String PERSONA_NEW_ROOT = "/gestiondepermisos";
+		public final static String PERSONA_ACT_ROOT = "A DEFINIR";
+	//Gestion
 	public static final String GESTION = "files/gestion";
-	public final static String PERSONA_NEW = "files/crearpersona";
-	public final static String RODADO = "files/crearrodado";
-	public final static String PERMISO = "files/permisoperiodo";
-	public final static String PERMISO_DIARIO = "files/permisodiario";
+
 	
-	
-	
+	//Personas
+	public final static String PERSONA_NEW = "A DEFINIR";
+	public final static String PERSONA_ACT = "A DEFINIR";
 	
 	
 	

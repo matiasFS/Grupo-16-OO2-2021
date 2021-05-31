@@ -13,13 +13,13 @@ import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
 @Controller
 public class UserController {
 
-	@GetMapping("/login")
-	public String login(Model model,
+	@GetMapping("/home")
+	public String home(Model model,
 						@RequestParam(name="error",required=false) String error,
 						@RequestParam(name="logout", required=false) String logout) {
 		model.addAttribute("error", error);
 		model.addAttribute("logout", logout);
-		return ViewRouteHelper.LOGIN;
+		return ViewRouteHelper.HOME;
 	}
 
 	

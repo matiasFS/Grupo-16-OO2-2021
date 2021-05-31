@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -14,14 +15,14 @@ import com.trabajo.Grupo16OO22021.models.PermisoDiarioModel;
 import com.trabajo.Grupo16OO22021.models.PermisoPeriodoModel;
 import com.trabajo.Grupo16OO22021.models.PersonaModel;
 import com.trabajo.Grupo16OO22021.models.RodadoModel;
-import com.trabajo.Grupo16OO22021.repositories.ILugarRepository;
+
 import com.trabajo.Grupo16OO22021.repositories.IPermisoDiarioRepository;
 import com.trabajo.Grupo16OO22021.repositories.IPermisoPeriodoRepository;
 import com.trabajo.Grupo16OO22021.repositories.IPersonaRepository;
-import com.trabajo.Grupo16OO22021.repositories.IRodadoRepository;
+
 import com.trabajo.Grupo16OO22021.services.implementation.PermisoService;
 import com.trabajo.Grupo16OO22021.services.implementation.PersonaService;
-import com.trabajo.Grupo16OO22021.services.implementation.RodadoService;
+
 
 @Controller
 public class GestionController {
@@ -30,9 +31,7 @@ public class GestionController {
 	@Qualifier("personaService")
 	private PersonaService personaService;
 
-	@Autowired
-	@Qualifier("rodadoService")
-	private RodadoService rodadoService;
+
 
 	@Autowired
 	@Qualifier("permisoService")
@@ -50,87 +49,30 @@ public class GestionController {
 	@Qualifier("permisoDiarioRepository")
 	private IPermisoDiarioRepository permisoDiarioRepository;
 
-	@Autowired
-	@Qualifier("rodadoRepository")
-	private IRodadoRepository rodadoRepository;
 
-	@Autowired
-	@Qualifier("lugarRepository")
-	private ILugarRepository lugarRepository;
 
 	@GetMapping("/gestion")
 	public String gestion() {
 		return ViewRouteHelper.GESTION;
 	}
 
-	@GetMapping("/createperson")
-	public ModelAndView cargarPersonas() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERSONA_NEW);
+	@GetMapping("/gestiondepermisos")
+	public ModelAndView gestionPermisos() {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.GESTION_PERMISOS);
 		mAV.addObject("persona", new PersonaModel());
 		return mAV;
 	}
-
-	@GetMapping("/createrodado")
-	public ModelAndView cargarRodados() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RODADO);
-		mAV.addObject("rodado", new RodadoModel());
-		return mAV;
-	}
-
-	@PostMapping("/newrodado")
-	public RedirectView cargarrodados(RodadoModel rodadoModel) {
-		if(!rodadoService.validate(rodadoModel)) {
-			return new RedirectView(ViewRouteHelper.RODADO_ROOT);
-
-		}
-		else {
-			rodadoService.insertOrUpdate(rodadoModel);
-			return new RedirectView(ViewRouteHelper.GESTION_ROOT);
+	@PostMapping("/crearpersona")
+	public RedirectView create(@ModelAttribute("persona") PersonaModel personaModel) {
+		System.out.println(personaModel);
+		if(!personaService.validate(personaModel)) {
+			return new RedirectView(ViewRouteHelper.PERSONA_NEW_ROOT);
+		}else {
+			personaService.insertOrUpdate(personaModel);
+			return new RedirectView(ViewRouteHelper.GESTION_PERMISOS);
 		}
 		
-	}
+	}	
 
-	@GetMapping("/createpermisoperiodo")
-	public ModelAndView cargarPermiso(Model model) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO);
-		mAV.addObject("permiso", new PermisoPeriodoModel()); // MODIFICAR
-		model.addAttribute("personas", personaRepository.findAll());
-		model.addAttribute("rodados", rodadoRepository.findAll());
-
-		return mAV;
-	}
-
-	@PostMapping("/newpermiso")
-	public RedirectView cargarpermiso(PermisoPeriodoModel permisoPeriodoModel) {
-		if(!permisoService.validatePermisoPeriodo(permisoPeriodoModel)) {
-			return new RedirectView(ViewRouteHelper.PERMISO_PERIODO_ROOT);
-		}
-		else {
-			permisoService.insertOrUpdate(permisoPeriodoModel);
-			return new RedirectView(ViewRouteHelper.GESTION_ROOT);
-		}
-		
-	}
-
-	@GetMapping("/createpermisodiario")
-	public ModelAndView cargarPermisoDiario(Model model) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_DIARIO);
-		mAV.addObject("permiso", new PermisoDiarioModel()); // MODIFICAR
-		model.addAttribute("personas", personaRepository.findAll());
-		model.addAttribute("lugares", lugarRepository.findAll());
-
-		return mAV;
-	}
-
-	@PostMapping("/newpermisodiario")
-	public RedirectView cargarpermisoDiario(PermisoDiarioModel permisoDiarioModel) {
-		if(!permisoService.validetePermisoDiario(permisoDiarioModel)) {
-			return new RedirectView(ViewRouteHelper.PERMISO_DIARIO_ROOT);
-
-		}
-		else {
-			permisoService.insertOrUpdate(permisoDiarioModel);
-			return new RedirectView(ViewRouteHelper.GESTION_ROOT);
-		}
-	}
+	
 }
