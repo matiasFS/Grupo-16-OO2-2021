@@ -35,8 +35,9 @@ public class ViewRouteHelper {
 
 	//Personas ROOT
 		public final static String PERSONA_NEW_ROOT = "/gestiondepermisos";
-		public final static String PERSONA_ACT_ROOT = "A DEFINIR";
+		public final static String PERMISO_NEW_ROOT = "A/gestiondepermisos";
 		public final static String RODADO_NEW_ROOT = "/gestiondepermisos";
+		
 
 	//Gestion
 	public static final String GESTION = "files/gestion";

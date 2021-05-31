@@ -93,7 +93,95 @@
 										<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit" Value="Create" /> <a class="btn btn-primary" >Go back</a></div>
 									</form>
 						</section>
-						<section></section>	
+						<section class="gestionPermisos">
+							<h3>Gestionar Permiso</h3>
+							<small>Seleccione el tipo de permiso que desea adquirir</small>
+							<ul id="navTipoPermiso">
+								<li><a onclick="formPermisoDiario()">Diario</a></li>
+								<li><a onclick="formPermisoPeriodo()">Periodo</a></li>
+							</ul>
+							<div	class="formTipoPermiso" id="formPeriodoDiario">
+									<form id="formPermisoDiario" action="#" th:action="@{/crearPermisoDiario}" th:object="${permisoDiario}"
+												method="post">
+												<div class="form-row">
+													<div class="col-md-6">
+														<div class="form-group">
+															<label class="small mb-1" for="inputFecha">Fecha:</label>
+															<input class="form-control py-4" id="inputFirstName" type="date"
+																th:field="*{fecha}" />
+														</div>
+													</div>
+													<label th:text="Persona"
+														class="col-lg-3 col-form-label form-control-label"></label>
+													<div class="col-lg-9">
+														<select th:field="*{pedido}" class="form-control" size="5">
+															<option th:each="persona : ${personas}" th:value="${persona.idPersona}">
+																<td><span th:text="${persona.nombre}" /></td>
+																<td><span th:text="${persona.apellido}" /></td>
+																<td><span th:text="${persona.documento}" /></td>
+															</option>
+														</select>
+													</div>
+												
+		
+													
+		
+												</div>
+												<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit"
+														Value="Crear" /></div>
+									</form>
+									<form id="formPermisoPeriodo" action="#" th:action="@{/crearPermisoPeriodo}" th:object="${permisoPeriodo}" method="post">
+										<div class="form-row">
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="small mb-1" for="inputFecha">Fecha:</label>
+													<input class="form-control py-4" id="inputFirstName" type="date"
+														th:field="*{fecha}" />
+												</div>
+											</div>
+											<label th:text="Persona"
+												class="col-lg-3 col-form-label form-control-label"></label>
+											<div class="col-lg-9">
+												<select th:field="*{pedido}" class="form-control" size="5">
+													<option th:each="persona : ${personas}" th:value="${persona.idPersona}">
+														<td><span th:text="${persona.nombre}" /></td>
+														<td><span th:text="${persona.apellido}" /></td>
+														<td><span th:text="${persona.documento}" /></td>
+														
+													</option>
+												</select>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="small mb-1" for="inputFecha">Cantidad de dias:</label>
+													<input class="form-control py-4" id="inputFirstName" type="text"
+														th:field="*{cantDias}" />
+												</div>
+											</div>
+											<div class="col-md-6">
+												<div class="form-group">
+													<label class="small mb-1" for="inputFecha">Vacaciones?</label>
+													<input class="form-control py-4" id="inputFirstName" type="text"
+														placeholder="True or False" th:field="*{vacaciones}" />
+												</div>
+											</div>
+										</div>
+										<div class="col-lg-9">
+												<select th:field="*{rodado}" class="form-control" size="5">
+													<option th:each="rodado : ${rodados}" th:value="${rodado.idRodado}">
+														<td><span th:text="${rodado.dominio}" /></td>
+														<td><span th:text="${rodado.vehiculo}" /></td>														
+													</option>
+												</select>
+											</div>
+										<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit"
+												Value="Crear" />
+									</form>
+							
+							</div>
+							
+						
+						</section>	
 					
 					</div>
 					

@@ -7,6 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "persona")
@@ -22,6 +24,7 @@ public class Persona {
 	@Column (name = "apellido", nullable = false)
 	private String apellido;
 	
+	@NotNull(message="El dni es obligatorio")
 	@Column (name = "documento", nullable = false)
 	private long documento;
 	

@@ -35,6 +35,7 @@ body{
 	grid-template-columns:20% 80%;
 	height:100%;
 	width:100%;
+	
 }
 .navPermisos{
 	background-color:white;
@@ -77,8 +78,8 @@ body{
 	display:flex;
 	flex-direction:column;
 	width:90%;
-	height:70%;
-	margin:auto;
+	height:100%;
+	margin: 10px auto;
 	padding:40px;
 	background-color:white;
 	box-shadow:0 0 10px 0 black;
@@ -106,4 +107,39 @@ footer{
 	position:absolute;
 	bottom:0;
 	width:100%;
+}
+
+#navTipoPermiso{
+	display:flex;
+	flex-direction:row;
+	list-style:none;	
+	
+}
+#navTipoPermiso li a{
+	cursor:pointer;
+	color:black;
+	padding:5px;
+	
+}
+#navTipoPermiso li a.active{
+	transition:0.2s;
+	font-weight:bolder;
+	color:#d26900;
+	
+}
+#formPermisoDiario,#formPermisoPeriodo{
+	visibility:0;
+	opacity:0;
+	position:absolute;
+	
+}
+
+
+#formPermisoPeriodo.active,
+#formPermisoDiario.active{
+	transition:0.3s;
+	visibility:1;
+	opacity:1;
+	position:relative;
+	
 }

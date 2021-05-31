@@ -1,9 +1,12 @@
 package com.trabajo.Grupo16OO22021.controllers;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,11 +69,12 @@ public class GestionController {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.GESTION_PERMISOS);
 		mAV.addObject("persona", new PersonaModel());
 		mAV.addObject("rodado", new RodadoModel());
+		mAV.addObject("permisoDiario", new PermisoDiarioModel());
+		mAV.addObject("permisoPeriodo", new PermisoPeriodoModel());
 		return mAV;
 	}
 	@PostMapping("/crearpersona")
 	public RedirectView create(@ModelAttribute("persona") PersonaModel personaModel) {
-		System.out.println(personaModel);
 		if(!personaService.validate(personaModel)) {
 			return new RedirectView(ViewRouteHelper.PERSONA_NEW_ROOT);
 		}else {
@@ -79,6 +83,17 @@ public class GestionController {
 		}
 		
 	}
+	/*@PostMapping("/crearpersona")
+	public String guardar(@Valid PersonaModel personaModel, BindingResult result) {
+	    if (result.hasErrors()) {			
+	        return ViewRouteHelper.GESTION_PERMISOS;
+	    }
+
+	    personaService.insertOrUpdate(personaModel);
+
+	    return "redirect:" + ViewRouteHelper.GESTION_PERMISOS;
+	}*/
+	
 	@PostMapping("/newrodado")
 	public RedirectView cargarrodados(RodadoModel rodadoModel) {
 		if(!rodadoService.validate(rodadoModel)) {
@@ -87,6 +102,28 @@ public class GestionController {
 			rodadoService.insertOrUpdate(rodadoModel);
 			return new RedirectView(ViewRouteHelper.GESTION_PERMISOS);
 		}
+	}
+	@PostMapping("/crearPermisoDiario")
+	public RedirectView newPermisoDiario(PermisoDiarioModel diarioModel) {
+	
+		if(!permisoService.validetePermisoDiario(diarioModel)) {
+			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
+		}else {
+			permisoService.insertOrUpdate(diarioModel);
+			return new RedirectView(ViewRouteHelper.GESTION_PERMISOS);
+		}
+		
+	}
+	@PostMapping("/crearPermisoPeriodo")
+	public RedirectView newPermisoPeriodo(PermisoPeriodoModel periodoModel) {
+		
+		if(!permisoService.validatePermisoPeriodo(periodoModel)) {
+			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
+		}else {
+			permisoService.insertOrUpdate(periodoModel);
+			return new RedirectView(ViewRouteHelper.GESTION_PERMISOS);
+		}
+		
 	}
 
 	
