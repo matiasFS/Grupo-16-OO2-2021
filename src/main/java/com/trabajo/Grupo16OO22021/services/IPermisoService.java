@@ -24,5 +24,8 @@ public interface IPermisoService {
 	
 	public List<PermisoDiario> buscarPermisoDiario(long documento, String apellido);
 	public List<PermisoPeriodo> buscarPermisoPeriodo(long documento, String apellido);
+	
+	public List<PermisoPeriodo> buscarPermisoPeriodoRodado(String dominio);
+
 
 }

@@ -29,6 +29,8 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.lowagie.text.DocumentException;
+import com.trabajo.Grupo16OO22021.entities.PermisoDiario;
+import com.trabajo.Grupo16OO22021.entities.PermisoPeriodo;
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
 import com.trabajo.Grupo16OO22021.models.PermisoModel;
 import com.trabajo.Grupo16OO22021.models.PersonaModel;
@@ -40,6 +42,8 @@ import com.trabajo.Grupo16OO22021.pdf.UserPDFExporter;
 import com.trabajo.Grupo16OO22021.services.IUserService;
 
 import com.trabajo.Grupo16OO22021.repositories.IRoleRepository;
+import com.trabajo.Grupo16OO22021.services.implementation.PermisoService;
+import com.trabajo.Grupo16OO22021.services.implementation.RodadoService;
 import com.trabajo.Grupo16OO22021.services.implementation.RoleService;
 import com.trabajo.Grupo16OO22021.services.implementation.UserService;
 
@@ -59,15 +63,14 @@ public class HomeController {
 	@Autowired
 	private IRoleRepository roleRepository;
 	
+	@Autowired
+	@Qualifier("rodadoService")
+	private RodadoService rodadoService;
 	
-	/*@GetMapping("/gestiondepermisos")
-	public ModelAndView gestionPermisos() {
-		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.GESTION_PERMISOS);
-		modelAndView.addObject("persona", new PersonaModel());
-		modelAndView.addObject("permiso", new PermisoModel());
-		modelAndView.addObject("rodado", new RodadoModel());
-		return modelAndView;
-	}*/
+	@Autowired
+	@Qualifier("permisoService")
+	private PermisoService permisoService;
+
 	
 	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/index")
@@ -192,5 +195,28 @@ public class HomeController {
 		exporter.export(response);
 
 	}
+	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@GetMapping("/buscarporrodado")
+	public ModelAndView buscarPorRodado(Model model) {
+		String dominio = null;
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_RODADO);
+		model.addAttribute("persona", rodadoService.getAll());
+		mAV.addObject("dominio", dominio);
+		
+		return mAV;
+
+	}
+	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@PostMapping("/permisoxrodado")
+	public ModelAndView permisoPorRodado(String dominio) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.ENCONTRADO1);
+		List<PermisoPeriodo> permisoPeriodo = permisoService.buscarPermisoPeriodoRodado(dominio);
+		mAV.addObject("permisoPeriodo", permisoPeriodo);
+		return mAV;
+
+	}
+
 
 }

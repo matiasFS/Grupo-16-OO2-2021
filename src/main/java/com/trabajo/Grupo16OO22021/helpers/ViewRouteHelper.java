@@ -39,4 +39,7 @@ public class ViewRouteHelper {
 	public final static String BUSCAR_POR_PERSONA = "/files/buscarporpersona";
 	public final static String ENCONTRADO = "/files/permisoxpersona";
 
+	public static final String BUSCAR_POR_RODADO = "/files/buscarporrodado";
+	public static final String ENCONTRADO1 = "/files/permisoxrodado";
+
 }

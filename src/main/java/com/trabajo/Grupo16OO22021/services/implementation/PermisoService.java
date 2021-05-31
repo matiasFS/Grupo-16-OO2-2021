@@ -105,4 +105,15 @@ public class PermisoService implements IPermisoService {
 		}
 		return permisoPeriodo1;
 	}
+
+	public List<PermisoPeriodo> buscarPermisoPeriodoRodado(String dominio) {
+		List<PermisoPeriodo> permisoPeriodo = getAll();
+		List<PermisoPeriodo> permisoPeriodo1 = new ArrayList<PermisoPeriodo>();
+		for (PermisoPeriodo p : permisoPeriodo) {
+			if (p.getRodado().getDominio().equals(dominio)) {
+				permisoPeriodo1.add(p);
+			}
+		}
+		return permisoPeriodo1;
+	}
 }

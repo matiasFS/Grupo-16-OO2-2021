@@ -26,7 +26,8 @@
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
 					<li class="nav-item"><a class="nav-link" href="home.html">Inicio</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/gestiondepermisos}">Gestion de permisos</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/gestiondepermisos}">Gestion de permisos</a>
+					</li>
 					<li class="nav-item"><a class="nav-link" th:href="@{/buscarporpersona}">Permiso por persona</a></li>
 
 					<li class="nav-item"><a onclick="showLogin()" class="nav-link">Ingresar</a></li>
@@ -55,7 +56,7 @@
 							<div class="form-group">
 								<label class="small mb-1" for="inputFirstName">Nombre:</label>
 								<input class="form-control py-4" id="inputFirstName" type="text"
-									placeholder="Ingrese nombre" th:field="${persona.nombre}" required/>
+									placeholder="Ingrese nombre" th:field="${persona.nombre}" required />
 								<label class="small mb-1">(Tiene que tener 3 o mas caracteres)</label>
 							</div>
 						</div>
@@ -63,7 +64,7 @@
 							<div class="form-group">
 								<label class="small mb-1" for="inputLastName">Apellido:</label>
 								<input class="form-control py-4" id="inputLastName" type="text"
-									placeholder="Ingrese apellido" th:field="${persona.apellido}" required/>
+									placeholder="Ingrese apellido" th:field="${persona.apellido}" required />
 								<label class="small mb-1">(Tiene que tener 3 o mas caracteres)</label>
 							</div>
 						</div>
@@ -71,12 +72,12 @@
 							<div class="form-group">
 								<label class="small mb-1" for="inputDocumento">Documento</label>
 								<input class="form-control py-4" id="inputDocumento" type="text"
-									placeholder="Ingrese documento" th:field="${persona.documento}" required/>
+									placeholder="Ingrese documento" th:field="${persona.documento}" required />
 								<label class="small mb-1">(Tiene que tener 7 o mas caracteres)</label>
 							</div>
 						</div>
 						<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit" Value="Crear" />
-						
+
 						</div>
 					</form>
 				</section>
@@ -87,7 +88,7 @@
 							<div class="form-group">
 								<label class="small mb-1" for="inputDominio">Dominio</label>
 								<input class="form-control py-4" id="inputDominio" type="text"
-									placeholder="Ingrese dominio" th:field="${rodado.dominio}" required/>
+									placeholder="Ingrese dominio" th:field="${rodado.dominio}" required />
 								<label class="small mb-1">(Debe tener formato "AAA111" o "AA111AA")</label>
 
 							</div>
@@ -96,7 +97,7 @@
 							<div class="form-group">
 								<label class="small mb-1" for="inputVehiculo">Vehiculo</label>
 								<input class="form-control py-4" id="inputVehiculo" type="text"
-									placeholder="Ingrese vehiculo" th:field="${rodado.vehiculo}" required/>
+									placeholder="Ingrese vehiculo" th:field="${rodado.vehiculo}" required />
 								<label class="small mb-1">(Tiene que tener 3 o mas caracteres)</label>
 							</div>
 						</div>
@@ -104,14 +105,31 @@
 						<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit" Value="Crear" />
 						</div>
 					</form>
-					
+
 				</section>
 				<section class="gestionPermisos">
 					<h3>Gestionar Permiso</h3>
-					<small>Seleccione el tipo de permiso que desea adquirir</small>
+					<medium>Seleccione el tipo de permiso que desea adquirir:</medium>
 					<ul id="navTipoPermiso">
-						<li><a onclick="formPermisoDiario()">Diario</a></li>
-						<li><a onclick="formPermisoPeriodo()">Periodo</a></li>
+						<div class="col-xl-3 col-md-6">
+							<div class="card bg-secondary text-white mb-4">
+								<div class="card-body">Diario</div>
+								<div class="card-footer d-flex align-items-center justify-content-between">
+									<a class="medium text-white stretched-link" onclick="formPermisoPeriodo()">Crear</a>
+									<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+								</div>
+							</div>
+						</div>
+						<div class="col-xl-3 col-md-6">
+							<div class="card bg-secondary text-white mb-4">
+								<div class="card-body">Periodo</div>
+								<div class="card-footer d-flex align-items-center justify-content-between">
+									<a class="medium text-white stretched-link" onclick="formPermisoDiario()">Crear</a>
+									<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+								</div>
+							</div>
+						</div>
+
 					</ul>
 					<div class="formTipoPermiso" id="formPeriodoDiario">
 						<form id="formPermisoDiario" action="#" th:action="@{/crearPermisoDiario}"
@@ -121,7 +139,7 @@
 									<div class="form-group">
 										<label class="medium mb-1" for="inputFecha">Fecha:</label>
 										<input class="form-control py-4" id="inputFirstName" type="date"
-											th:field="*{fecha}" required/>
+											th:field="*{fecha}" required />
 										<label class="small mb-1">(No puede estar vacio)</label>
 									</div>
 								</div>
@@ -140,7 +158,7 @@
 									<div class="form-group">
 										<label class="medium mb-1" for="inputMotivo">Motivo:</label>
 										<input class="form-control py-4" id="inputFirstName" type="text"
-											th:field="*{motivo}" required/>
+											th:field="*{motivo}" required />
 										<label class="small mb-1">(No puede estar vacio)</label>
 									</div>
 								</div>
@@ -178,7 +196,7 @@
 									<div class="form-group">
 										<label class="medium mb-1" for="inputFecha">Fecha:</label>
 										<input class="form-control py-4" id="inputFirstName" type="date"
-											th:field="*{fecha}" required/>
+											th:field="*{fecha}" required />
 										<label class="small mb-1">(No puede estar vacio)</label>
 									</div>
 								</div>
@@ -197,7 +215,7 @@
 									<div class="form-group">
 										<label class="medium mb-1" for="inputFecha">Cantidad de dias:</label>
 										<input class="form-control py-4" id="inputFirstName" type="text"
-											th:field="*{cantDias}" required/>
+											th:field="*{cantDias}" required />
 										<label class="small mb-1">(No puede estar vacio o ser 0)</label>
 
 									</div>
@@ -206,7 +224,7 @@
 									<div class="form-group">
 										<label class="medium mb-1" for="inputFecha">Vacaciones?</label>
 										<input class="form-control py-4" id="inputFirstName" type="text"
-											placeholder="True or False" th:field="*{vacaciones}" required/>
+											placeholder="True or False" th:field="*{vacaciones}" required />
 										<label class="small mb-1">(Tiene que ser true o false)</label>
 									</div>
 								</div>
@@ -221,7 +239,7 @@
 							</div>
 							<div class="col-lg-9">
 								<label class="medium mb-1" for="inputDesdeHasta">Desde:</label>
-								
+
 								<select th:field="*{desdeHasta}" class="form-control">
 									<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
 										<td><span th:text="${lugar.lugar}" /></td>
