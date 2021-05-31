@@ -44,7 +44,7 @@ public class RodadoService implements IRodadoService{
 
 	@Override
 	public boolean validate(RodadoModel rodadoModel) {
-		if(rodadoModel.getDominio().equals("")||rodadoModel.getVehiculo().equals("")) {
+		if(rodadoModel.getDominio().equals("")||rodadoModel.getVehiculo().equals("")||rodadoModel.getVehiculo().length()<3) {
 			return false;
 		} else {
 			return true;

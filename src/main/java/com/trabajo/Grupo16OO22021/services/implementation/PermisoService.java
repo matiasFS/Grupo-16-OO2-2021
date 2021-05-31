@@ -64,7 +64,7 @@ public class PermisoService implements IPermisoService {
 	}
 	@Override
 	public boolean validatePermisoPeriodo(PermisoPeriodoModel permisoPeriodoModel) {
-		if(permisoPeriodoModel.getPedido()==null||permisoPeriodoModel.getRodado()==null||permisoPeriodoModel.getCantDias()==0||permisoPeriodoModel.getFecha().toString().equals("")) {
+		if(permisoPeriodoModel.getPedido()==null||permisoPeriodoModel.getRodado()==null||permisoPeriodoModel.getCantDias()==0||permisoPeriodoModel.getCantDias()<0||permisoPeriodoModel.getFecha().toString().equals("")) {
 			return false;
 		}
 		else {
