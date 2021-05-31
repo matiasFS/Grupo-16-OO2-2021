@@ -21,6 +21,8 @@ public interface IPermisoService {
 	
 	public boolean validatePermisoPeriodo(PermisoPeriodoModel permisoPeriodoModel);
 	public boolean validetePermisoDiario(PermisoDiarioModel permisoDiarioModel);
-
+	
+	public List<PermisoDiario> buscarPermisoDiario(long documento, String apellido);
+	public List<PermisoPeriodo> buscarPermisoPeriodo(long documento, String apellido);
 
 }

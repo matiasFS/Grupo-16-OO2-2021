@@ -1,15 +1,19 @@
 package com.trabajo.Grupo16OO22021.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.trabajo.Grupo16OO22021.entities.PermisoDiario;
+import com.trabajo.Grupo16OO22021.entities.PermisoPeriodo;
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
 import com.trabajo.Grupo16OO22021.models.PermisoDiarioModel;
 import com.trabajo.Grupo16OO22021.models.PermisoPeriodoModel;
@@ -111,6 +115,28 @@ public class GestionController {
 			permisoService.insertOrUpdate(periodoModel);
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		}
+
+	}
+	@GetMapping("/buscarporpersona")
+	public ModelAndView buscarpersona(Model model) {
+		long documento = 0;
+		String apellido = null;
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_PERSONA);
+		model.addAttribute("persona", personaService.getAll());
+		mAV.addObject("documento", documento);
+		mAV.addObject("apellido", apellido);
+		
+		return mAV;
+
+	}
+	@PostMapping("/permisoxpersona")
+	public ModelAndView buscarporpersona(long documento, String apellido) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.ENCONTRADO);
+		List<PermisoDiario> permisoDiario = permisoService.buscarPermisoDiario(documento, apellido);
+		List<PermisoPeriodo> permisoPeriodo = permisoService.buscarPermisoPeriodo(documento, apellido);
+		mAV.addObject("permisoPeriodo", permisoPeriodo);
+		mAV.addObject("permisoDiario", permisoDiario);
+		return mAV;
 
 	}
 

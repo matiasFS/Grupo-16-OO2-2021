@@ -41,11 +41,11 @@ public class RodadoService implements IRodadoService {
 	}
 	boolean validarPatente(String dominio) {
 		boolean valida = false;
-		if(dominio.toUpperCase().matches("^[A-Z]{3}[0-9]{3}$")) {
+		if(dominio.matches("^[A-Z]{3}[0-9]{3}$")) {
 			valida = true;;
 		}
 		else {
-			if(dominio.toUpperCase().matches("^[A-Z]{2}[0-9]{3}[A-Z]{2}$")) {
+			if(dominio.matches("^[A-Z]{2}[0-9]{3}[A-Z]{2}$")) {
 				valida = true;
 			}
 			else {

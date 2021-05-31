@@ -35,4 +35,8 @@ public class ViewRouteHelper {
 	public final static String PERMISO_NEW_ROOT = "/gestiondepermisos";
 	public final static String RODADO_NEW_ROOT = "/gestiondepermisos";
 
+	
+	public final static String BUSCAR_POR_PERSONA = "/files/buscarporpersona";
+	public final static String ENCONTRADO = "/files/permisoxpersona";
+
 }

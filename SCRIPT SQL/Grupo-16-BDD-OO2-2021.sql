@@ -15,4 +15,4 @@ insert into lugar values(4, '1900', 'La Plata');
 insert into lugar values(5, '1841', 'Monte Grade');
 
 select * from rodado;
-select * from persona;
+select * from permiso;
