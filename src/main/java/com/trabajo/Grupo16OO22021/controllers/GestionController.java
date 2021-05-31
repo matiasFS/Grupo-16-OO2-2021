@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
@@ -61,6 +62,17 @@ public class GestionController {
 		mAV.addObject("persona", new PersonaModel());
 		return mAV;
 	}
+	@PostMapping("/crearpersona")
+	public RedirectView create(@ModelAttribute("persona") PersonaModel personaModel) {
+		System.out.println(personaModel);
+		if(!personaService.validate(personaModel)) {
+			return new RedirectView(ViewRouteHelper.PERSONA_NEW_ROOT);
+		}else {
+			personaService.insertOrUpdate(personaModel);
+			return new RedirectView(ViewRouteHelper.GESTION_PERMISOS);
+		}
+		
+	}	
 
 	
 }

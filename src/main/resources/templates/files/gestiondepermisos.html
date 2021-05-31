@@ -45,12 +45,12 @@
 						</section>	
 						<section>
 							<h3>Gestionar Persona</h3>
-							<form action="#" method="post"  th:action="@{/personas/crearpersona}" th:object="${persona}">
+							<form action="#" method="post"  th:action="@{/crearpersona}" th:object="${persona}">
 										<div class="col-md-6">
 												<div class="form-group">
 													<label class="small mb-1" for="inputFirstName">First Name</label>
 													<input class="form-control py-4" id="inputFirstName" type="text"
-														placeholder="Enter first name" th:field="*{nombre}" />
+														placeholder="Enter first name" th:field="${persona.nombre}" />
 												</div>
 											</div>
 											<div class="col-md-6">

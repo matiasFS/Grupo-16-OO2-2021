@@ -34,10 +34,11 @@ public class ViewRouteHelper {
 	public static final String PROFILE_UPDATE_ROOT = "/updateprofile{id}";
 
 	//Personas ROOT
-		public final static String PERSONA_NEW_ROOT = "A DEFINIR";
+		public final static String PERSONA_NEW_ROOT = "/gestiondepermisos";
 		public final static String PERSONA_ACT_ROOT = "A DEFINIR";
 	//Gestion
 	public static final String GESTION = "files/gestion";
+
 	
 	//Personas
 	public final static String PERSONA_NEW = "A DEFINIR";
