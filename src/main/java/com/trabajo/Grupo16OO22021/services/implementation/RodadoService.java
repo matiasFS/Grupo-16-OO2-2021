@@ -2,7 +2,6 @@ package com.trabajo.Grupo16OO22021.services.implementation;
 
 import java.util.List;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -14,7 +13,7 @@ import com.trabajo.Grupo16OO22021.repositories.IRodadoRepository;
 import com.trabajo.Grupo16OO22021.services.IRodadoService;
 
 @Service("rodadoService")
-public class RodadoService implements IRodadoService{
+public class RodadoService implements IRodadoService {
 	@Autowired
 	@Qualifier("rodadoRepository")
 	private IRodadoRepository rodadoRepository;
@@ -22,7 +21,7 @@ public class RodadoService implements IRodadoService{
 	@Autowired
 	@Qualifier("rodadoConverter")
 	private RodadoConverter rodadoConverter;
-	
+
 	@Override
 	public List<Rodado> getAll() {
 		return rodadoRepository.findAll();
@@ -32,25 +31,39 @@ public class RodadoService implements IRodadoService{
 	public RodadoModel insertOrUpdate(RodadoModel rodadoModel) {
 		Rodado rodado = rodadoRepository.save(rodadoConverter.modelToEntity(rodadoModel));
 		rodado = rodadoRepository.save(rodado);
-		
-	return  rodadoConverter.entityToModel(rodado);
-	}
 
+		return rodadoConverter.entityToModel(rodado);
+	}
 
 	@Override
 	public RodadoModel findById(int id) {
 		return rodadoConverter.entityToModel(rodadoRepository.findById(id));
 	}
-
+	boolean validarPatente(String dominio) {
+		boolean valida = false;
+		if(dominio.toUpperCase().matches("^[A-Z]{3}[0-9]{3}$")) {
+			valida = true;;
+		}
+		else {
+			if(dominio.toUpperCase().matches("^[A-Z]{2}[0-9]{3}[A-Z]{2}$")) {
+				valida = true;
+			}
+			else {
+				valida = false;
+			}
+		}
+		return valida;
+	}
 	@Override
 	public boolean validate(RodadoModel rodadoModel) {
-		if(rodadoModel.getDominio().equals("")||rodadoModel.getVehiculo().equals("")||rodadoModel.getVehiculo().length()<3) {
+		boolean dominioValido = validarPatente(rodadoModel.getDominio());
+		if (rodadoModel.getDominio().equals("") || rodadoModel.getVehiculo().equals("")
+				|| rodadoModel.getVehiculo().length() < 3||!dominioValido) {
 			return false;
 		} else {
 			return true;
 		}
-		
-	}
 
+	}
 
 }
