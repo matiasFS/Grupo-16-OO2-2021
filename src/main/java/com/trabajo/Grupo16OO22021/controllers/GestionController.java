@@ -22,6 +22,7 @@ import com.trabajo.Grupo16OO22021.repositories.IPersonaRepository;
 
 import com.trabajo.Grupo16OO22021.services.implementation.PermisoService;
 import com.trabajo.Grupo16OO22021.services.implementation.PersonaService;
+import com.trabajo.Grupo16OO22021.services.implementation.RodadoService;
 
 
 @Controller
@@ -48,6 +49,10 @@ public class GestionController {
 	@Autowired
 	@Qualifier("permisoDiarioRepository")
 	private IPermisoDiarioRepository permisoDiarioRepository;
+	
+	@Autowired
+	@Qualifier("rodadoService")
+	private RodadoService rodadoService;
 
 
 
@@ -60,6 +65,7 @@ public class GestionController {
 	public ModelAndView gestionPermisos() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.GESTION_PERMISOS);
 		mAV.addObject("persona", new PersonaModel());
+		mAV.addObject("rodado", new RodadoModel());
 		return mAV;
 	}
 	@PostMapping("/crearpersona")
@@ -72,7 +78,16 @@ public class GestionController {
 			return new RedirectView(ViewRouteHelper.GESTION_PERMISOS);
 		}
 		
-	}	
+	}
+	@PostMapping("/newrodado")
+	public RedirectView cargarrodados(RodadoModel rodadoModel) {
+		if(!rodadoService.validate(rodadoModel)) {
+			return new RedirectView(ViewRouteHelper.RODADO_NEW_ROOT);
+		}else {
+			rodadoService.insertOrUpdate(rodadoModel);
+			return new RedirectView(ViewRouteHelper.GESTION_PERMISOS);
+		}
+	}
 
 	
 }
