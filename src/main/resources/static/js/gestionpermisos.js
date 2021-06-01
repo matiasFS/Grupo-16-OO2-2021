@@ -9,7 +9,25 @@ let forms = document.getElementById("forms").getElementsByTagName("section");
 let navTipoPermiso = document.getElementById("navTipoPermiso");
 let formsPeriodoDiario = document.getElementById("formPeriodoDiario").getElementsByTagName("form");
 let btnTipoPermiso = document.getElementsByClassName("card btnTipoPermiso");
+let mensajeError = document.getElementsByClassName("mensajeError");
+let mensajeConfirmacion = document.getElementsByClassName("mensajeConfirmacion");
 
+
+function mostrarNotificacion(){
+	if(mensajeConfirmacion[0].textContent !== ""){
+		mensajeConfirmacion[0].classList.add("active");
+	
+	}
+	
+	if(mensajeError[0].textContent !== ""){
+		mensajeError[0].classList.add("active");
+	}
+	
+
+	
+
+}
+mostrarNotificacion();
 
 navPermisos.addEventListener("click", function(e){
 	
@@ -82,3 +100,5 @@ function formPermisoPeriodo(){
 	formsPeriodoDiario[1].classList.toggle("active");
 		btnTipoPermiso[1].classList.toggle("active");
 }
+
+
