@@ -125,7 +125,7 @@ public class PermisoService implements IPermisoService {
 
 		for (PermisoDiario permiso : permisos) {
 
-			if (permiso.getFecha().isAfter(desde) && permiso.getFecha().isBefore(hasta)) {
+			if (permiso.getFecha().isAfter(desde) && permiso.getFecha().isBefore(hasta)||permiso.getFecha().isEqual(hasta)|| permiso.getFecha().isEqual(desde)) {
 
 				permisosOk.add(permiso);
 
@@ -144,7 +144,7 @@ public class PermisoService implements IPermisoService {
 
 			LocalDate desdePlus = desde.minusDays(permiso.getCantDias());
 
-			if (permiso.getFecha().isAfter(desdePlus) && permiso.getFecha().isBefore(hasta)) {
+			if (permiso.getFecha().isAfter(desdePlus) && permiso.getFecha().isBefore(hasta)||permiso.getFecha().isEqual(desdePlus)||permiso.getFecha().isEqual(hasta)) {
 
 				permisosOk.add(permiso);
 			}
