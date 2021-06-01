@@ -2,6 +2,7 @@ package com.trabajo.Grupo16OO22021.services.implementation;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -64,6 +65,16 @@ public class RodadoService implements IRodadoService {
 			return true;
 		}
 
+	}
+	public Rodado findDominio(String dominio) {
+		List<Rodado> rodado = getAll();
+		Rodado rodado1 = new Rodado();
+		for(Rodado rodado2 : rodado) {
+			if(rodado2.getDominio().equals(dominio)) {
+				rodado1 = rodado2;
+			}
+		}
+		return rodado1;
 	}
 
 }

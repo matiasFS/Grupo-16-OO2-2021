@@ -15,6 +15,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.trabajo.Grupo16OO22021.entities.PermisoDiario;
 import com.trabajo.Grupo16OO22021.entities.PermisoPeriodo;
 import com.trabajo.Grupo16OO22021.entities.Persona;
+import com.trabajo.Grupo16OO22021.entities.Rodado;
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
 import com.trabajo.Grupo16OO22021.models.PermisoDiarioModel;
 import com.trabajo.Grupo16OO22021.models.PermisoPeriodoModel;
@@ -64,6 +65,7 @@ public class GestionController {
 	public ModelAndView gestionPermisos() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.GESTION_PERMISOS);
 		long documento = 0;
+		String dominio = null;
 		mAV.addObject("persona", new PersonaModel());
 		mAV.addObject("rodado", new RodadoModel());
 		mAV.addObject("permisoDiario", new PermisoDiarioModel());
@@ -72,6 +74,7 @@ public class GestionController {
 		mAV.addObject("lugares", lugarRepository.findAll());
 		mAV.addObject("rodados", rodadoService.getAll());
 		mAV.addObject("documento", documento);
+		mAV.addObject("dominio", dominio);
 
 		return mAV;
 	}
@@ -111,9 +114,11 @@ public class GestionController {
 	}
 
 	@PostMapping("/crearPermisoPeriodo")
-	public RedirectView newPermisoPeriodo(PermisoPeriodoModel periodoModel, long documento) {
+	public RedirectView newPermisoPeriodo(PermisoPeriodoModel periodoModel, long documento, String dominio) {
 		Persona p = personaService.findByDocumento(documento);
 		periodoModel.setPedido(p);
+		Rodado rodado = rodadoService.findDominio(dominio);
+		periodoModel.setRodado(rodado);
 		if (!permisoService.validatePermisoPeriodo(periodoModel)) {
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		} else {

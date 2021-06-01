@@ -146,7 +146,7 @@
 								<div class="col-lg-9">
 									<label class="medium mb-1" for="inputPersona">Persona:</label>
 									<input class="form-control py-4" id="inputFirstName" type="text"
-											th:name="documento" th:object="${documento}" required />									
+										placeholder="Ingrese dni" th:name="documento" th:object="${documento}" required />									
 									</select>
 									<label class="small mb-1">(No puede estar vacio)</label>
 								</div>
@@ -199,7 +199,7 @@
 								<div class="col-lg-9">
 									<label class="medium mb-1" for="inputPersona">Persona:</label>
 									<input class="form-control py-4" id="inputFirstName" type="text"
-											th:name="documento" th:object="${documento}" required />									
+											placeholder="Ingrese dni" th:name="documento" th:object="${documento}" required />									
 									</select>
 									<label class="small mb-1">(No puede estar vacio)</label>
 								</div>
@@ -220,15 +220,13 @@
 										<label class="small mb-1">(Tiene que ser true o false)</label>
 									</div>
 								</div>
-								<label class="medium mb-1" for="inputRodado">Rodado:</label>
-								<select th:field="*{rodado}" class="form-control">
-									<option th:each="rodado : ${rodados}" th:value="${rodado.idRodado}">
-										<td><span th:text="${rodado.dominio}" /></td>
-										<td><span th:text="${rodado.vehiculo}" /></td>
-									</option>
-								</select>
-								<label class="small mb-1">(No puede estar vacio)</label>
-							</div>
+								<div class="col-lg-9">
+									<label class="medium mb-1" for="inputRodado">Rodado:</label>
+									<input class="form-control py-4" id="inputRodado" type="text"
+											placeholder="Ingrese dominio" th:name="dominio" th:object="${dominio}" required />									
+									</select>
+									<label class="small mb-1">(No puede estar vacio)</label>
+								</div>
 							<div class="col-lg-9">
 								<label class="medium mb-1" for="inputDesdeHasta">Desde:</label>
 
@@ -249,6 +247,7 @@
 									</option>
 								</select>
 								<label class="small mb-1">(No puede estar vacio)</label>
+							</div>
 							</div>
 							<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit"
 									Value="Crear" /></div>
