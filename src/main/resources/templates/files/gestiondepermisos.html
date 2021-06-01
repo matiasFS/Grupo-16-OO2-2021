@@ -50,11 +50,17 @@
 					<p>Para poder obtener su permiso ya sea diario o por un periodo<br>debera completar el formulario de
 						persona y rodado</p>
 					<p>De esa manera quedara registrado para poder obtener su permiso posteriormente.</p>
+				<div>
+				
+					<p class="mensajeError" th:text="${mensajeError}" />
+					<p class="mensajeConfirmacion" th:text="${mensajeConfirmacion}" />
+				</div>
+					
 				</section>
 				<!--========================= CREAR PERSONA ========================= -->
 				<!--========================= CREAR PERSONA ========================= -->
 				<!--========================= CREAR PERSONA ========================= -->
-				<section>
+				<section id="seccionPersonas">
 					<h3>Gestionar Persona</h3>
 					<form action="#" method="post" th:action="@{/crearpersona}" th:object="${persona}">
 						<div class="col-md-6">
@@ -78,11 +84,11 @@
 								<label class="small mb-1" for="inputDocumento">Documento</label>
 								<input class="form-control py-4" id="inputDocumento" type="text"
 									placeholder="Ingrese documento" th:field="${persona.documento}" required />
-								<label class="small mb-1">(Tiene que tener 7 o mas caracteres)</label>
+								<label class="small mb-1">(Tiene que tener 8 caracteres)</label>
 							</div>
 						</div>
 						<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit" Value="Crear" />
-
+							
 						</div>
 					</form>
 				</section>
@@ -161,7 +167,7 @@
 									<label class="medium mb-1" for="inputPersona">Persona:</label>
 									<input class="form-control py-4" id="inputFirstName" type="text"
 										placeholder="Ingrese dni" th:name="documento" th:object="${documento}" required />									
-									</select>
+								
 									<label class="small mb-1">(No puede estar vacio)</label>
 								</div>
 								<div class="col-md-6">

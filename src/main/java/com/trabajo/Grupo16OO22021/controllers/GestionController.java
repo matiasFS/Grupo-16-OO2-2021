@@ -6,10 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.trabajo.Grupo16OO22021.entities.PermisoDiario;
@@ -17,6 +19,7 @@ import com.trabajo.Grupo16OO22021.entities.PermisoPeriodo;
 import com.trabajo.Grupo16OO22021.entities.Persona;
 import com.trabajo.Grupo16OO22021.entities.Rodado;
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
+import com.trabajo.Grupo16OO22021.models.NotificacionModel;
 import com.trabajo.Grupo16OO22021.models.PermisoDiarioModel;
 import com.trabajo.Grupo16OO22021.models.PermisoPeriodoModel;
 import com.trabajo.Grupo16OO22021.models.PersonaModel;
@@ -62,23 +65,29 @@ public class GestionController {
 	private RodadoService rodadoService;
 
 	@GetMapping("/gestiondepermisos")
-	public ModelAndView gestionPermisos() {
+	public ModelAndView gestionPermisos(Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.GESTION_PERMISOS);
+		
+		model.addAttribute("notificacion", new NotificacionModel("",""));
 		mAV.addObject("persona", new PersonaModel());
 		mAV.addObject("rodado", new RodadoModel());
 		mAV.addObject("permisoDiario", new PermisoDiarioModel());
 		mAV.addObject("permisoPeriodo", new PermisoPeriodoModel());
 		mAV.addObject("lugares", lugarRepository.findAll());
-
 		return mAV;
 	}
 
 	@PostMapping("/crearpersona")
-	public RedirectView create(@ModelAttribute("persona") PersonaModel personaModel) {
+	public RedirectView create(@ModelAttribute("persona") PersonaModel personaModel,RedirectAttributes atributos) {
+		NotificacionModel notificacion = new NotificacionModel();
 		if (!personaService.validate(personaModel)) {
+			notificacion.setMensajeError("Uno de los campos fue completado erroneamente, vuelva a intentarlo");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
 			return new RedirectView(ViewRouteHelper.PERSONA_NEW_ROOT);
 		} else {
 			personaService.insertOrUpdate(personaModel);
+			notificacion.setMensajeConfirmacion("Persona creada correctamente");
+			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		}
 
@@ -95,13 +104,23 @@ public class GestionController {
 	}
 
 	@PostMapping("/crearPermisoDiario")
-	public RedirectView newPermisoDiario(PermisoDiarioModel diarioModel, long documento) {
+	public RedirectView newPermisoDiario(PermisoDiarioModel diarioModel, long documento,RedirectAttributes atributos) {
 		Persona p = personaService.findByDocumento(documento);
 		diarioModel.setPedido(p);
-
-		if (!permisoService.validetePermisoDiario(diarioModel)) {
+		NotificacionModel notificacion = new NotificacionModel();
+		
+		
+		
+		if (!permisoService.validetePermisoDiario(diarioModel) || p == null) {
+			notificacion.setMensajeError("No se encuentra la persona que se desea agregar al permiso, recuerde completar el primer formulario antes de gestionar el permiso");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
+			
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
+		
 		} else {
+			notificacion.setMensajeConfirmacion("Permiso creado correctamente");
+			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
+
 			permisoService.insertOrUpdate(diarioModel);
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		}
@@ -109,15 +128,29 @@ public class GestionController {
 	}
 	
 
+
+
 	@PostMapping("/crearPermisoPeriodo")
-	public RedirectView newPermisoPeriodo(PermisoPeriodoModel periodoModel,String dominio, long documento) {
+	public RedirectView newPermisoPeriodo(PermisoPeriodoModel periodoModel,String dominio, long documento,RedirectAttributes atributos) {
 		Persona p = personaService.findByDocumento(documento);
 		periodoModel.setPedido(p);
 		Rodado r = rodadoService.findDominio(dominio);
 		periodoModel.setRodado(r);
-		if (!permisoService.validatePermisoPeriodo(periodoModel)) {
+		NotificacionModel notificacion = new NotificacionModel();
+		if (!permisoService.validatePermisoPeriodo(periodoModel) || p == null) {
+			notificacion.setMensajeError("No se encuentra la persona que se desea agregar al permiso, recuerde completar el primer formulario antes de gestionar el permiso");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
-		} else {
+		}
+		if(!permisoService.validatePermisoPeriodo(periodoModel) || r == null){
+			notificacion.setMensajeError("No se halló el rodado ingresado para obtener el permiso, reintente o vuelva a completar el formulario para rodados");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
+			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
+		} 
+		
+		else {
+			notificacion.setMensajeConfirmacion("Permiso creado correctamente");
+			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
 			permisoService.insertOrUpdate(periodoModel);
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		}

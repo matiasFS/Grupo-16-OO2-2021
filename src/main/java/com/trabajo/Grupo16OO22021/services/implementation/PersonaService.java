@@ -60,15 +60,16 @@ public class PersonaService implements IPersonaService{
 		for(Persona p : persona) {
 			if(p.getDocumento()==documento) {
 				pp = p;
+				return pp;
 			}
 		}
-		return pp;
+		return null;
 	}
 
 	@Override
 	public boolean validate(PersonaModel personaModel) {
 		if(personaModel.getNombre().equals("")||personaModel.getNombre().length()<3|| personaModel.getApellido().equals("")
-				||personaModel.getApellido().length()<3|| Long.toString(personaModel.getDocumento()).length()<7) {
+				||personaModel.getApellido().length()<3|| Long.toString(personaModel.getDocumento()).length() < 7) {
 			return false;
 		} else {
 			return true;
