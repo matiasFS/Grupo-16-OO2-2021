@@ -113,7 +113,7 @@
 					<ul id="navTipoPermiso">
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-secondary text-white mb-4">
-								<div class="card-body">Diario</div>
+								<div class="card-body">Periodo</div>
 								<div class="card-footer d-flex align-items-center justify-content-between">
 									<a class="medium text-white stretched-link" onclick="formPermisoPeriodo()">Crear</a>
 									<div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -122,7 +122,7 @@
 						</div>
 						<div class="col-xl-3 col-md-6">
 							<div class="card bg-secondary text-white mb-4">
-								<div class="card-body">Periodo</div>
+								<div class="card-body">Diario</div>
 								<div class="card-footer d-flex align-items-center justify-content-between">
 									<a class="medium text-white stretched-link" onclick="formPermisoDiario()">Crear</a>
 									<div class="small text-white"><i class="fas fa-angle-right"></i></div>
@@ -145,12 +145,8 @@
 								</div>
 								<div class="col-lg-9">
 									<label class="medium mb-1" for="inputPersona">Persona:</label>
-									<select th:field="*{pedido}" class="form-control">
-										<option th:each="persona : ${personas}" th:value="${persona.idPersona}">
-											<td><span th:text="${persona.nombre}" /></td>
-											<td><span th:text="${persona.apellido}" /></td>
-											<td><span th:text="${persona.documento}" /></td>
-										</option>
+									<input class="form-control py-4" id="inputFirstName" type="text"
+											th:name="documento" th:object="${documento}" required />									
 									</select>
 									<label class="small mb-1">(No puede estar vacio)</label>
 								</div>

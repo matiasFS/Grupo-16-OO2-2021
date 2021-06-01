@@ -98,8 +98,9 @@ public class GestionController {
 	}
 
 	@PostMapping("/crearPermisoDiario")
-	public RedirectView newPermisoDiario(PermisoDiarioModel diarioModel) {
-
+	public RedirectView newPermisoDiario(PermisoDiarioModel diarioModel, long documento) {
+		Persona p = personaService.findByDocumento(documento);
+		diarioModel.setPedido(p);
 		if (!permisoService.validetePermisoDiario(diarioModel)) {
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		} else {
