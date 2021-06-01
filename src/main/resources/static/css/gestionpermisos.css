@@ -1,4 +1,7 @@
 @charset "ISO-8859-1";
+html{
+	height:100%;
+}
 body{
 	background-color:#4242ff;	
 }
@@ -33,14 +36,16 @@ body{
 	position:absolute;
 	display:grid;
 	grid-template-columns:20% 80%;
-	height:100%;
+	height:110%;
 	width:100%;
+
+
 	
 }
 .navPermisos{
 	background-color:white;
 	width:100%;
-	height:100%;
+	height:200%;
 	overflow:hidden;
 }
 
@@ -73,14 +78,14 @@ body{
 }
 
 .forms{
-
-	box-sizing:content-box;
+	border-radius:20px;
+	box-sizing:border-box;
 	display:flex;
 	flex-direction:column;
 	width:90%;
 	height:100%;
 	margin: 10px auto;
-	padding:40px;
+	padding:50px;
 	background-color:white;
 	box-shadow:0 0 10px 0 black;
 
@@ -142,4 +147,19 @@ footer{
 	opacity:1;
 	position:relative;
 	
+}
+.col-xl-3{
+	margin:20px auto;
+	cursor:pointer;
+	
+}
+.card.btnTipoPermiso{
+		transition:0.4s;
+	width:80%;
+	height:80%;
+	box-shadow:0 0 2px 0 black;
+}
+.card.btnTipoPermiso.active{
+	transition:0.4s;
+	box-shadow:5px 5px 3px 0 black;
 }

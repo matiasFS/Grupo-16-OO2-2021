@@ -64,17 +64,11 @@ public class GestionController {
 	@GetMapping("/gestiondepermisos")
 	public ModelAndView gestionPermisos() {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.GESTION_PERMISOS);
-		long documento = 0;
-		String dominio = null;
 		mAV.addObject("persona", new PersonaModel());
 		mAV.addObject("rodado", new RodadoModel());
 		mAV.addObject("permisoDiario", new PermisoDiarioModel());
 		mAV.addObject("permisoPeriodo", new PermisoPeriodoModel());
-		mAV.addObject("personas", personaService.getAll());
 		mAV.addObject("lugares", lugarRepository.findAll());
-		mAV.addObject("rodados", rodadoService.getAll());
-		mAV.addObject("documento", documento);
-		mAV.addObject("dominio", dominio);
 
 		return mAV;
 	}
@@ -104,6 +98,7 @@ public class GestionController {
 	public RedirectView newPermisoDiario(PermisoDiarioModel diarioModel, long documento) {
 		Persona p = personaService.findByDocumento(documento);
 		diarioModel.setPedido(p);
+
 		if (!permisoService.validetePermisoDiario(diarioModel)) {
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		} else {
@@ -112,13 +107,14 @@ public class GestionController {
 		}
 
 	}
+	
 
 	@PostMapping("/crearPermisoPeriodo")
-	public RedirectView newPermisoPeriodo(PermisoPeriodoModel periodoModel, long documento, String dominio) {
+	public RedirectView newPermisoPeriodo(PermisoPeriodoModel periodoModel,String dominio, long documento) {
 		Persona p = personaService.findByDocumento(documento);
 		periodoModel.setPedido(p);
-		Rodado rodado = rodadoService.findDominio(dominio);
-		periodoModel.setRodado(rodado);
+		Rodado r = rodadoService.findDominio(dominio);
+		periodoModel.setRodado(r);
 		if (!permisoService.validatePermisoPeriodo(periodoModel)) {
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		} else {

@@ -18,5 +18,4 @@ public interface IRodadoService {
 	
 	public Rodado findDominio(String dominio);
 
-
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.trabajo.Grupo16OO22021.converters.RodadoConverter;
+import com.trabajo.Grupo16OO22021.entities.Persona;
 import com.trabajo.Grupo16OO22021.entities.Rodado;
 import com.trabajo.Grupo16OO22021.models.RodadoModel;
 import com.trabajo.Grupo16OO22021.repositories.IRodadoRepository;
@@ -67,6 +68,18 @@ public class RodadoService implements IRodadoService {
 
 	}
 	public Rodado findDominio(String dominio) {
+		List<Rodado> rodado = getAll();
+		Rodado rodado1 = new Rodado();
+		for(Rodado rodado2 : rodado) {
+			if(rodado2.getDominio().equals(dominio)) {
+				rodado1 = rodado2;
+			}
+		}
+		return rodado1;
+	}
+
+	
+	public Rodado findDominio(String dominio){
 		List<Rodado> rodado = getAll();
 		Rodado rodado1 = new Rodado();
 		for(Rodado rodado2 : rodado) {
