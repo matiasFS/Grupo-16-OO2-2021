@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="description" content="" />
+	<meta name="author" content="" />
+	<title>Administrar</title>
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+	<!-- Core theme CSS (includes Bootstrap)-->
+	<link href="css/styles.css" rel="stylesheet" />
+</head>
+
+<body>
+	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		<thead>
+			<h3>Permisos de periodo:</h3>
+			<tr>
+				<th>Lastname</th>
+				<th>Name</th>
+				<th>Documento</th>
+				<th>Fecha</th>
+				<th>Cantidad de días</th>
+				<th>Vacaciones?</th>
+				<th>Rodado</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="permisop : ${permisoPeriodo}">
+
+				<td><span th:text="${permisop.pedido.apellido}" /></td>
+				<td><span th:text="${permisop.pedido.nombre}" /></td>
+				<td><span th:text="${permisop.pedido.documento}" /></td>
+				<td><span th:text="${permisop.fecha}" /></td>
+				<td><span th:text="${permisop.cantDias}" /></td>
+				<td><span th:text="${permisop.vacaciones}" /></td>
+				<td><span th:text="${permisop.rodado.dominio}" /></td>
+
+			</tr>
+		</tbody>
+	</table>
+	<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+		<thead>
+
+			<h3>Permisos de dia:</h3>
+			<tr>
+				<th>Lastname</th>
+				<th>Name</th>
+				<th>Documento</th>
+				<th>Fecha</th>
+				<th>Motivo</th>
+				<th>Rodado</th>
+
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="permiso : ${permisoDiario}">
+
+				<td><span th:text="${permiso.pedido.apellido}" /></td>
+				<td><span th:text="${permiso.pedido.nombre}" /></td>
+				<td><span th:text="${permiso.pedido.documento}" /></td>
+				<td><span th:text="${permiso.fecha}" /></td>
+				<td><span th:text="${permiso.motivo}" /></td>
+
+		</tbody>
+	</table>
+
+	<a class="btn btn-primary" th:href="@{/gestion}">Go back</a>
+</body>
+
+</html>s
