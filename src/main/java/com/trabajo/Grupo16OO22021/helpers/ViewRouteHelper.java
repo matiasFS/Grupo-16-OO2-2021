@@ -38,6 +38,13 @@ public class ViewRouteHelper {
 		public final static String PERSONA_ACT_ROOT = "A DEFINIR";
 		public final static String RODADO_NEW_ROOT = "/gestiondepermisos";
 
+		public final static String FECHA = "files/fecha";
+		public final static String FECHA_LUGAR = "A DEFINIR";
+
+		public final static String FECHA_MOSTRAR = "files/buscarfecha";
+		public final static String FECHA_LUGAR_MOSTRAR = "A DEFINIR";
+
+
 	//Gestion
 	public static final String GESTION = "files/gestion";
 
@@ -45,6 +52,8 @@ public class ViewRouteHelper {
 	//Personas
 	public final static String PERSONA_NEW = "A DEFINIR";
 	public final static String PERSONA_ACT = "A DEFINIR";
+	
+
 	
 	
 	

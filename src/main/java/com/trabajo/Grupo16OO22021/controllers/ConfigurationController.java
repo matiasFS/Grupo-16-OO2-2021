@@ -1,5 +1,6 @@
 package com.trabajo.Grupo16OO22021.controllers;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 
 
@@ -16,12 +17,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.trabajo.Grupo16OO22021.entities.Lugar;
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
 import com.trabajo.Grupo16OO22021.models.*;
+import com.trabajo.Grupo16OO22021.services.implementation.PermisoService;
 import com.trabajo.Grupo16OO22021.services.implementation.RoleService;
 
 import com.trabajo.Grupo16OO22021.repositories.*;
 import com.trabajo.Grupo16OO22021.services.*;
+import com.trabajo.Grupo16OO22021.entities.*;
 
 @Controller
 @PreAuthorize("hasRole('ROLE_ADMIN')")
@@ -38,6 +42,11 @@ public class ConfigurationController {
 	@Autowired
 	@Qualifier("roleService")
 	private RoleService roleService;
+	
+
+	@Autowired
+	@Qualifier("permisoService")
+	private PermisoService permisoService;
 	
 	@GetMapping("")
 	public ModelAndView configuracion(Model model) {
@@ -107,5 +116,8 @@ public class ConfigurationController {
 		roleService.remove(id);
 		return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
 	}
+	
+	
+	
 	
 }
