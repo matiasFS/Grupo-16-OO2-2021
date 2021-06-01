@@ -153,7 +153,7 @@ public class PermisoService implements IPermisoService {
 		return permisosOk;
 	}
 
-	public List<PermisoDiario> traerDiarioFechaYLugar(LocalDate fechaDesde, LocalDate fechaHasta, Lugar lugar) {
+	public List<PermisoDiario> traerDiarioFechaYLugar(LocalDate fechaDesde, LocalDate fechaHasta, String lugar) {
 
 		List<PermisoDiario> permisosDiario = this.traerDiarioEntreFechas(fechaDesde, fechaHasta);
 		List<PermisoDiario> permisosDiario2 = new ArrayList<PermisoDiario>();
@@ -161,14 +161,14 @@ public class PermisoService implements IPermisoService {
 		for (PermisoDiario permisoDiario : permisosDiario) {
 
 			for (Lugar permisoLugar : permisoDiario.getDesdeHasta()) {
-				if (permisoLugar.getIdLugar() == lugar.getIdLugar())
+				if (permisoLugar.getLugar().equals(lugar))
 					permisosDiario2.add(permisoDiario);
 			}
 		}
 		return permisosDiario2;
 	}
 
-	public List<PermisoPeriodo> traerPeriodoFechaYLugar(LocalDate fechaDesde, LocalDate fechaHasta, Lugar lugar) {
+	public List<PermisoPeriodo> traerPeriodoFechaYLugar(LocalDate fechaDesde, LocalDate fechaHasta, String lugar) {
 
 		List<PermisoPeriodo> permisosPeriodo = this.traerPeriodoEntreFechas(fechaDesde, fechaHasta);
 		List<PermisoPeriodo> permisosPeriodoOk = new ArrayList<PermisoPeriodo>();
@@ -176,7 +176,7 @@ public class PermisoService implements IPermisoService {
 		for (PermisoPeriodo permisoPeriodo : permisosPeriodo) {
 
 			for (Lugar permisoLugar : permisoPeriodo.getDesdeHasta()) {
-				if (permisoLugar.getIdLugar() == lugar.getIdLugar())
+				if (permisoLugar.getLugar().equals(lugar))
 					permisosPeriodoOk.add(permisoPeriodo);
 			}
 		}

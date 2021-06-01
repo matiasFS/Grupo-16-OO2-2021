@@ -48,5 +48,9 @@ public class ViewRouteHelper {
 	public static final String PERMISO_POR_PERSONA1 = "files/permisoxperson";
 	public static final String BUSCAR_POR_PERSONA1 = "files/buscarporperson";
 
+	public static final String BUSCAR_POR_FECHAYLUGAR = "files/buscarporfechaylugar";
+	public static final String PERMISO_POR_FECHAYLUGAR = "files/permisoxfechaylugar";
+
+
 
 }

@@ -30,6 +30,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.lowagie.text.DocumentException;
+import com.trabajo.Grupo16OO22021.entities.Lugar;
 import com.trabajo.Grupo16OO22021.entities.PermisoDiario;
 import com.trabajo.Grupo16OO22021.entities.PermisoPeriodo;
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
@@ -41,7 +42,7 @@ import com.trabajo.Grupo16OO22021.models.UserRoleModel;
 import com.trabajo.Grupo16OO22021.pdf.ProfilePDFExporter;
 import com.trabajo.Grupo16OO22021.pdf.UserPDFExporter;
 import com.trabajo.Grupo16OO22021.services.IUserService;
-
+import com.trabajo.Grupo16OO22021.repositories.ILugarRepository;
 import com.trabajo.Grupo16OO22021.repositories.IRoleRepository;
 import com.trabajo.Grupo16OO22021.services.implementation.PermisoService;
 import com.trabajo.Grupo16OO22021.services.implementation.PersonaService;
@@ -76,6 +77,10 @@ public class HomeController {
 	@Autowired
 	@Qualifier("permisoService")
 	private PermisoService permisoService;
+	
+	@Autowired
+	@Qualifier("lugarRepository")
+	private ILugarRepository lugarRepository;
 
 	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/index")
@@ -268,6 +273,36 @@ public class HomeController {
 		List<PermisoPeriodo> permisosPeriodo = permisoService.traerPeriodoEntreFechas(fechaDesde1, fechaHasta1);
 		
 
+		mAV.addObject("permisoPeriodo", permisosPeriodo);
+		mAV.addObject("permisoDiario", permisosDiario);
+
+		return mAV;
+	}
+	
+	@GetMapping("/buscarporfechaylugar")
+	public ModelAndView getporfechaylugar() {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_FECHAYLUGAR);
+		LocalDate fechaDesde = null;
+		LocalDate fechaHasta = null;
+		String lugar = null;
+		mAV.addObject("fechaDesde", fechaDesde);
+		mAV.addObject("fechaHasta", fechaHasta);
+		mAV.addObject("lugar", lugar);
+
+		return mAV;
+	}
+
+	@PostMapping("/permisoxfechaylugar")
+	public ModelAndView getprfechaylugar(String fechaDesde, String fechaHasta, String lugar) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_POR_FECHAYLUGAR);
+		LocalDate fechaDesde1 = LocalDate.parse(fechaDesde);
+		LocalDate fechaHasta1 = LocalDate.parse(fechaHasta);
+		List<PermisoDiario> permisosDiario = permisoService.traerDiarioFechaYLugar(fechaDesde1, fechaHasta1, lugar);
+		List<PermisoPeriodo> permisosPeriodo = permisoService.traerPeriodoFechaYLugar(fechaDesde1, fechaHasta1, lugar);
+		for(PermisoDiario p : permisosDiario) {
+			System.out.println(p.getIdPermiso());
+
+		}
 		mAV.addObject("permisoPeriodo", permisosPeriodo);
 		mAV.addObject("permisoDiario", permisosDiario);
 
