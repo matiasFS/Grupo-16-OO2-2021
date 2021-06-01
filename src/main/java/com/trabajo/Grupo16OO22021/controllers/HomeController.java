@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -43,6 +44,7 @@ import com.trabajo.Grupo16OO22021.services.IUserService;
 
 import com.trabajo.Grupo16OO22021.repositories.IRoleRepository;
 import com.trabajo.Grupo16OO22021.services.implementation.PermisoService;
+import com.trabajo.Grupo16OO22021.services.implementation.PersonaService;
 import com.trabajo.Grupo16OO22021.services.implementation.RodadoService;
 import com.trabajo.Grupo16OO22021.services.implementation.RoleService;
 import com.trabajo.Grupo16OO22021.services.implementation.UserService;
@@ -59,19 +61,22 @@ public class HomeController {
 	@Autowired
 	@Qualifier("roleService")
 	private RoleService roleService;
+	
+	@Autowired
+	@Qualifier("personaService")
+	private PersonaService personaService;
 
 	@Autowired
 	private IRoleRepository roleRepository;
-	
+
 	@Autowired
 	@Qualifier("rodadoService")
 	private RodadoService rodadoService;
-	
+
 	@Autowired
 	@Qualifier("permisoService")
 	private PermisoService permisoService;
 
-	
 	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/index")
 	public ModelAndView index() {
@@ -80,6 +85,7 @@ public class HomeController {
 		modelAndView.addObject("permiso", new PermisoModel());
 		return modelAndView;
 	}
+
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin")
 	public ModelAndView adminIndex() {
@@ -97,7 +103,7 @@ public class HomeController {
 		mAV.addObject("users", userService.getAll());
 		return mAV;
 	}
-	
+
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/adminUsers.html")
 	public ModelAndView Users() {
@@ -113,12 +119,12 @@ public class HomeController {
 
 		return ViewRouteHelper.PROFILES;
 	}
-	
+
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/adminProfiles.html")
 	public String adminProfiles(Model model) {
 		model.addAttribute("roles", roleRepository.findAll());
-		
+
 		return ViewRouteHelper.ADMIN_PROFILES;
 	}
 
@@ -195,19 +201,39 @@ public class HomeController {
 		exporter.export(response);
 
 	}
-	
-	@PreAuthorize("hasRole('ROLE_AUDITOR')")
-	@GetMapping("/buscarporrodado")
-	public ModelAndView buscarPorRodado(Model model) {
-		String dominio = null;
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_RODADO);
-		model.addAttribute("persona", rodadoService.getAll());
-		mAV.addObject("dominio", dominio);
+	@GetMapping("/buscarporperson")
+	public ModelAndView buscarpersona(Model model) {
+		long documento = 0;
+		String apellido = null;
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_PERSONA1);
+		model.addAttribute("persona", personaService.getAll());
+		mAV.addObject("documento", documento);
+		mAV.addObject("apellido", apellido);
 		
 		return mAV;
 
 	}
-	
+	@PostMapping("/permisoxperson")
+	public ModelAndView buscarporpersona(long documento, String apellido) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_POR_PERSONA1);
+		List<PermisoDiario> permisoDiario = permisoService.buscarPermisoDiario(documento, apellido);
+		List<PermisoPeriodo> permisoPeriodo = permisoService.buscarPermisoPeriodo(documento, apellido);
+		mAV.addObject("permisoPeriodo", permisoPeriodo);
+		mAV.addObject("permisoDiario", permisoDiario);
+		return mAV;
+
+	}
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@GetMapping("/buscarporrodado")
+	public ModelAndView buscarPorRodado() {
+		String dominio = null;
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_RODADO);
+		mAV.addObject("dominio", dominio);
+
+		return mAV;
+
+	}
+
 	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@PostMapping("/permisoxrodado")
 	public ModelAndView permisoPorRodado(String dominio) {
@@ -218,5 +244,34 @@ public class HomeController {
 
 	}
 
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@GetMapping("/buscarporfecha")
+	public ModelAndView buscarPorFecha() {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_FECHA);
+		LocalDate fechaDesde = null;
+		LocalDate fechaHasta = null;
+
+		mAV.addObject("fechaDesde", fechaDesde);
+		mAV.addObject("fechaHasta", fechaHasta);
+
+		return mAV;
+	}
+	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@PostMapping("/permisoxfecha")
+	public ModelAndView getprfecha(String fechaDesde, String fechaHasta) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_FECHA);
+		LocalDate fechaDesde1 = LocalDate.parse(fechaDesde);
+		LocalDate fechaHasta1 = LocalDate.parse(fechaHasta);
+
+		List<PermisoDiario> permisosDiario = permisoService.traerDiarioEntreFechas(fechaDesde1, fechaHasta1);
+		List<PermisoPeriodo> permisosPeriodo = permisoService.traerPeriodoEntreFechas(fechaDesde1, fechaHasta1);
+		
+
+		mAV.addObject("permisoPeriodo", permisosPeriodo);
+		mAV.addObject("permisoDiario", permisosDiario);
+
+		return mAV;
+	}
 
 }

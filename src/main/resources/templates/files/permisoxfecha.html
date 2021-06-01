@@ -6,17 +6,16 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 	<meta name="description" content="" />
 	<meta name="author" content="" />
-	<title>Profiles</title>
+	<title>Permiso por rodado</title>
 	<!-- Favicon-->
 	<link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="css/styles.css" rel="stylesheet" />
-	<link href="css/profile.css" rel="stylesheet" />
 </head>
 
 <body>
 
-	<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
 		<a class="navbar-brand" th:href="@{/index}">GESTION</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span
@@ -36,33 +35,60 @@
 			</ul>
 		</div>
 	</nav>
-	<div class="tableProfile">
-		<h3>Profiles</h3>
-			<table class="table" border="4px" cellpadding="5">
-				<thead>
-					<tr class="table-danger">
-						<th>Name</th>
-						<th>Description</th>
-	
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="role : ${roles}">
-						<td><span th:text="${role.name}" /></td>
-						<td><span th:text="${role.description}" /></td>
-	
-					</tr>
-	
-				</tbody>
-			</table>
-			<div>
-				<a class="btn btn-primary" th:href="@{/index}">Go back</a>
-				<a class="pdf" th:href="@{/profiles/export/pdf}">Export Profiles to PDF</a>
-			</div>
+	<div class="tablePermiso">
+		<h3>Permiso por periodo</h3>
+		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Apellido</th>
+					<th>Nombre</th>
+					<th>Documento</th>
+					<th>Rodado</th>
+					<th>Cant de dias</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="permiso : ${permisoPeriodo}">
+					<td><span th:text="${permiso.fecha}" /></td>
+					<td><span th:text="${permiso.pedido.apellido}" /></td>
+					<td><span th:text="${permiso.pedido.nombre}" /></td>
+					<td><span th:text="${permiso.pedido.documento}" /></td>
+					<td><span th:text="${permiso.rodado.dominio}" /></td>
+					<td><span th:text="${permiso.cantDias}" /></td>
+			</tbody>
+		</table>
+		<div class="tablePermiso">
+		<h3>Permiso por dia</h3>
+		<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+			<thead>
+				<tr>
+					<th>Fecha</th>
+					<th>Apellido</th>
+					<th>Nombre</th>
+					<th>Documento</th>
+					<th>Motivo</th>
+
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="permiso : ${permisoDiario}">
+					<td><span th:text="${permiso.fecha}" /></td>
+					<td><span th:text="${permiso.pedido.apellido}" /></td>
+					<td><span th:text="${permiso.pedido.nombre}" /></td>
+					<td><span th:text="${permiso.pedido.documento}" /></td>
+					<td><span th:text="${permiso.motivo}" /></td>
+			</tbody>
+		</table>
 	</div>
-		
-		
-		
+		<div>
+			<a class="btn btn-primary" th:href="@{/buscarporfecha}">Volver</a>
+		</div>
+	</div>
+
+
+
 
 
 
