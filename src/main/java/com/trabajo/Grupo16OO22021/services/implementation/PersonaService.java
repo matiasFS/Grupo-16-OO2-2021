@@ -65,4 +65,15 @@ public class PersonaService implements IPersonaService{
 		
 	}
 
+	public Persona findByDocumento(long documento) {
+		List<Persona> persona = getAll();
+		Persona pp = new Persona();
+		for(Persona p : persona) {
+			if(p.getDocumento()==documento) {
+				pp = p;
+			}
+		}
+		return pp;
+	}
+
 }
