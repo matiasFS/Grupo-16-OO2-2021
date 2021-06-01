@@ -85,7 +85,7 @@ public class PermisoService implements IPermisoService {
 		}
 	}
 	
-	public List<PermisoDiario> traerDiarioEntreFechas(LocalDate desde, LocalDate hasta){
+public List<PermisoDiario> traerDiarioEntreFechas(LocalDate desde, LocalDate hasta){
 		
 		List<PermisoDiario> permisos = this.getAll1();
 		List<PermisoDiario> permisosOk = new ArrayList<PermisoDiario>();
@@ -150,24 +150,9 @@ public List<PermisoPeriodo> traerPeriodoEntreFechas(LocalDate desde, LocalDate h
 		}
 		return permisosPeriodoOk;		 
 	}
-//	List<PermisoDiario> permisoDiarioLista = permisoService.getAll1();
-//	List<PermisoDiario> permisoDiarioLista1 = new ArrayList<PermisoDiario>();
 
-//	List<PermisoPeriodo> permisoPeriodoLista = permisoService.getAll();
-//	List<PermisoPeriodo> permisoPeriodoLista1 = new ArrayList<PermisoPeriodo>();
-//
-//	for (PermisoDiario permisoDiarioLista2 : permisoDiarioLista) {
-//		if (permisoDiarioLista2.getFecha().isAfter(fechaDesde1)
-//				&& permisoDiarioLista2.getFecha().isBefore(fechaHasta1)) {
-//			permisoDiarioLista1.add(permisoDiarioLista2);
-//		}
-//	}
-//	for (PermisoPeriodo permisoPeriodoLista2 : permisoPeriodoLista) {
-//		if (permisoPeriodoLista2.getFecha().isAfter(fechaDesde1)
-//				&& permisoPeriodoLista2.getFecha().isBefore(fechaHasta1)) {
-//			permisoPeriodoLista1.add(permisoPeriodoLista2);
-//		}
-//	}
+	
+	
 	
 
 
