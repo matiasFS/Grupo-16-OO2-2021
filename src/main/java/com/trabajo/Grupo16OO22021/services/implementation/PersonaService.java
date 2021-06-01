@@ -54,6 +54,17 @@ public class PersonaService implements IPersonaService{
 		return personaConverter.entityToModel(personaRepository.findById(id));
 	}
 
+	public Persona findByDocumento(long documento) {
+		List<Persona> persona = getAll();
+		Persona pp = new Persona();
+		for(Persona p : persona) {
+			if(p.getDocumento()==documento) {
+				pp = p;
+			}
+		}
+		return pp;
+	}
+
 	@Override
 	public boolean validate(PersonaModel personaModel) {
 		if(personaModel.getNombre().equals("")||personaModel.getNombre().length()<3|| personaModel.getApellido().equals("")

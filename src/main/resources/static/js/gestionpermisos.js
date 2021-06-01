@@ -8,6 +8,8 @@ let btnNavsPermisos = (document.getElementById("navPermisos").getElementsByTagNa
 let forms = document.getElementById("forms").getElementsByTagName("section");
 let navTipoPermiso = document.getElementById("navTipoPermiso");
 let formsPeriodoDiario = document.getElementById("formPeriodoDiario").getElementsByTagName("form");
+let btnTipoPermiso = document.getElementsByClassName("card btnTipoPermiso");
+
 
 navPermisos.addEventListener("click", function(e){
 	
@@ -65,15 +67,18 @@ function formPermisoDiario(){
 	for(let i = 0; i<2 ; i++){
 	
 		formsPeriodoDiario[i].classList.remove("active");
+		btnTipoPermiso[i].classList.remove("active");
 	}
 	formsPeriodoDiario[0].classList.toggle("active");
-	
+	btnTipoPermiso[0].classList.toggle("active");
 }
 function formPermisoPeriodo(){
 	
 	for(let i = 0; i<2 ; i++){
 	
 		formsPeriodoDiario[i].classList.remove("active");
+		btnTipoPermiso[i].classList.remove("active");
 	}
 	formsPeriodoDiario[1].classList.toggle("active");
+		btnTipoPermiso[1].classList.toggle("active");
 }

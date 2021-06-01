@@ -14,6 +14,7 @@ public interface IPersonaService {
 	public boolean remove(int id);
 
 	public PersonaModel findById(int id);
+	
 
 	public boolean validate(PersonaModel personaModel);
 
