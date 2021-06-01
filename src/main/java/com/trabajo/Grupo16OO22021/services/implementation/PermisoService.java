@@ -161,7 +161,7 @@ public class PermisoService implements IPermisoService {
 		for (PermisoDiario permisoDiario : permisosDiario) {
 
 			for (Lugar permisoLugar : permisoDiario.getDesdeHasta()) {
-				if (permisoLugar.getLugar().equals(lugar))
+				if (permisoLugar.getLugar().equals(lugar.toUpperCase()))
 					permisosDiario2.add(permisoDiario);
 			}
 		}
@@ -176,7 +176,7 @@ public class PermisoService implements IPermisoService {
 		for (PermisoPeriodo permisoPeriodo : permisosPeriodo) {
 
 			for (Lugar permisoLugar : permisoPeriodo.getDesdeHasta()) {
-				if (permisoLugar.getLugar().equals(lugar))
+				if (permisoLugar.getLugar().equals(lugar.toUpperCase()))
 					permisosPeriodoOk.add(permisoPeriodo);
 			}
 		}

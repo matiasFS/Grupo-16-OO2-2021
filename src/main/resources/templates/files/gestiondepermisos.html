@@ -184,7 +184,6 @@
 									<select th:field="*{desdeHasta}" class="form-control">
 										<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
 											<td><span th:text="${lugar.lugar}" /></td>
-											<td><span th:text="${lugar.codigoPostal}" /></td>
 										</option>
 									</select>
 									<label class="small mb-1">(No puede estar vacio)</label>
@@ -194,7 +193,6 @@
 									<select th:field="*{desdeHasta}" class="form-control">
 										<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
 											<td><span th:text="${lugar.lugar}" /></td>
-											<td><span th:text="${lugar.codigoPostal}" /></td>
 										</option>
 									</select>
 									<label class="small mb-1">(No puede estar vacio)</label>
@@ -253,7 +251,6 @@
 								<select th:field="*{desdeHasta}" class="form-control">
 									<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
 										<td><span th:text="${lugar.lugar}" /></td>
-										<td><span th:text="${lugar.codigoPostal}" /></td>
 									</option>
 								</select>
 								<label class="small mb-1">(No puede estar vacio)</label>
@@ -263,7 +260,6 @@
 								<select th:field="*{desdeHasta}" class="form-control">
 									<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
 										<td><span th:text="${lugar.lugar}" /></td>
-										<td><span th:text="${lugar.codigoPostal}" /></td>
 									</option>
 								</select>
 								<label class="small mb-1">(No puede estar vacio)</label>

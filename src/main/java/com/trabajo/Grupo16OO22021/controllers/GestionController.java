@@ -2,11 +2,11 @@ package com.trabajo.Grupo16OO22021.controllers;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -94,11 +94,16 @@ public class GestionController {
 	}
 
 	@PostMapping("/newrodado")
-	public RedirectView cargarrodados(RodadoModel rodadoModel) {
+	public RedirectView cargarrodados(RodadoModel rodadoModel, RedirectAttributes atributos) {
+		NotificacionModel notificacion = new NotificacionModel();
 		if (!rodadoService.validate(rodadoModel)) {
+			notificacion.setMensajeError("Uno de los campos fue completado erroneamente, vuelva a intentarlo");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
 			return new RedirectView(ViewRouteHelper.RODADO_NEW_ROOT);
 		} else {
 			rodadoService.insertOrUpdate(rodadoModel);
+			notificacion.setMensajeConfirmacion("Rodado creado correctamente");
+			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		}
 	}
