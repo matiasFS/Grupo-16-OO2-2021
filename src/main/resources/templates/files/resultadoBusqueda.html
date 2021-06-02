@@ -44,6 +44,7 @@
 					<th>Documento</th>
 					<th>Fecha</th>
 					<th>Cant de dias</th>
+					<th>Vacaciones</th>
 					<th>Rodado</th>
 
 				</tr>
@@ -56,6 +57,7 @@
 					<td><span th:text="${permiso.pedido.documento}" /></td>
 					<td><span th:text="${permiso.fecha}" /></td>
 					<td><span th:text="${permiso.cantDias}" /></td>
+			     	<td th:text="${permiso.vacaciones} ? 'SI' : 'NO'" /></td>
 					<td><span th:text="${permiso.rodado.dominio}" /></td>
 
 
