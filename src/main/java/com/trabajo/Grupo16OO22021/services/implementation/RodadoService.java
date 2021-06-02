@@ -73,9 +73,10 @@ public class RodadoService implements IRodadoService {
 		for(Rodado rodado2 : rodado) {
 			if(rodado2.getDominio().equals(dominio)) {
 				rodado1 = rodado2;
+				return rodado1;
 			}
 		}
-		return rodado1;
+		return null;
 	}
 
 	

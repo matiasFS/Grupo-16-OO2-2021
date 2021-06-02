@@ -12,6 +12,7 @@
 	<!-- Core theme CSS (includes Bootstrap)-->
 	<link href="css/styles.css" rel="stylesheet" />
 	<link href="css/gestionpermisos.css" rel="stylesheet" />
+	<link href="css/login.css" rel="stylesheet" />
 </head>
 
 <body>
@@ -52,8 +53,7 @@
 					<p>De esa manera quedara registrado para poder obtener su permiso posteriormente.</p>
 				<div>
 				
-					<p class="mensajeError" th:text="${mensajeError}" />
-					<p class="mensajeConfirmacion" th:text="${mensajeConfirmacion}" />
+			
 				</div>
 					
 				</section>
@@ -66,25 +66,27 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="small mb-1" for="inputFirstName">Nombre:</label>
-								<input class="form-control py-4" id="inputFirstName" type="text"
+								<input class="form-control py-4 inputNombre" id="inputFirstName" type="text"
 									placeholder="Ingrese nombre" th:field="${persona.nombre}" required />
-								<label class="small mb-1">(Tiene que tener 3 o mas caracteres)</label>
+								<label class="small mb-1">(Debe tener 3 o mas caracteres)</label>
+								<label class="small mb-1">(No se permiten simbolos ni numeros)</label>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="small mb-1" for="inputLastName">Apellido:</label>
-								<input class="form-control py-4" id="inputLastName" type="text"
+								<input class="form-control py-4 inputNombre" id="inputLastName" type="text"
 									placeholder="Ingrese apellido" th:field="${persona.apellido}" required />
-								<label class="small mb-1">(Tiene que tener 3 o mas caracteres)</label>
+								<label class="small mb-1">(No puede estar vacio)</label>
+								<label class="small mb-1">(No se permiten simbolos ni numeros)</label>
 							</div>
 						</div>
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="small mb-1" for="inputDocumento">Documento</label>
-								<input class="form-control py-4" id="inputDocumento" type="text"
+								<input class="form-control py-4 inputDocumento" id="inputDocumento" type="text"
 									placeholder="Ingrese documento" th:field="${persona.documento}" required />
-								<label class="small mb-1">(Tiene que tener 8 caracteres)</label>
+								<label class="small mb-1">(Debe tener 8 caracteres)</label>
 							</div>
 						</div>
 						<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit" Value="Crear" />
@@ -101,9 +103,10 @@
 						<div class="col-md-6">
 							<div class="form-group">
 								<label class="small mb-1" for="inputDominio">Dominio</label>
-								<input class="form-control py-4" id="inputDominio" type="text"
+								<input class="form-control py-4 inputDominio" id="inputDominio" type="text"
 									placeholder="Ingrese dominio" th:field="${rodado.dominio}" required />
 								<label class="small mb-1">(Debe tener formato "AAA111" o "AA111AA")</label>
+								<label class="small mb-1">(No puede contener simbolos)</label>
 
 							</div>
 						</div>
@@ -112,7 +115,7 @@
 								<label class="small mb-1" for="inputVehiculo">Vehiculo</label>
 								<input class="form-control py-4" id="inputVehiculo" type="text"
 									placeholder="Ingrese vehiculo" th:field="${rodado.vehiculo}" required />
-								<label class="small mb-1">(Tiene que tener 3 o mas caracteres)</label>
+								<label class="small mb-1">(Debe tener 3 o mas caracteres)</label>
 							</div>
 						</div>
 
@@ -152,23 +155,23 @@
 
 					</ul>
 					<div class="formTipoPermiso" id="formPeriodoDiario">
-						<form id="formPermisoDiario" action="#" th:action="@{/crearPermisoDiario}"
+						<form id="formPermisoDiario"  action="#" th:action="@{/crearPermisoDiario}"
 							th:object="${permisoDiario}" method="post">
 							<div class="form-row">
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="medium mb-1" for="inputFecha">Fecha:</label>
-										<input class="form-control py-4" id="inputFirstName" type="date"
+										<input class="form-control py-4" id="inputFirstName"  type="date"
 											th:field="*{fecha}" required />
 										<label class="small mb-1">(No puede estar vacio)</label>
 									</div>
 								</div>
 								<div class="col-lg-9">
-									<label class="medium mb-1" for="inputPersona">Persona:</label>
-									<input class="form-control py-4" id="inputFirstName" type="text"
-										placeholder="Ingrese dni" th:name="documento" th:object="${documento}" required />									
+									<label class="medium mb-1" for="inputPersona">Documento:</label>
+									<input class="form-control py-4 inputDocumento" id="inputFirstName" type="text"
+										placeholder="Ingrese dni" name="documento" th:name="documento" th:object="${documento}" required />									
 								
-									<label class="small mb-1">(No puede estar vacio)</label>
+									<label class="small mb-1">(Debebe contener 8 caracteres)</label>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
@@ -217,16 +220,16 @@
 									</div>
 								</div>
 								<div class="col-lg-9">
-									<label class="medium mb-1" for="inputPersona">Persona:</label>
-									<input class="form-control py-4" id="inputFirstName" type="text"
-											placeholder="Ingrese dni" th:name="documento" th:object="${documento}" required />									
+									<label class="medium mb-1" for="inputPersona">Documento:</label>
+									<input class="form-control py-4 inputDocumento"  type="text"
+											placeholder="Ingrese dni" name="documento" th:name="documento" th:object="${documento}" required />									
 									
-									<label class="small mb-1">(No puede estar vacio)</label>
+									<label class="small mb-1">(Debe contener 8 caracteres)</label>
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="medium mb-1" for="inputFecha">Cantidad de dias:</label>
-										<input class="form-control py-4" id="inputFirstName" type="text"
+										<input class="form-control py-4" id="cantidadDias" type="text"
 											th:field="*{cantDias}" required />
 										<label class="small mb-1">(No puede estar vacio o ser 0)</label>
 
@@ -234,18 +237,19 @@
 								</div>
 								<div class="col-md-6">
 									<div class="form-group">
-										<label class="medium mb-1" for="inputFecha">Vacaciones?</label>
-										<input class="form-control py-4" id="inputFirstName" type="text"
-											placeholder="True or False" th:field="*{vacaciones}" required />
-										<label class="small mb-1">(Tiene que ser true o false)</label>
-									</div>
+										<label class="medium mb-1" for="inputFecha">¿Por vacaciones?</label>
+									<br>
+									<input type="radio" th:field="*{vacaciones}" value="true">Si
+									<input type="radio" class="vacacionesfalse"  th:field="*{vacaciones}" value="false">No			
+									</div>					
 								</div>
 								<div class="col-lg-9">
 									<label class="medium mb-1" for="inputRodado">Rodado:</label>
-									<input class="form-control py-4" id="inputRodado" type="text"
-											placeholder="Ingrese dominio" th:name="dominio" th:object="${dominio}" required />									
+									<input class="form-control py-4 inputDominio" id="inputRodado" type="text"
+											placeholder="Ingrese dominio" name="dominio" th:name="dominio" th:object="${dominio}" required />									
 								
-									<label class="small mb-1">(No puede estar vacio)</label>
+										<label class="small mb-1">(Debe tener formato "AAA111" o "AA111AA")</label>
+									<label class="small mb-1">(No puede estar vacío, ni contener simbolos)</label>
 								</div>
 							<div class="col-lg-9">
 								<label class="medium mb-1" for="inputDesdeHasta">Desde:</label>
@@ -289,7 +293,13 @@
 
 </body>
 
-
+<div class="card  border-0 rounded-lg mt-5" id="notification">
+		<div class="card  border-0 rounded-lg mt-5" id="cardNotificacion">
+			<p class="mensajeError" th:text="${mensajeError}" />
+			<p class="mensajeConfirmacion" th:text="${mensajeConfirmacion}" />
+					<button onclick="cerrarNot()" type="button" class="btn btn-danger">Cerrar</button>
+		</div>
+</div>
 <div id="loginCard">
 
 	<div id="cardLogin" class="card shadow-lg border-0 rounded-lg mt-5">
