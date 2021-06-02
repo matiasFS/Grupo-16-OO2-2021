@@ -206,21 +206,38 @@ public class HomeController {
 		exporter.export(response);
 
 	}
-	@GetMapping("/buscarporperson")
-	public ModelAndView buscarpersona(Model model) {
+	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@GetMapping("/buscar")
+	public ModelAndView buscar(Model model) {
 		long documento = 0;
 		String apellido = null;
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_PERSONA1);
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR);
 		model.addAttribute("persona", personaService.getAll());
 		mAV.addObject("documento", documento);
 		mAV.addObject("apellido", apellido);
 		
+		
+		String dominio = null;
+		mAV.addObject("dominio", dominio);
+		
+		LocalDate fechaDesde = null;
+		LocalDate fechaHasta = null;
+
+		mAV.addObject("fechaDesde", fechaDesde);
+		mAV.addObject("fechaHasta", fechaHasta);
+		
+		String lugar = null;
+		mAV.addObject("lugar", lugar);
+
 		return mAV;
 
 	}
+	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@PostMapping("/permisoxperson")
 	public ModelAndView buscarporpersona(long documento, String apellido) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_POR_PERSONA1);
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RESULTADOS);
 		List<PermisoDiario> permisoDiario = permisoService.buscarPermisoDiario(documento, apellido);
 		List<PermisoPeriodo> permisoPeriodo = permisoService.buscarPermisoPeriodo(documento, apellido);
 		mAV.addObject("permisoPeriodo", permisoPeriodo);
@@ -228,44 +245,20 @@ public class HomeController {
 		return mAV;
 
 	}
-	@PreAuthorize("hasRole('ROLE_AUDITOR')")
-	@GetMapping("/buscarporrodado")
-	public ModelAndView buscarPorRodado() {
-		String dominio = null;
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_RODADO);
-		mAV.addObject("dominio", dominio);
-
-		return mAV;
-
-	}
-
+	
 	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@PostMapping("/permisoxrodado")
 	public ModelAndView permisoPorRodado(String dominio) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.ENCONTRADO1);
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RESULTADOS);
 		List<PermisoPeriodo> permisoPeriodo = permisoService.buscarPermisoPeriodoRodado(dominio);
 		mAV.addObject("permisoPeriodo", permisoPeriodo);
 		return mAV;
 
 	}
-
-	@PreAuthorize("hasRole('ROLE_AUDITOR')")
-	@GetMapping("/buscarporfecha")
-	public ModelAndView buscarPorFecha() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_FECHA);
-		LocalDate fechaDesde = null;
-		LocalDate fechaHasta = null;
-
-		mAV.addObject("fechaDesde", fechaDesde);
-		mAV.addObject("fechaHasta", fechaHasta);
-
-		return mAV;
-	}
-	
 	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@PostMapping("/permisoxfecha")
 	public ModelAndView getprfecha(String fechaDesde, String fechaHasta) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_FECHA);
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RESULTADOS);
 		LocalDate fechaDesde1 = LocalDate.parse(fechaDesde);
 		LocalDate fechaHasta1 = LocalDate.parse(fechaHasta);
 
@@ -278,23 +271,9 @@ public class HomeController {
 
 		return mAV;
 	}
-	
-	@GetMapping("/buscarporfechaylugar")
-	public ModelAndView getporfechaylugar() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_FECHAYLUGAR);
-		LocalDate fechaDesde = null;
-		LocalDate fechaHasta = null;
-		String lugar = null;
-		mAV.addObject("fechaDesde", fechaDesde);
-		mAV.addObject("fechaHasta", fechaHasta);
-		mAV.addObject("lugar", lugar);
-
-		return mAV;
-	}
-
 	@PostMapping("/permisoxfechaylugar")
 	public ModelAndView getprfechaylugar(String fechaDesde, String fechaHasta, String lugar) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.PERMISO_POR_FECHAYLUGAR);
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RESULTADOS);
 		LocalDate fechaDesde1 = LocalDate.parse(fechaDesde);
 		LocalDate fechaHasta1 = LocalDate.parse(fechaHasta);
 		List<PermisoDiario> permisosDiario = permisoService.traerDiarioFechaYLugar(fechaDesde1, fechaHasta1, lugar);
@@ -308,5 +287,4 @@ public class HomeController {
 
 		return mAV;
 	}
-
 }

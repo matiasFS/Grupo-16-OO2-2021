@@ -183,7 +183,7 @@
 								</div>
 
 								<div class="col-lg-9">
-									<label class="medium mb-1" for="inputDesdeHasta">Desde:</label>
+									<label class="medium mb-1" for="inputDesdeHasta">Origen:</label>
 									<select th:field="*{desdeHasta}" class="form-control">
 										<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
 											<td><span th:text="${lugar.lugar}" /></td>
@@ -193,7 +193,7 @@
 									<label class="small mb-1">(No puede estar vacio)</label>
 								</div>
 								<div class="col-lg-9">
-									<label class="medium mb-1" for="inputDesdeHasta">Hasta:</label>
+									<label class="medium mb-1" for="inputDesdeHasta">Destino:</label>
 									<select th:field="*{desdeHasta}" class="form-control">
 										<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
 											<td><span th:text="${lugar.lugar}" /></td>
@@ -263,7 +263,7 @@
 								<label class="small mb-1">(No puede estar vacio)</label>
 							</div>
 							<div class="col-lg-9">
-								<label class="medium mb-1" for="inputDesdeHasta">Hasta:</label>
+								<label class="medium mb-1" for="inputDesdeHasta">Origen:</label>
 								<select th:field="*{desdeHasta}" class="form-control">
 									<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
 										<td><span th:text="${lugar.lugar}" /></td>

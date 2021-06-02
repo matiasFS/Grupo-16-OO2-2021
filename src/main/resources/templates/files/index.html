@@ -24,15 +24,13 @@
 					class="navbar-toggler-icon"></span></button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-					<li class="nav-item"><a class="nav-link" th:href="@{/buscarporperson}">Permiso por persona</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/buscarporfecha}">Permiso por fecha</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/buscarporfechaylugar}">Permiso por fecha/lugar</a></li>
-					<li class="nav-item"><a class="nav-link" th:href="@{/buscarporrodado}">Permiso por rodado</a></li>
-					<li class="nav-item"><a class="nav-link" href="users.html">Users</a></li>
-					<li class="nav-item"><a class="nav-link" href="profiles.html">Profiles</a></li>
+		
+					<li class="nav-item"><a class="nav-link" href="users.html">Usuarios</a></li>
+					<li class="nav-item"><a class="nav-link" href="profiles.html">Perfiles</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{/buscar}">Buscar</a></li>
 					<li class="nav-item"><a class="nav-link"><span th:text="${#authentication.getPrincipal().getUsername()}"></a></li>
 					<form th:action="@{/logout}" method="post">
-							<input class="nav-link" type="submit" value="Log out" />
+							<input class="nav-link" type="submit" value="Cerrar sesión" />
 					</form>
 
 					</ul>
@@ -42,18 +40,27 @@
 				<h1 class="mt-4">BIENVENIDO</h1>
 				<div class="col-xl-3 col-md-6">
 					<div class="card bg-secondary text-white mb-4">
-						<div class="card-body">Profile list</div>
+						<div class="card-body">Lista de perfiles</div>
 						<div class="card-footer d-flex align-items-center justify-content-between">
-							<a class="medium text-white stretched-link" href="profiles.html">View profile list</a>
+							<a class="medium text-white stretched-link" href="profiles.html">Ver lista de perfiles</a>
 							<div class="small text-white"><i class="fas fa-angle-right"></i></div>
 						</div>
 					</div>
 				</div>
 				<div class="col-xl-3 col-md-6">
 					<div class="card bg-secondary text-white mb-4">
-						<div class="card-body">User list</div>
+						<div class="card-body">Lista de usuarios</div>
 						<div class="card-footer d-flex align-items-center justify-content-between">
-							<a class="medium text-white stretched-link" href="users.html">View user list</a>
+							<a class="medium text-white stretched-link" href="users.html">Ver lista de usuarios</a>
+							<div class="small text-white"><i class="fas fa-angle-right"></i></div>
+						</div>
+					</div>
+				</div>
+				<div class="col-xl-3 col-md-6">
+					<div class="card bg-secondary text-white mb-4">
+						<div class="card-body">Buscador de permisos</div>
+						<div class="card-footer d-flex align-items-center justify-content-between">
+							<a class="medium text-white stretched-link" href="buscar.html">Buscar</a>
 							<div class="small text-white"><i class="fas fa-angle-right"></i></div>
 						</div>
 					</div>
