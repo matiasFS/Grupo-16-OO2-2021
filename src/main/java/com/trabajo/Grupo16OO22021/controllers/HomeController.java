@@ -271,6 +271,7 @@ public class HomeController {
 
 		return mAV;
 	}
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@PostMapping("/permisoxfechaylugar")
 	public ModelAndView getprfechaylugar(String fechaDesde, String fechaHasta, String lugar) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RESULTADOS);
