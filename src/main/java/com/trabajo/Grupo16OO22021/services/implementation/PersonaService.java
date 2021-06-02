@@ -69,7 +69,7 @@ public class PersonaService implements IPersonaService{
 	@Override
 	public boolean validate(PersonaModel personaModel) {
 		if(personaModel.getNombre().equals("")||personaModel.getNombre().length()<3|| personaModel.getApellido().equals("")
-				||personaModel.getApellido().length()<3|| Long.toString(personaModel.getDocumento()).length() < 7) {
+				||personaModel.getApellido().length()<3|| Long.toString(personaModel.getDocumento()).length() < 7 || this.findByDocumento(personaModel.getDocumento())!=null) {
 			return false;
 		} else {
 			return true;
