@@ -161,6 +161,7 @@ public class GestionController {
 		}
 
 	}
+	
 	@GetMapping("/buscarporpersona")
 	public ModelAndView buscarpersona(Model model) {
 		long documento = 0;
