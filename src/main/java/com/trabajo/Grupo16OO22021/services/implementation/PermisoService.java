@@ -82,7 +82,22 @@ public class PermisoService implements IPermisoService {
 			return true;
 		}
 	}
-
+	public boolean comprobarFecha(PermisoDiarioModel permisoDiarioModel) {
+		
+		if(permisoDiarioModel.getFecha().isBefore(LocalDate.now())) {
+			return false;
+		}
+		return true;
+		
+	}
+	public boolean comprobarFecha(PermisoPeriodoModel permisoPeriodoModel) {
+		
+		if(permisoPeriodoModel.getFecha().isBefore(LocalDate.now())) {
+			return false;
+		}
+		return true;
+		
+	}
 	@Override
 	public List<PermisoDiario> buscarPermisoDiario(long documento, String apellido) {
 		List<PermisoDiario> permisoDiario = getAll1();

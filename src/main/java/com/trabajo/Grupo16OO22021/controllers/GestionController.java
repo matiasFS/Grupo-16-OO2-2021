@@ -80,27 +80,44 @@ public class GestionController {
 	@PostMapping("/crearpersona")
 	public RedirectView create(@ModelAttribute("persona") PersonaModel personaModel,RedirectAttributes atributos) {
 		NotificacionModel notificacion = new NotificacionModel();
+		Persona p = personaService.findByDocumento(personaModel.getDocumento());
 		if (!personaService.validate(personaModel)) {
 			notificacion.setMensajeError("Uno de los campos fue completado erroneamente, vuelva a intentarlo");
 			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
 			return new RedirectView(ViewRouteHelper.PERSONA_NEW_ROOT);
-		} else {
+		} 
+		
+		if( p != null) {
+			notificacion.setMensajeError("El DNI que intento registrar ya se encuentra en el sistema");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
+			
+			return new RedirectView(ViewRouteHelper.PERSONA_NEW_ROOT);
+		}
+			
+		else {
 			personaService.insertOrUpdate(personaModel);
 			notificacion.setMensajeConfirmacion("Persona creada correctamente");
 			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		}
+	
 
 	}
 
 	@PostMapping("/newrodado")
 	public RedirectView cargarrodados(RodadoModel rodadoModel, RedirectAttributes atributos) {
 		NotificacionModel notificacion = new NotificacionModel();
+		Rodado r = rodadoService.findDominio(rodadoModel.getDominio());
 		if (!rodadoService.validate(rodadoModel)) {
 			notificacion.setMensajeError("Uno de los campos fue completado erroneamente, vuelva a intentarlo");
 			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
 			return new RedirectView(ViewRouteHelper.RODADO_NEW_ROOT);
-		} else {
+		} if( r != null){
+			notificacion.setMensajeError("El dominio que intento registrar ya se encuentra en el sistema");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
+			return new RedirectView(ViewRouteHelper.RODADO_NEW_ROOT);
+		}
+		else {
 			rodadoService.insertOrUpdate(rodadoModel);
 			notificacion.setMensajeConfirmacion("Rodado creado correctamente");
 			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
@@ -122,7 +139,17 @@ public class GestionController {
 			
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		
-		} else {
+		} 
+		
+		if(!permisoService.comprobarFecha(diarioModel)) {
+			
+			notificacion.setMensajeError("La fecha ingresada es anterior a la fecha de este momento, vuelva a intentarlo");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
+			
+			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
+			
+		}
+		else {
 			notificacion.setMensajeConfirmacion("Permiso creado correctamente");
 			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
 
@@ -151,8 +178,15 @@ public class GestionController {
 			notificacion.setMensajeError("No se halló el rodado ingresado para obtener el permiso, reintente o vuelva a completar el formulario para rodados");
 			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
 			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
-		} 
-		
+			} 
+		if(!permisoService.comprobarFecha(periodoModel)) {
+					
+					notificacion.setMensajeError("La fecha ingresada es anterior a la fecha de este momento, vuelva a intentarlo");
+					atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
+					
+					return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
+					
+				}
 		else {
 			notificacion.setMensajeConfirmacion("Permiso creado correctamente");
 			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
