@@ -12,12 +12,18 @@ let btnTipoPermiso = document.getElementsByClassName("card btnTipoPermiso");
 let mensajeError = document.getElementsByClassName("mensajeError");
 let mensajeConfirmacion = document.getElementsByClassName("mensajeConfirmacion");
 let notification = document.getElementById("notification");
+let allForms = document.getElementsByClassName("formAction");
+let advertencias = document.getElementsByClassName("advertencia");
+let cantidadDias = document.getElementById("cantidadDias");
+let inputDocumentoPermiso = document.getElementsByClassName("inputDocumento");
+let inputNombre = document.getElementsByClassName("inputNombre");
+let inputDominio = document.getElementsByClassName("inputDominio");
 
 
 
 const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
-	documento: /^\d{8}$/, // 8 numeros.
+	documento: /^\d{7,8}$/, // 8 numeros.
 	dominio: /^[a-zA-Z0-9]{6,7}$/, // Letras, numeros, guion y guion_bajo
 }
 
@@ -28,12 +34,12 @@ const expresiones = {
 
 function mostrarNotificacion(){
 	if(mensajeConfirmacion[0].textContent !== ""){
-		mensajeConfirmacion[0].classList.add("active");
+		mensajeConfirmacion[0].classList.add("show");
 		notification.classList.toggle("active");
 	}
 	
 	if(mensajeError[0].textContent !== ""){
-		mensajeError[0].classList.add("active");
+		mensajeError[0].classList.add("show");
 		notification.classList.toggle("active");
 	}
 	
@@ -59,33 +65,61 @@ navPermisos.addEventListener("click", function(e){
 	
 });
 
+function removerCamposIncorrectos(){
+let camposIncorrectos = document.getElementsByClassName("formularioIncorrecto");
+	if(camposIncorrectos.length > 0){
+		for(i = 0; i < camposIncorrectos.length; i++){
+			camposIncorrectos[i].classList.remove("formularioIncorrecto");
+		}
+	
+	}
+
+}
+// NAVEGACION MENU LATERAL
+// NAVEGACION MENU LATERAL
+// NAVEGACION MENU LATERAL
+// NAVEGACION MENU LATERAL
 function instrucciones(){
+	removerCamposIncorrectos()
 	for(let i = 0; i<4; i++){
+		allForms[i].reset()
 		forms[i].classList.remove("active");
 	}
 	forms[0].classList.add("active");
 }
 
 function formPersona(){
+	removerCamposIncorrectos()
 	for(let i = 0; i<4; i++){
+	allForms[i].reset()
 		forms[i].classList.remove("active");
 	}
 	forms[1].classList.add("active");
 }
 
 function formRodado(){
+	removerCamposIncorrectos()
 	for(let i = 0; i<4; i++){
+	allForms[i].reset()
 		forms[i].classList.remove("active");
 	}
 	forms[2].classList.add("active");
 }
 
 function formPermiso(){
+	removerCamposIncorrectos()
 	for(let i = 0; i<4; i++){
+	allForms[i].reset()
 		forms[i].classList.remove("active");
 	}
 	forms[3].classList.add("active");
+
 }
+
+// NAVEGACION TIPOS DE PERMISOS
+// NAVEGACION TIPOS DE PERMISOS
+// NAVEGACION TIPOS DE PERMISOS
+// NAVEGACION TIPOS DE PERMISOS
 navTipoPermiso.addEventListener("click",function(e){
 	let btns = navTipoPermiso.getElementsByTagName("a");
 	for(let i = 0; i<2 ; i++){
@@ -118,10 +152,11 @@ function formPermisoPeriodo(){
 
 
 
-let cantidadDias = document.getElementById("cantidadDias");
-let inputDocumentoPermiso = document.getElementsByClassName("inputDocumento");
-let inputNombre = document.getElementsByClassName("inputNombre");
-let inputDominio = document.getElementsByClassName("inputDominio");
+//VALIDACIONES DE CAMPOS
+//VALIDACIONES DE CAMPOS
+//VALIDACIONES DE CAMPOS
+//VALIDACIONES DE CAMPOS
+
 for(let i = 0; i< inputDocumentoPermiso.length ; i++){
 	inputDocumentoPermiso[i].addEventListener("keyup",function(e){
 		if(!expresiones.documento.test(e.target.value)){
@@ -162,11 +197,44 @@ for(let i = 0; i< inputDominio.length ; i++){
 cantidadDias.addEventListener("keyup",function(e){
 		if(e.target.value === "0"){
 			e.target.classList.add("formularioIncorrecto");
+			
 		}
 		else{
 			e.target.classList.remove("formularioIncorrecto");
 		}
 })
+
+	
+
+for(let  i = 0; i< allForms.length; i++){
+	allForms[i].addEventListener("submit", function(e){
+			e.preventDefault();
+			if(document.getElementsByClassName("formularioIncorrecto").length === 0){
+				for(let  j = 0; j< allForms.length; j++){
+				advertencias[j].classList.remove("show");
+				}
+				e.target.submit();
+				
+			}else{
+				if(e.target.classList.contains("persona")){
+					advertencias[0].classList.add("show");
+				}
+				if(e.target.classList.contains("rodado")){
+				
+					advertencias[1].classList.add("show");
+				}
+				if(e.target.classList.contains("diario")){
+				
+					advertencias[2].classList.add("show");
+				}
+				if(e.target.classList.contains("periodo")){
+				
+					advertencias[3].classList.add("show");
+			}
+			}
+			
+		})		
+}
 
 
 
