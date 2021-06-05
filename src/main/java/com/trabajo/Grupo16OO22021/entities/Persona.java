@@ -25,7 +25,7 @@ public class Persona {
 	private String apellido;
 	
 	@NotNull(message="El dni es obligatorio")
-	@Column (name = "documento", nullable = false)
+	@Column (name = "documento", unique = true, nullable = false)
 	private long documento;
 	
 	public Persona() {}

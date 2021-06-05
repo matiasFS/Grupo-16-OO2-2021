@@ -10,14 +10,14 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "permisoDiario")
-@PrimaryKeyJoinColumn(referencedColumnName="idPermiso")
-public class PermisoDiario extends Permiso{
-	
-	@Column(name = "motivo" , length = 60, nullable=false)
-	private String motivo;
-	
-	public PermisoDiario() {}
+@PrimaryKeyJoinColumn(referencedColumnName = "idPermiso")
+public class PermisoDiario extends Permiso {
 
+	@Column(name = "motivo", length = 60, nullable = false)
+	private String motivo;
+
+	public PermisoDiario() {
+	}
 
 	public PermisoDiario(int idPermiso, Persona pedido, LocalDate fecha, Set<Lugar> desdeHasta, String motivo) {
 		super(idPermiso, pedido, fecha, desdeHasta);
@@ -29,14 +29,18 @@ public class PermisoDiario extends Permiso{
 		this.motivo = motivo;
 	}
 
-
 	public String getMotivo() {
 		return motivo;
 	}
 
-
 	public void setMotivo(String motivo) {
 		this.motivo = motivo;
+	}
+
+	@Override
+	public String toString() {
+		return "\n\n Permiso diario: \n\n Fecha: " + fecha + "\n\n DNI de la persona: " + pedido.getDocumento()
+				+ " \n\n Motivo: " + motivo + "\n\n";
 	}
 
 }

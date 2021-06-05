@@ -22,7 +22,7 @@
 						<div class="col-lg-7">
 							<div class="card shadow-lg border-0 rounded-lg mt-5">
 								<div class="card-header">
-									<h3 class="text-center font-weight-light my-4">Create user</h3>
+									<h3 class="text-center font-weight-light my-4">Crear usuario</h3>
 								</div>
 								<div class="card-body">
 									<form action="#"  th:action="@{/manage/createuser}" th:object="${user}"
@@ -30,41 +30,41 @@
 										<div class="form-row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="small mb-1" for="inputFirstName">First Name</label>
+													<label class="small mb-1" for="inputFirstName">Nombre</label>
 													<input class="form-control py-4" id="inputFirstName" type="text"
-														placeholder="Enter first name" th:field="*{name}" />
-													<label class="small mb-1">(Must have 3 or more characters)</label>
+														placeholder="Ingrese su nombre" th:field="*{name}" />
+													<label class="small mb-1">(Debe tener al menos mas de 1 caracter)</label>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="small mb-1" for="inputLastName">Last Name</label>
+													<label class="small mb-1" for="inputLastName">Apellido</label>
 													<input class="form-control py-4" id="inputLastName" type="text"
-														placeholder="Enter last name" th:field="*{lastname}" />
-													<label class="small mb-1">(Must have 3 or more characters)</label>
+														placeholder="Ingrese su apellido" th:field="*{lastname}" />
+													<label class="small mb-1">(Debe tener al menos mas de 1 caracter)</label>
 												</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="small mb-1" for="inputDocumento">Document</label>
+													<label class="small mb-1" for="inputDocumento">Documento</label>
 													<input class="form-control py-4" id="inputDocumento" type="text"
-														placeholder="Enter document" th:field="*{document}" />
-													<label class="small mb-1">(Must have 7 or 8 characters)</label>										</div>
+														placeholder="Ingrese el documento" th:field="*{document}" />
+													<label class="small mb-1">(Debe tener entre 7 y 8 caracteres)</label>										</div>
 											</div>
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="small mb-1" for="inputEmail">Email</label>
+													<label class="small mb-1" for="inputEmail">Correo</label>
 													<input class="form-control py-4" id="inputEmail" type="email"
-														placeholder="Enter email address" th:field="*{email}" />
-													<label class="small mb-1">(Must not be blank)</label>
+														placeholder="Ingrese el correo" th:field="*{email}" />
+													<label class="small mb-1">(No puede estar en blanco)</label>
 												</div>
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="small mb-1" for="inputUserName">Username</label>
+											<label class="small mb-1" for="inputUserName">Usuario</label>
 											<input class="form-control py-4" id="inputUserName" type="text"
 												aria-describedby="emailHelp" placeholder="Enter username"  th:field="*{username}" />
-											<label class="small mb-1">(Must have 5 or more characters)</label>
+											<label class="small mb-1">(No puede estar en blanco)</label>
 										</div>
 										<div class="form-row">
 											<div class="col-md-6">
@@ -72,14 +72,14 @@
 													<label class="small mb-1" for="inputPassword">Password</label>
 													<input class="form-control py-4" id="inputPassword" type="password"
 														placeholder="Enter password"  th:field="*{password}"/>
-													<label class="small mb-1">(Must have 5 or more characters)</label>
+													<label class="small mb-1">(Debe tener al menos 5 caracteres)</label>
 												</div>
 											</div>
 										</div>
 										<div class="form-row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="small mb-1" for="inputPassword">Enabled?</label>
+													<label class="small mb-1" for="inputPassword">Disponible</label>
 													<input class="form-control py-4" id="inputEnabled" type="text"
 														placeholder="True or False"  th:field="*{enabled}"/>
 													<label class="small mb-1">(Must be true or false)</label>
@@ -94,7 +94,7 @@
 													th:text="${role.name}">
 												</option>
 											</select>
-											<label class="small mb-1">(Must not be blank)</label>
+											<label class="small mb-1">(No puede estar en blanco)</label>
 										</div>
 										<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit" Value="Create" /> <a class="btn btn-primary" th:href="@{/manage}">Go back</a></div>
 									</form>
