@@ -6,6 +6,7 @@ import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
@@ -29,6 +30,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import com.lowagie.text.DocumentException;
+import com.trabajo.Grupo16OO22021.entities.Lugar;
+import com.trabajo.Grupo16OO22021.entities.PermisoDiario;
+import com.trabajo.Grupo16OO22021.entities.PermisoPeriodo;
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
 import com.trabajo.Grupo16OO22021.models.PermisoModel;
 import com.trabajo.Grupo16OO22021.models.PersonaModel;
@@ -38,8 +42,11 @@ import com.trabajo.Grupo16OO22021.models.UserRoleModel;
 import com.trabajo.Grupo16OO22021.pdf.ProfilePDFExporter;
 import com.trabajo.Grupo16OO22021.pdf.UserPDFExporter;
 import com.trabajo.Grupo16OO22021.services.IUserService;
-
+import com.trabajo.Grupo16OO22021.repositories.ILugarRepository;
 import com.trabajo.Grupo16OO22021.repositories.IRoleRepository;
+import com.trabajo.Grupo16OO22021.services.implementation.PermisoService;
+import com.trabajo.Grupo16OO22021.services.implementation.PersonaService;
+import com.trabajo.Grupo16OO22021.services.implementation.RodadoService;
 import com.trabajo.Grupo16OO22021.services.implementation.RoleService;
 import com.trabajo.Grupo16OO22021.services.implementation.UserService;
 
@@ -55,20 +62,26 @@ public class HomeController {
 	@Autowired
 	@Qualifier("roleService")
 	private RoleService roleService;
+	
+	@Autowired
+	@Qualifier("personaService")
+	private PersonaService personaService;
 
 	@Autowired
 	private IRoleRepository roleRepository;
+
+	@Autowired
+	@Qualifier("rodadoService")
+	private RodadoService rodadoService;
+
+	@Autowired
+	@Qualifier("permisoService")
+	private PermisoService permisoService;
 	
-	
-	/*@GetMapping("/gestiondepermisos")
-	public ModelAndView gestionPermisos() {
-		ModelAndView modelAndView = new ModelAndView(ViewRouteHelper.GESTION_PERMISOS);
-		modelAndView.addObject("persona", new PersonaModel());
-		modelAndView.addObject("permiso", new PermisoModel());
-		modelAndView.addObject("rodado", new RodadoModel());
-		return modelAndView;
-	}*/
-	
+	@Autowired
+	@Qualifier("lugarRepository")
+	private ILugarRepository lugarRepository;
+
 	@PreAuthorize("hasRole('ROLE_AUDITOR')")
 	@GetMapping("/index")
 	public ModelAndView index() {
@@ -77,6 +90,7 @@ public class HomeController {
 		modelAndView.addObject("permiso", new PermisoModel());
 		return modelAndView;
 	}
+
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/admin")
 	public ModelAndView adminIndex() {
@@ -94,7 +108,7 @@ public class HomeController {
 		mAV.addObject("users", userService.getAll());
 		return mAV;
 	}
-	
+
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/adminUsers.html")
 	public ModelAndView Users() {
@@ -110,12 +124,12 @@ public class HomeController {
 
 		return ViewRouteHelper.PROFILES;
 	}
-	
+
 	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/adminProfiles.html")
 	public String adminProfiles(Model model) {
 		model.addAttribute("roles", roleRepository.findAll());
-		
+
 		return ViewRouteHelper.ADMIN_PROFILES;
 	}
 
@@ -192,5 +206,86 @@ public class HomeController {
 		exporter.export(response);
 
 	}
+	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@GetMapping("/buscar")
+	public ModelAndView buscar(Model model) {
+		long documento = 0;
+		String apellido = null;
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR);
+		model.addAttribute("persona", personaService.getAll());
+		mAV.addObject("documento", documento);
+		mAV.addObject("apellido", apellido);
+		
+		
+		String dominio = null;
+		mAV.addObject("dominio", dominio);
+		
+		LocalDate fechaDesde = null;
+		LocalDate fechaHasta = null;
 
+		mAV.addObject("fechaDesde", fechaDesde);
+		mAV.addObject("fechaHasta", fechaHasta);
+		
+		String lugar = null;
+		mAV.addObject("lugar", lugar);
+
+		return mAV;
+
+	}
+	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@PostMapping("/permisoxperson")
+	public ModelAndView buscarporpersona(long documento, String apellido) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RESULTADOS);
+		List<PermisoDiario> permisoDiario = permisoService.buscarPermisoDiario(documento, apellido);
+		List<PermisoPeriodo> permisoPeriodo = permisoService.buscarPermisoPeriodo(documento, apellido);
+		mAV.addObject("permisoPeriodo", permisoPeriodo);
+		mAV.addObject("permisoDiario", permisoDiario);
+		return mAV;
+
+	}
+	
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@PostMapping("/permisoxrodado")
+	public ModelAndView permisoPorRodado(String dominio) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RESULTADOS);
+		List<PermisoPeriodo> permisoPeriodo = permisoService.buscarPermisoPeriodoRodado(dominio);
+		mAV.addObject("permisoPeriodo", permisoPeriodo);
+		return mAV;
+
+	}
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@PostMapping("/permisoxfecha")
+	public ModelAndView getprfecha(String fechaDesde, String fechaHasta) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RESULTADOS);
+		LocalDate fechaDesde1 = LocalDate.parse(fechaDesde);
+		LocalDate fechaHasta1 = LocalDate.parse(fechaHasta);
+
+		List<PermisoDiario> permisosDiario = permisoService.traerDiarioEntreFechas(fechaDesde1, fechaHasta1);
+		List<PermisoPeriodo> permisosPeriodo = permisoService.traerPeriodoEntreFechas(fechaDesde1, fechaHasta1);
+		
+
+		mAV.addObject("permisoPeriodo", permisosPeriodo);
+		mAV.addObject("permisoDiario", permisosDiario);
+
+		return mAV;
+	}
+	@PreAuthorize("hasRole('ROLE_AUDITOR')")
+	@PostMapping("/permisoxfechaylugar")
+	public ModelAndView getprfechaylugar(String fechaDesde, String fechaHasta, String lugar) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.RESULTADOS);
+		LocalDate fechaDesde1 = LocalDate.parse(fechaDesde);
+		LocalDate fechaHasta1 = LocalDate.parse(fechaHasta);
+		List<PermisoDiario> permisosDiario = permisoService.traerDiarioFechaYLugar(fechaDesde1, fechaHasta1, lugar);
+		List<PermisoPeriodo> permisosPeriodo = permisoService.traerPeriodoFechaYLugar(fechaDesde1, fechaHasta1, lugar);
+		for(PermisoDiario p : permisosDiario) {
+			System.out.println(p.getIdPermiso());
+
+		}
+		mAV.addObject("permisoPeriodo", permisosPeriodo);
+		mAV.addObject("permisoDiario", permisosDiario);
+
+		return mAV;
+	}
 }

@@ -1,5 +1,6 @@
 package com.trabajo.Grupo16OO22021.models;
 
+
 public class PersonaModel {
 	private int idPersona;
 	private String nombre;

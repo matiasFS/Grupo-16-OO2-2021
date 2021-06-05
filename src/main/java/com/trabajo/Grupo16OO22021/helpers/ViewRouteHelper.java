@@ -10,15 +10,12 @@ public class ViewRouteHelper {
 	// Users and profiles lists
 	public final static String PROFILES = "files/profiles";
 	public final static String USERS = "files/users";
-	
-	
-	//Admin routes
+
+	// Admin routes
 	public final static String ADMIN_PROFILES = "files/adminProfiles";
 	public final static String ADMIN_USERS = "files/adminUsers";
 	public final static String ADMIN_INDEX = "files/admin";
-	
-	
-	
+
 	// Manage
 	public final static String MANAGE = "files/manage/manage";
 	public final static String USER_UPDATE = "files/manage/updateuser";
@@ -26,35 +23,36 @@ public class ViewRouteHelper {
 	public final static String PROFILE_NEW = "files/manage/newprofile";
 	public static final String PROFILE_UPDATE = "files/manage/updateprofile";
 
-	//ROOT
+	// ROOT
 	public final static String MANAGE_ROOT = "/manage";
 	public final static String USER_NEW_ROOT = "/newuser";
 	public static final String USER_UPDATE_ROOT = "/updateuser{id}";
 	public static final String PROFILE_NEW_ROOT = "/newprofile";
 	public static final String PROFILE_UPDATE_ROOT = "/updateprofile{id}";
 
-	//Personas ROOT
-		public final static String PERSONA_NEW_ROOT = "/gestiondepermisos";
-		public final static String PERSONA_ACT_ROOT = "A DEFINIR";
-		public final static String RODADO_NEW_ROOT = "/gestiondepermisos";
+	// Personas ROOT
+	public final static String PERSONA_NEW_ROOT = "/gestiondepermisos";
+	public final static String PERMISO_NEW_ROOT = "/gestiondepermisos";
+	public final static String RODADO_NEW_ROOT = "/gestiondepermisos";
 
-		public final static String FECHA = "files/fecha";
-		public final static String FECHA_LUGAR = "A DEFINIR";
-
-		public final static String FECHA_MOSTRAR = "files/buscarfecha";
-		public final static String FECHA_LUGAR_MOSTRAR = "A DEFINIR";
-
-
-	//Gestion
-	public static final String GESTION = "files/gestion";
-
+	public final static String BUSCAR = "/files/buscar";
+	public final static String RESULTADOS = "/files/resultadoBusqueda";
 	
-	//Personas
-	public final static String PERSONA_NEW = "A DEFINIR";
-	public final static String PERSONA_ACT = "A DEFINIR";
-	
+	public final static String BUSCAR_POR_PERSONA = "/files/buscarporpersona";
+	public final static String ENCONTRADO = "/files/permisoxpersona";
 
+	public static final String BUSCAR_POR_RODADO = "/files/buscarporrodado";
+	public static final String ENCONTRADO1 = "/files/permisoxrodado";
 	
-	
-	
+	public static final String BUSCAR_POR_FECHA = "/files/buscarporfecha";
+	public static final String PERMISO_FECHA = "/files/permisoxfecha";
+
+	public static final String PERMISO_POR_PERSONA1 = "files/permisoxperson";
+	public static final String BUSCAR_POR_PERSONA1 = "files/buscarporperson";
+
+	public static final String BUSCAR_POR_FECHAYLUGAR = "files/buscarporfechaylugar";
+	public static final String PERMISO_POR_FECHAYLUGAR = "files/permisoxfechaylugar";
+
+
+
 }

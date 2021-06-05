@@ -2,11 +2,13 @@ package com.trabajo.Grupo16OO22021.entities;
 
 
 import javax.persistence.Column;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "persona")
@@ -22,6 +24,7 @@ public class Persona {
 	@Column (name = "apellido", nullable = false)
 	private String apellido;
 	
+	@NotNull(message="El dni es obligatorio")
 	@Column (name = "documento", nullable = false)
 	private long documento;
 	

@@ -11,6 +11,7 @@ import com.trabajo.Grupo16OO22021.entities.Persona;
 @Repository("personaRepository")
 public interface IPersonaRepository extends JpaRepository<Persona, Integer> {
 	public abstract Persona findById(int id);
+	 
 	
 	public abstract List<Persona> findAll();
 	

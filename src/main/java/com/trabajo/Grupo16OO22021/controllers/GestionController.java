@@ -1,7 +1,7 @@
 package com.trabajo.Grupo16OO22021.controllers;
 
-import java.time.LocalDate;
 import java.util.List;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -11,16 +11,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import com.trabajo.Grupo16OO22021.entities.Lugar;
 import com.trabajo.Grupo16OO22021.entities.PermisoDiario;
 import com.trabajo.Grupo16OO22021.entities.PermisoPeriodo;
+import com.trabajo.Grupo16OO22021.entities.Persona;
+import com.trabajo.Grupo16OO22021.entities.Rodado;
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
-
+import com.trabajo.Grupo16OO22021.models.NotificacionModel;
+import com.trabajo.Grupo16OO22021.models.PermisoDiarioModel;
+import com.trabajo.Grupo16OO22021.models.PermisoPeriodoModel;
 import com.trabajo.Grupo16OO22021.models.PersonaModel;
 import com.trabajo.Grupo16OO22021.models.RodadoModel;
-
+import com.trabajo.Grupo16OO22021.repositories.ILugarRepository;
 import com.trabajo.Grupo16OO22021.repositories.IPermisoDiarioRepository;
 import com.trabajo.Grupo16OO22021.repositories.IPermisoPeriodoRepository;
 import com.trabajo.Grupo16OO22021.repositories.IPersonaRepository;
@@ -35,6 +39,10 @@ public class GestionController {
 	@Autowired
 	@Qualifier("personaService")
 	private PersonaService personaService;
+
+	@Autowired
+	@Qualifier("lugarRepository")
+	private ILugarRepository lugarRepository;
 
 	@Autowired
 	@Qualifier("permisoService")
@@ -56,119 +64,125 @@ public class GestionController {
 	@Qualifier("rodadoService")
 	private RodadoService rodadoService;
 
-	@GetMapping("/gestion")
-	public String gestion() {
-		return ViewRouteHelper.GESTION;
-	}
-
 	@GetMapping("/gestiondepermisos")
-	public ModelAndView gestionPermisos() {
+	public ModelAndView gestionPermisos(Model model) {
 		ModelAndView mAV = new ModelAndView(ViewRouteHelper.GESTION_PERMISOS);
+		
+		model.addAttribute("notificacion", new NotificacionModel("",""));
 		mAV.addObject("persona", new PersonaModel());
 		mAV.addObject("rodado", new RodadoModel());
+		mAV.addObject("permisoDiario", new PermisoDiarioModel());
+		mAV.addObject("permisoPeriodo", new PermisoPeriodoModel());
+		mAV.addObject("lugares", lugarRepository.findAll());
 		return mAV;
 	}
 
 	@PostMapping("/crearpersona")
-	public RedirectView create(@ModelAttribute("persona") PersonaModel personaModel) {
-		System.out.println(personaModel);
+	public RedirectView create(@ModelAttribute("persona") PersonaModel personaModel,RedirectAttributes atributos) {
+		NotificacionModel notificacion = new NotificacionModel();
 		if (!personaService.validate(personaModel)) {
+			notificacion.setMensajeError("Uno de los campos fue completado erroneamente, vuelva a intentarlo");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
 			return new RedirectView(ViewRouteHelper.PERSONA_NEW_ROOT);
 		} else {
 			personaService.insertOrUpdate(personaModel);
-			return new RedirectView(ViewRouteHelper.GESTION_PERMISOS);
+			notificacion.setMensajeConfirmacion("Persona creada correctamente");
+			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
+			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		}
 
 	}
 
 	@PostMapping("/newrodado")
-	public RedirectView cargarrodados(RodadoModel rodadoModel) {
+	public RedirectView cargarrodados(RodadoModel rodadoModel, RedirectAttributes atributos) {
+		NotificacionModel notificacion = new NotificacionModel();
 		if (!rodadoService.validate(rodadoModel)) {
+			notificacion.setMensajeError("Uno de los campos fue completado erroneamente, vuelva a intentarlo");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
 			return new RedirectView(ViewRouteHelper.RODADO_NEW_ROOT);
 		} else {
 			rodadoService.insertOrUpdate(rodadoModel);
-			return new RedirectView(ViewRouteHelper.GESTION_PERMISOS);
+			notificacion.setMensajeConfirmacion("Rodado creado correctamente");
+			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
+			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		}
 	}
 
-	@GetMapping("/fecha")
-	public ModelAndView getporfecha() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.FECHA);
-//		LocalDate fechaDesde = null;
-//		LocalDate fechaHasta = null;
-//
-//		mAV.addObject("fecha", fechaDesde);
-//		mAV.addObject("fecha", fechaHasta);
-//
-//		return mAV;
-		LocalDate fechaDesde1 = LocalDate.of(2021, 02, 02);
-		LocalDate fechaHasta1 = LocalDate.of(2021, 02, 04);
+	@PostMapping("/crearPermisoDiario")
+	public RedirectView newPermisoDiario(PermisoDiarioModel diarioModel, long documento,RedirectAttributes atributos) {
+		Persona p = personaService.findByDocumento(documento);
+		diarioModel.setPedido(p);
+		NotificacionModel notificacion = new NotificacionModel();
+		
+		
+		
+		if (!permisoService.validetePermisoDiario(diarioModel) || p == null) {
+			notificacion.setMensajeError("No se encuentra la persona que se desea agregar al permiso, recuerde completar el primer formulario antes de gestionar el permiso");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
+			
+			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
+		
+		} else {
+			notificacion.setMensajeConfirmacion("Permiso creado correctamente");
+			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
 
-		List<PermisoDiario> permisosDiario = permisoService.traerDiarioEntreFechas(fechaDesde1, fechaHasta1);
-		List<PermisoPeriodo> permisosPeriodo = permisoService.traerPeriodoEntreFechas(fechaDesde1, fechaHasta1);
-
-		for (PermisoDiario permisod : permisosDiario) {
-
-			System.out.println(permisod);
+			permisoService.insertOrUpdate(diarioModel);
+			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		}
-		System.out.println("hola");
-		mAV.addObject("permisoPeriodo", permisosPeriodo);
-		mAV.addObject("permisoDiario", permisosDiario);
 
-		return mAV;
 	}
+	
 
-	@PostMapping("/buscarfecha")
-	public ModelAndView getprfecha(String fechaDesde, String fechaHasta, Model model) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.FECHA_MOSTRAR);
-//		LocalDate fechaDesde1 = LocalDate.parse(fechaDesde);
-//		LocalDate fechaHasta1 = LocalDate.parse(fechaHasta);
-//		
-		LocalDate fechaDesde1 = LocalDate.of(2021, 02, 02);
-		LocalDate fechaHasta1 = LocalDate.of(2021, 02, 04);
 
-		List<PermisoDiario> permisosDiario = permisoService.traerDiarioEntreFechas(fechaDesde1, fechaHasta1);
-		List<PermisoPeriodo> permisosPeriodo = permisoService.traerPeriodoEntreFechas(fechaDesde1, fechaHasta1);
 
-		for (PermisoDiario permisod : permisosDiario) {
-
-			System.out.println(permisod);
+	@PostMapping("/crearPermisoPeriodo")
+	public RedirectView newPermisoPeriodo(PermisoPeriodoModel periodoModel,String dominio, long documento,RedirectAttributes atributos) {
+		Persona p = personaService.findByDocumento(documento);
+		periodoModel.setPedido(p);
+		Rodado r = rodadoService.findDominio(dominio);
+		periodoModel.setRodado(r);
+		NotificacionModel notificacion = new NotificacionModel();
+		if (!permisoService.validatePermisoPeriodo(periodoModel) || p == null) {
+			notificacion.setMensajeError("No se encuentra la persona que se desea agregar al permiso, recuerde completar el primer formulario antes de gestionar el permiso");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
+			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
 		}
-		System.out.println("hola");
+		if(!permisoService.validatePermisoPeriodo(periodoModel) || r == null){
+			notificacion.setMensajeError("No se halló el rodado ingresado para obtener el permiso, reintente o vuelva a completar el formulario para rodados");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
+			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
+		} 
+		
+		else {
+			notificacion.setMensajeConfirmacion("Permiso creado correctamente");
+			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
+			permisoService.insertOrUpdate(periodoModel);
+			return new RedirectView(ViewRouteHelper.PERMISO_NEW_ROOT);
+		}
 
-		mAV.addObject("permisoPeriodo", permisosPeriodo);
-		mAV.addObject("permisoDiario", permisosDiario);
-
-		return mAV;
 	}
-
-	@GetMapping("/fechaylugar")
-	public ModelAndView getporfechaylugar() {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.FECHA_LUGAR);
-		LocalDate fechaDesde = null;
-		LocalDate fechaHasta = null;
-		Lugar lugar = null;
-
-		mAV.addObject("fecha", fechaDesde);
-		mAV.addObject("fecha", fechaHasta);
-		mAV.addObject("lugar", lugar);
-
+	
+	@GetMapping("/buscarporpersona")
+	public ModelAndView buscarpersona(Model model) {
+		long documento = 0;
+		String apellido = null;
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.BUSCAR_POR_PERSONA);
+		model.addAttribute("persona", personaService.getAll());
+		mAV.addObject("documento", documento);
+		mAV.addObject("apellido", apellido);
+		
 		return mAV;
+
 	}
-
-	@PostMapping("/buscarfechaylugar")
-	public ModelAndView getprfechaylugar(String fechaDesde, String fechaHasta, Lugar lugar, Model model) {
-		ModelAndView mAV = new ModelAndView(ViewRouteHelper.FECHA_LUGAR_MOSTRAR);
-		LocalDate fechaDesde1 = LocalDate.parse(fechaDesde);
-		LocalDate fechaHasta1 = LocalDate.parse(fechaHasta);
-
-		List<PermisoDiario> permisosDiario = permisoService.traerDiarioFechaYLugar(fechaDesde1, fechaHasta1, lugar);
-		List<PermisoPeriodo> permisosPeriodo = permisoService.traerPeriodoFechaYLugar(fechaDesde1, fechaHasta1, lugar);
-
-		mAV.addObject("permisoPeriodo", permisosPeriodo);
-		mAV.addObject("permisoDiario", permisosDiario);
-
+	@PostMapping("/permisoxpersona")
+	public ModelAndView buscarporpersona(long documento, String apellido) {
+		ModelAndView mAV = new ModelAndView(ViewRouteHelper.ENCONTRADO);
+		List<PermisoDiario> permisoDiario = permisoService.buscarPermisoDiario(documento, apellido);
+		List<PermisoPeriodo> permisoPeriodo = permisoService.buscarPermisoPeriodo(documento, apellido);
+		mAV.addObject("permisoPeriodo", permisoPeriodo);
+		mAV.addObject("permisoDiario", permisoDiario);
 		return mAV;
+
 	}
 
 }
