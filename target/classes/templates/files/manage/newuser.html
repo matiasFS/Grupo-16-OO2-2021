@@ -25,13 +25,13 @@
 									<h3 class="text-center font-weight-light my-4">Crear usuario</h3>
 								</div>
 								<div class="card-body">
-									<form action="#"  th:action="@{/manage/createuser}" th:object="${user}"
+									<form action="#" id="form"  th:action="@{/manage/createuser}" th:object="${user}"
 										method="post">
 										<div class="form-row">
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="small mb-1" for="inputFirstName">Nombre</label>
-													<input class="form-control py-4" id="inputFirstName" type="text"
+													<input  class="form-control py-4" id="inputFirstName" type="text"
 														placeholder="Ingrese su nombre" th:field="*{name}" />
 													<label class="small mb-1">(Debe tener al menos mas de 1 caracter)</label>
 												</div>
@@ -39,7 +39,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="small mb-1" for="inputLastName">Apellido</label>
-													<input class="form-control py-4" id="inputLastName" type="text"
+													<input  class="form-control py-4" id="inputLastName" type="text"
 														placeholder="Ingrese su apellido" th:field="*{lastname}" />
 													<label class="small mb-1">(Debe tener al menos mas de 1 caracter)</label>
 												</div>
@@ -47,7 +47,7 @@
 											<div class="col-md-6">
 												<div class="form-group">
 													<label class="small mb-1" for="inputDocumento">Documento</label>
-													<input class="form-control py-4" id="inputDocumento" type="text"
+													<input  class="form-control py-4" id="inputDocumento" type="text"
 														placeholder="Ingrese el documento" th:field="*{document}" />
 													<label class="small mb-1">(Debe tener entre 7 y 8 caracteres)</label>										</div>
 											</div>
@@ -69,34 +69,35 @@
 										<div class="form-row">
 											<div class="col-md-6">
 												<div class="form-group">
-													<label class="small mb-1" for="inputPassword">Password</label>
-													<input class="form-control py-4" id="inputPassword" type="password"
+													<label class="small mb-1" for="inputPassword">Contraseña</label>
+													<input  class="form-control py-4" id="inputPassword" type="password"
 														placeholder="Enter password"  th:field="*{password}"/>
 													<label class="small mb-1">(Debe tener al menos 5 caracteres)</label>
 												</div>
 											</div>
 										</div>
-										<div class="form-row">
-											<div class="col-md-6">
-												<div class="form-group">
-													<label class="small mb-1" for="inputPassword">Disponible</label>
-													<input class="form-control py-4" id="inputEnabled" type="text"
-														placeholder="True or False"  th:field="*{enabled}"/>
-													<label class="small mb-1">(Must be true or false)</label>
-												</div>
-											</div>
+					
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="small mb-1">Disponible</label>
+												<br>
+												<input type="radio"  th:field="*{enabled}" value="true">Si
+												<input type="radio" class="vacacionesfalse"  th:field="*{enabled}" value="false">No			
+											</div>					
 										</div>
 										<label th:text="Roles"
 											class="col-lg-3 col-form-label form-control-label"></label>
 										<div class="col-lg-9">
-											<select th:field="*{userRole}" class="form-control" size="2">
+											<select  th:field="*{userRole}" class="form-control" size="2">
 												<option th:each="role :${roles}" th:value="${role.id}"
 													th:text="${role.name}">
 												</option>
 											</select>
 											<label class="small mb-1">(No puede estar en blanco)</label>
 										</div>
-										<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit" Value="Create" /> <a class="btn btn-primary" th:href="@{/manage}">Go back</a></div>
+										<small class="advertencia">Unos de los campos esta vacio o compleado incorrectamente</small>
+										
+										<div class="form-group mt-4 mb-0"><input class="btn btn-success" type="submit" Value="Crear" /> <a class="btn btn-primary" th:href="@{/manage}">Volver</a></div>
 									</form>
 								</div>
 							</div>
@@ -106,10 +107,10 @@
 			</main>
 		</div>
 		<div id="layoutAuthentication_footer">
-			<footer class="py-4 bg-light mt-auto">
+				<footer class="py-4 bg-light mt-auto">
 				<div class="container-fluid">
 					<div class="d-flex align-items-center justify-content-between small">
-						<div class="text-muted">Copyright &copy; Your Website 2020</div>
+						<div style="color:black;" >Integrantes: Silvestri Matias Chaves Jonathan - Assefh Luciano</div>
 						<div>
 							<a href="#">Privacy Policy</a>
 							&middot;
@@ -124,6 +125,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
 		crossorigin="anonymous"></script>
 	<script src="js/scripts.js"></script>
+	<script src="js/validacionCampos.js"></script>
 </body>
+
+
 
 </html>
