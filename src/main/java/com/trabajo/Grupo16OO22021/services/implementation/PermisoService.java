@@ -82,6 +82,7 @@ public class PermisoService implements IPermisoService {
 			return true;
 		}
 	}
+
 	public boolean comprobarFecha(PermisoDiarioModel permisoDiarioModel) {
 		
 		if(permisoDiarioModel.getFecha().isBefore(LocalDate.now())) {
@@ -98,6 +99,7 @@ public class PermisoService implements IPermisoService {
 		return true;
 		
 	}
+	
 	@Override
 	public List<PermisoDiario> buscarPermisoDiario(long documento, String apellido) {
 		List<PermisoDiario> permisoDiario = getAll1();
@@ -135,6 +137,7 @@ public class PermisoService implements IPermisoService {
 
 	public List<PermisoDiario> traerDiarioEntreFechas(LocalDate desde, LocalDate hasta) {
 
+//>>>>>>> 71379bfe2e93a4b8aaf4d5a886f1db8e020edaa6
 		List<PermisoDiario> permisos = this.getAll1();
 		List<PermisoDiario> permisosOk = new ArrayList<PermisoDiario>();
 
@@ -197,5 +200,6 @@ public class PermisoService implements IPermisoService {
 		}
 		return permisosPeriodoOk;
 	}
+
 
 }
