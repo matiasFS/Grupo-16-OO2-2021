@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+
+<body>
+	<script>
+
+		/**
+		* Funcion que captura las variables pasados por GET
+		* Devuelve un array de clave=>valor
+		*/
+		function getGET() {
+			// capturamos la url
+			var loc = document.location.href;
+			// si existe el interrogante
+			if (loc.indexOf('?') > 0) {
+				// cogemos la parte de la url que hay despues del interrogante
+				var getString = loc.split('?')[1];
+				// obtenemos un array con cada clave=valor
+				var GET = getString.split('&');
+				var get = {};
+				// recorremos todo el array de valores
+				for (var i = 0, l = GET.length; i < l; i++) {
+					var tmp = GET[i].split('=');
+					get[tmp[0]] = unescape(decodeURI(tmp[1]));
+				}
+				return get;
+			}
+		}
+		window.onload = function () {
+			// Cogemos los valores pasados por get
+			var valores = getGET();
+			if (valores) {
+				//recogemos los valores que nos envia la URL en variables para trabajar 
+				//con ellas
+				if (valores.cantDias) {
+					var fecha = valores['fecha'];
+					var documento = valores['documento'];
+					var nombre = valores['nombre'];
+					var apellido = valores['apellido'];
+					var dominio = valores['dominio'];
+					var cantDias = valores['cantDias'];
+					var vacaciones = valores['vacaciones'];
+
+					// hacemos un bucle para pasar por cada indice del array de valores
+
+					document.write('Fecha del permiso: ' + fecha);
+					document.write('<br/>Persona: ' + nombre + ' ' + apellido);
+					document.write('<br/>DNI: ' + documento);
+					document.write('<br/>Dominio del rodado: ' + dominio);
+					document.write('<br/>Cantidad de dias: ' + cantDias);
+					document.write('<br/>Por vacaciones?: ' + vacaciones);
+				}
+				if(valores.motivo) {
+					
+					var fecha = valores['fecha'];
+					var documento = valores['documento'];
+					var nombre = valores['nombre'];
+					var apellido = valores['apellido'];
+					var motivo = valores['motivo'];
+
+					// hacemos un bucle para pasar por cada indice del array de valores
+
+					document.write('Fecha del permiso: ' + fecha);
+					document.write('<br/>Persona: ' + nombre + ' ' + apellido + ' DNI: ' + documento);
+					document.write('<br/>Motivo: ' + motivo);
+				}
+			} else {
+				// no se ha recibido ningun parametro por GET
+				document.write("No se ha recibido ningún parámetro");
+			}
+		}
+	</script>
+</body>
+
+</html>
