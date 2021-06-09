@@ -20,7 +20,7 @@ insert into permiso values(5, '2021-06-20', 1);
 insert into permiso values(6, '2021-06-24', 2);
 
 insert into permiso_diario values('Medico', 1);
-insert into permiso_diario values('Compras', 6);
+insert into permiso_diario values('Medico', 6);
 
 insert into permiso_periodo values(20, true, 2, 1);
 insert into permiso_periodo values(10, false, 3, 3);
@@ -42,3 +42,7 @@ insert into permisoxlugar values(3,2);
 insert into permisoxlugar values(3,4);
 insert into permisoxlugar values(4,5);
 insert into permisoxlugar values(4,2);
+insert into permisoxlugar values(5,1);
+insert into permisoxlugar values(5,4);
+insert into permisoxlugar values(6,2);
+insert into permisoxlugar values(6,1);
