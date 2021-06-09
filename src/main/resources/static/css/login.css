@@ -28,6 +28,14 @@
 .nav-link{
 	cursor:pointer;
 }
-
+.imgUser{
+	position:relative;
+	height:50px;
+	display:flex;
+	justify-content:center;
+}
+.imgUser img{
+	position:absolute;
+}
 
 

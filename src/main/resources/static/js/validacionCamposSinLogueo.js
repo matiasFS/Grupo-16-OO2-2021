@@ -10,7 +10,7 @@ let formularios = document.getElementsByClassName("formAction");
 let inputs = document.getElementsByTagName("input");
 
 let advertencia = document.getElementsByClassName("advertencia");
-
+console.log(inputs);
 const expresiones = {
 	nombre: /^[a-zA-ZÀ-ÿ\s]{1,40}$/, // Letras y espacios, pueden llevar acentos.
 	documento: /^\d{7,8}$/, // 8 numeros.

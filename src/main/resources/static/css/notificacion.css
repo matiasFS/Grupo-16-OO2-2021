@@ -32,12 +32,13 @@
 	justify-content:center;
 	box-shadow:0 0 60px 0 black;
 	box-sizing:border-box;
-	padding:50px;	
+	padding:40px;	
 	margin:5% auto;
 }
 
 
 .mensajeError{
+	margin-top:10px;
 	font-size:15px;
 	font-weight:bolder;
 	border-radius:10px;
@@ -51,7 +52,8 @@
 	
 }
 .mensajeConfirmacion{
-		font-size:15px;
+	margin-top:10px;
+	font-size:15px;
 	font-weight:bolder;
 	display:flex;
 	flex-direction:column;
@@ -99,3 +101,22 @@
 		z-index:5;
 	}
 }
+.imgNotificacion{
+	position:relative;
+	height:50px;
+	display:flex;
+	justify-content:center;
+	margin-bottom:20px;
+}
+.imgNotificacion img{
+	position:absolute;
+	opacity:0;
+}
+
+
+.imgNotificacion img.active {
+		opacity:1;
+
+}
+
+

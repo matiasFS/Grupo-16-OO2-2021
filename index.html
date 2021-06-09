@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,400&display=swap" rel="stylesheet">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Permiso</title>
 </head>
 
 <body>
-	<script>
+	
+
+</body>
+
+<script>
 
 		/**
 		* Funcion que captura las variables pasados por GET
@@ -47,13 +51,20 @@
 					var vacaciones = valores['vacaciones'];
 
 					// hacemos un bucle para pasar por cada indice del array de valores
-
-					document.write('Fecha del permiso: ' + fecha);
-					document.write('<br/>Persona: ' + nombre + ' ' + apellido);
-					document.write('<br/>DNI: ' + documento);
-					document.write('<br/>Dominio del rodado: ' + dominio);
-					document.write('<br/>Cantidad de dias: ' + cantDias);
-					document.write('<br/>Por vacaciones?: ' + vacaciones);
+					document.write('<div>');
+					document.write('<h2>Permiso</h2>');
+					document.write('<p>Fecha del permiso: ' + fecha + '</p>');
+					document.write('<p> Persona: ' + nombre + ' ' + apellido + '</p>');
+					document.write('<p>DNI: ' + documento + '</p>');
+					document.write('<p>Dominio del rodado: ' + dominio + '</p>');
+					document.write('<p>Cantidad de dias: ' + cantDias) + '</p>';
+					if(vacaciones){
+					document.write('<p>Por vacaciones: Si </p>');
+						
+					}else{
+						document.write('<p>Por vacaciones: Ni </p>');	
+					}
+					document.write('</div>');
 				}
 				if(valores.motivo) {
 					
@@ -75,6 +86,37 @@
 			}
 		}
 	</script>
-</body>
+	<style>
 
+	html{
+    	font-family: 'Roboto', sans-serif;
+	    background: #000046;  /* fallback for old browsers */
+		background: -webkit-linear-gradient(to right, #1CB5E0, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+		background: linear-gradient(to right, #1CB5E0, #000046); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+		
+		}
+	body{
+	    display: flex;
+	    justify-content: center;
+	}
+	div{
+	    margin: 5% auto;
+	    background-color: white;
+	    border-radius: 10px;
+	    box-sizing: border-box;
+	    padding:50px;
+	    box-shadow: 0 0 20px 0 black;
+	    width: 80%;
+	
+	
+	}
+	h2{
+	    font-weight: bold;
+   		 font-style: italic;
+	    font-size: 35px;
+	}
+	p{
+	    font-size: 25px;
+	}
+</style>
 </html>

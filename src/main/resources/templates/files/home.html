@@ -63,11 +63,12 @@
 								</div>
 								<div class="card-body">
 									<form action="#" th:action="@{/loginprocess}" method="post">
+										<div class="imgUser"> <img alt="" th:src="@{/imgs/user.png}" width="50" heigth="50"> </div>
 										<p> Usuario: <input class="form-control py-4" name="username" id="username" placeholder="Username" /></p>
 										<p> Contraseña: <input class="form-control py-4" name="password" id="password" type="password" placeholder="Password" /></p>
 										<input class="btn btn-primary" type="submit"  value="Acceder"/>
 										<button onclick="showLogin()" type="button" class="btn btn-danger">Cancelar</button>
-									<form>
+									</form>
 									<div th:if="${error != null}" class="alert alert-danger">Usuario o contraseña incorrectos</div>
 								</div>
 							</div>
