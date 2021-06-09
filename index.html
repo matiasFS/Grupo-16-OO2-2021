@@ -1,15 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="font-family: 'Roboto', sans-serif;
+	    background: #000046;  
+		background: -webkit-linear-gradient(to right, #1CB5E0, #000046);  
+		background: linear-gradient(to right, #1CB5E0, #000046); ">
 <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;1,400&display=swap" rel="stylesheet">
 <head>
 	<meta charset="UTF-8">
 	<title>Permiso</title>
 </head>
 
-<body>
+<body style="display: flex; justify-content: center;">
 	
 
-</body>
+</body >
 
 <script>
 
@@ -51,18 +54,18 @@
 					var vacaciones = valores['vacaciones'];
 
 					// hacemos un bucle para pasar por cada indice del array de valores
-					document.write('<div>');
-					document.write('<h2>Permiso</h2>');
-					document.write('<p>Fecha del permiso: ' + fecha + '</p>');
-					document.write('<p> Persona: ' + nombre + ' ' + apellido + '</p>');
-					document.write('<p>DNI: ' + documento + '</p>');
-					document.write('<p>Dominio del rodado: ' + dominio + '</p>');
-					document.write('<p>Cantidad de dias: ' + cantDias) + '</p>';
+					document.write('<div style="background-color: white;border-radius: 10px; box-sizing: border-box; padding:50px; box-shadow: 0 0 20px 0 black; width: 80%;">');
+					document.write('<h2 style="font-weight: bold; font-style: italic; font-size: 35px;">Permiso</h2>');
+					document.write('<p style="font-size: 25px;">Fecha del permiso: ' + fecha + '</p>');
+					document.write('<p style="font-size: 25px;"> Persona: ' + nombre + ' ' + apellido + '</p>');
+					document.write('<p style="font-size: 25px;">DNI: ' + documento + '</p>');
+					document.write('<p style="font-size: 25px;">Dominio del rodado: ' + dominio + '</p>');
+					document.write('<p style="font-size: 25px;">Cantidad de dias: ' + cantDias) + '</p>';
 					if(vacaciones){
-					document.write('<p>Por vacaciones: Si </p>');
+					document.write('<p style="font-size: 25px;">Por vacaciones: Si </p>');
 						
 					}else{
-						document.write('<p>Por vacaciones: Ni </p>');	
+						document.write('<p style="font-size: 25px;">Por vacaciones: Ni </p>');	
 					}
 					document.write('</div>');
 				}
@@ -75,10 +78,11 @@
 					var motivo = valores['motivo'];
 
 					// hacemos un bucle para pasar por cada indice del array de valores
-
-					document.write('Fecha del permiso: ' + fecha);
-					document.write('<br/>Persona: ' + nombre + ' ' + apellido + ' DNI: ' + documento);
-					document.write('<br/>Motivo: ' + motivo);
+					document.write('<div style="background-color: white; border-radius: 10px; box-sizing: border-box; padding:50px; box-shadow: 0 0 20px 0 black; width: 80%;>');
+					document.write('<p style="font-size: 25px;">Fecha del permiso: ' + fecha + '</p>');
+					document.write('<p style="font-size: 25px;">Persona: ' + nombre + ' ' + apellido + ' DNI: ' + documento + '</p>');
+					document.write('<p style="font-size: 25px;">Motivo: ' + motivo + '</p>');
+					document.write('</div>');
 				}
 			} else {
 				// no se ha recibido ningun parametro por GET
@@ -107,13 +111,9 @@
 	    padding:50px;
 	    box-shadow: 0 0 20px 0 black;
 	    width: 80%;
-	
-	
 	}
 	h2{
-	    font-weight: bold;
-   		 font-style: italic;
-	    font-size: 35px;
+	    font-weight: bold; font-style: italic; font-size: 35px;
 	}
 	p{
 	    font-size: 25px;
