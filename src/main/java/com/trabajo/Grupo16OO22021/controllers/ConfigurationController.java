@@ -19,6 +19,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import com.trabajo.Grupo16OO22021.entities.User;
 import com.trabajo.Grupo16OO22021.helpers.ViewRouteHelper;
 import com.trabajo.Grupo16OO22021.models.*;
 import com.trabajo.Grupo16OO22021.services.implementation.PermisoService;
@@ -62,12 +63,21 @@ public class ConfigurationController {
 	public RedirectView create(@ModelAttribute("user") UserModel userModel,RedirectAttributes atributos) {
 		
 		NotificacionModel notificacion = new NotificacionModel();
-	
+		User user = userService.findByDocumento(userModel.getDocument());
 		if(!userService.validate(userModel)) {
 			notificacion.setMensajeError("Hubo un error al crear el usuario, vuelva a intentarlo");
 			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
 			return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
-		}else {
+		}
+		if( user != null) {
+			notificacion.setMensajeError("El DNI que intento registrar ya se encuentra en el sistema");
+			atributos.addFlashAttribute("mensajeError", notificacion.getMensajeError());
+			
+			return new RedirectView(ViewRouteHelper.MANAGE_ROOT);
+		}
+			
+		
+		else {
 			notificacion.setMensajeConfirmacion("Usuario creado correctamente");
 			atributos.addFlashAttribute("mensajeConfirmacion", notificacion.getMensajeConfirmacion());
 			userService.insertOrUpdate(userModel);

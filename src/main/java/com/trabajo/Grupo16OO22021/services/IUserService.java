@@ -17,4 +17,5 @@ public interface IUserService {
 
 	public boolean validate(UserModel userModel);
 
+	public User findByDocumento(int documento);
 }

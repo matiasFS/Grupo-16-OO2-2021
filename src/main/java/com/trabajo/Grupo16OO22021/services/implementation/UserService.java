@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 
 import com.trabajo.Grupo16OO22021.services.IUserService;
 import com.trabajo.Grupo16OO22021.converters.UserConverter;
-import com.trabajo.Grupo16OO22021.entities.Persona;
 import com.trabajo.Grupo16OO22021.entities.UserRole;
 import com.trabajo.Grupo16OO22021.models.UserModel;
 import com.trabajo.Grupo16OO22021.repositories.IUserRepository;
@@ -92,11 +91,22 @@ public class UserService implements IUserService, UserDetailsService {
 		
 	return  userConverter.entityToModel(user);
 	}
-	
+	public com.trabajo.Grupo16OO22021.entities.User findByDocumento(int documento) {
+		List<com.trabajo.Grupo16OO22021.entities.User> user = getAll();
+		com.trabajo.Grupo16OO22021.entities.User u = new com.trabajo.Grupo16OO22021.entities.User();
+		for(com.trabajo.Grupo16OO22021.entities.User u1 : user) {
+			if(u1.getDocument()==documento) {
+				u = u1;
+				return u;
+			}
+		}
+		return null;
+	}
+
 	@Override
 	public boolean validate(UserModel userModel) {
 		if (userModel.getName().equals("") || userModel.getName().length() < 3 || userModel.getLastname().equals("")
-				|| userModel.getLastname().length() < 1 || userModel.getEmail().equals("")
+				|| userModel.getLastname().length() < 3 || userModel.getEmail().equals("")
 				|| userModel.getUsername().equals("") || userModel.getUsername().length() < 5
 				|| Integer.toString(userModel.getDocument()).length() < 7 || userModel.getPassword().equals("")
 				|| userModel.getPassword().length() < 5||userModel.getUserRole()==null) {
