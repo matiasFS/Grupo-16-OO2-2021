@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 
 import com.trabajo.Grupo16OO22021.services.IUserService;
 import com.trabajo.Grupo16OO22021.converters.UserConverter;
+import com.trabajo.Grupo16OO22021.entities.Persona;
 import com.trabajo.Grupo16OO22021.entities.UserRole;
 import com.trabajo.Grupo16OO22021.models.UserModel;
 import com.trabajo.Grupo16OO22021.repositories.IUserRepository;
@@ -95,7 +96,7 @@ public class UserService implements IUserService, UserDetailsService {
 	@Override
 	public boolean validate(UserModel userModel) {
 		if (userModel.getName().equals("") || userModel.getName().length() < 3 || userModel.getLastname().equals("")
-				|| userModel.getLastname().length() < 3 || userModel.getEmail().equals("")
+				|| userModel.getLastname().length() < 1 || userModel.getEmail().equals("")
 				|| userModel.getUsername().equals("") || userModel.getUsername().length() < 5
 				|| Integer.toString(userModel.getDocument()).length() < 7 || userModel.getPassword().equals("")
 				|| userModel.getPassword().length() < 5||userModel.getUserRole()==null) {
@@ -105,6 +106,7 @@ public class UserService implements IUserService, UserDetailsService {
 		}
 
 	}
+
 
 	
 
