@@ -33,7 +33,7 @@
 													<label class="small mb-1" for="inputFirstName">Nombre</label>
 													<input  class="form-control py-4" id="inputFirstName" type="text"
 														placeholder="Ingrese su nombre" th:field="*{name}" />
-													<label class="small mb-1">(Debe tener al menos mas de 1 caracter)</label>
+													<label class="small mb-1">(Debe tener 3 o mas caracteres)</label>
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -41,7 +41,7 @@
 													<label class="small mb-1" for="inputLastName">Apellido</label>
 													<input  class="form-control py-4" id="inputLastName" type="text"
 														placeholder="Ingrese su apellido" th:field="*{lastname}" />
-													<label class="small mb-1">(Debe tener al menos mas de 1 caracter)</label>
+													<label class="small mb-1">(Debe tener 3 o mas caractaeres)</label>
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -79,7 +79,7 @@
 					
 										<div class="col-md-6">
 											<div class="form-group">
-												<label class="small mb-1">Disponible</label>
+												<label class="small mb-1">Activo?</label>
 												<br>
 												<input type="radio"  th:field="*{enabled}" value="true">Si
 												<input type="radio" class="vacacionesfalse"  th:field="*{enabled}" value="false">No			
@@ -88,7 +88,7 @@
 										<label th:text="Roles"
 											class="col-lg-3 col-form-label form-control-label"></label>
 										<div class="col-lg-9">
-											<select  th:field="*{userRole}" class="form-control" size="2">
+											<select  th:field="*{userRole}" class="form-control">
 												<option th:each="role :${roles}" th:value="${role.id}"
 													th:text="${role.name}">
 												</option>

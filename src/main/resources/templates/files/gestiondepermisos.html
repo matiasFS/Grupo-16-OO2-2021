@@ -78,7 +78,7 @@
 								<label class="small mb-1" for="inputLastName">Apellido:</label>
 								<input autocomplete="off" class="form-control py-4 inputNombre" id="inputLastName" type="text"
 									placeholder="Ingrese apellido" th:field="${persona.apellido}" required />
-								<label class="small mb-1">(No puede estar vacio)</label>
+								<label class="small mb-1">(Debe tener 3 o mas caracteres)</label>
 								<label class="small mb-1">(No se permiten simbolos ni numeros)</label>
 							</div>
 						</div>
@@ -180,14 +180,14 @@
 								<div class="col-md-6">
 									<div class="form-group">
 										<label class="medium mb-1" for="inputMotivo">Motivo:</label>
-										<input class="form-control py-4" id="inputFirstName" type="text"
+										<input class="form-control py-4" id="inputMotivo" type="text"
 											th:field="*{motivo}" required  autocomplete="off"/>
 										<label class="small mb-1">(No puede estar vacio)</label>
 									</div>
 								</div>
 
 								<div class="col-lg-9">
-									<label class="medium mb-1" for="inputDesdeHasta">Origen:</label>
+									<label class="medium mb-1" for="inputDesdeHasta">Desde:</label>
 									<select th:field="*{desdeHasta}" class="form-control">
 										<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
 											<td><span th:text="${lugar.lugar}" /></td>
@@ -196,7 +196,7 @@
 									<label class="small mb-1">(No puede estar vacio)</label>
 								</div>
 								<div class="col-lg-9">
-									<label class="medium mb-1" for="inputDesdeHasta">Destino:</label>
+									<label class="medium mb-1" for="inputDesdeHasta">Hasta:</label>
 									<select th:field="*{desdeHasta}" class="form-control">
 										<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
 											<td><span th:text="${lugar.lugar}" /></td>
@@ -265,7 +265,7 @@
 								<label class="small mb-1">(No puede estar vacio)</label>
 							</div>
 							<div class="col-lg-9">
-								<label class="medium mb-1" for="inputDesdeHasta">Origen:</label>
+								<label class="medium mb-1" for="inputDesdeHasta">Hasta:</label>
 								<select th:field="*{desdeHasta}" class="form-control">
 									<option th:each="lugar : ${lugares}" th:value="${lugar.idLugar}">
 										<td><span th:text="${lugar.lugar}" /></td>

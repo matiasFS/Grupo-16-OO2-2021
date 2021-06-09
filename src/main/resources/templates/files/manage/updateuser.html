@@ -34,7 +34,7 @@
 													<label class="small mb-1" for="inputFirstName">Nombre</label>
 													<input class="form-control py-4" id="inputFirstName" type="text"
 														placeholder="Enter first name" th:field="*{name}" />
-													<label class="small mb-1">(Debe tener 2 o mas caracteres)</label>
+													<label class="small mb-1">(Debe tener 3 o mas caracteres)</label>
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -42,7 +42,7 @@
 													<label class="small mb-1" for="inputLastName">Last Name</label>
 													<input class="form-control py-4" id="inputLastName" type="text"
 														placeholder="Enter last name" th:field="*{lastname}" />
-													<label class="small mb-1">(Debe tener 2 o mas caracteres)</label>
+													<label class="small mb-1">(Debe tener 3 o mas caracteres)</label>
 												</div>
 											</div>
 											<div class="col-md-6">
@@ -77,12 +77,12 @@
 														placeholder="Enter password" th:field="*{password}" />
 												</div>
 											</div>
-											<label class="small mb-1">(YOU MUST ENTER THE PASSWORD AGAIN)</label>
+											<label class="small mb-1">(DEBES INGRESAR LA CONTRASEÑA NUEVAMENTE)</label>
 
 										</div>
 											<div class="col-md-6">
 											<div class="form-group">
-												<label class="small mb-1">Disponible</label>
+												<label class="small mb-1">Acivo?</label>
 												<br>
 												<input type="radio"  th:field="*{enabled}" value="true">Si
 												<input type="radio" class="vacacionesfalse"  th:field="*{enabled}" value="false">No			
@@ -91,7 +91,7 @@
 										<label th:text="Roles"
 											class="col-lg-3 col-form-label form-control-label"></label>
 										<div class="col-lg-9">
-											<select th:field="*{userRole}" class="form-control" size="2">
+											<select th:field="*{userRole}" class="form-control">
 												<option th:each="role :${roles}" th:value="${role.id}"
 													th:text="${role.name}">
 												</option>
