@@ -16,11 +16,17 @@ insert into permiso values(1, '2021-06-09', 1);
 insert into permiso values(2, '2021-06-10', 2);
 insert into permiso values(3, '2021-06-11', 3);
 insert into permiso values(4, '2021-06-09', 2);
+insert into permiso values(5, '2021-06-20', 1);
+insert into permiso values(6, '2021-06-24', 2);
 
 insert into permiso_diario values('Medico', 1);
+insert into permiso_diario values('Compras', 6);
+
 insert into permiso_periodo values(20, true, 2, 1);
 insert into permiso_periodo values(10, false, 3, 3);
-insert into permiso_periodo values(15, true, 4, 1);
+insert into permiso_periodo values(15, false, 4, 1);
+insert into permiso_periodo values(19, false, 5, 2);
+
 
 insert into lugar values(1, '1832', 'LOMAS DE ZAMORA');
 insert into lugar values(2, '1675', 'CABA');
