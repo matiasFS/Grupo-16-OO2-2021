@@ -26,21 +26,21 @@ Font fuenteTituloColumnas = FontFactory.getFont(FontFactory.HELVETICA_BOLD ,12,C
 		
 		PdfPCell celda = null;
 		
-        celda = new PdfPCell(new Phrase("NAME", fuenteTituloColumnas));
+        celda = new PdfPCell(new Phrase("NOMBRE", fuenteTituloColumnas));
 		celda.setBackgroundColor(Color.lightGray);
 		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
 		celda.setVerticalAlignment(Element.ALIGN_CENTER);
 		celda.setPadding(5);
 		table.addCell(celda);
 		
-		celda = new PdfPCell(new Phrase("LASTNAME", fuenteTituloColumnas));
+		celda = new PdfPCell(new Phrase("APELLIDO", fuenteTituloColumnas));
 		celda.setBackgroundColor(Color.lightGray);
 		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
 		celda.setVerticalAlignment(Element.ALIGN_CENTER);
 		celda.setPadding(5);
 		table.addCell(celda);
 		
-		celda = new PdfPCell(new Phrase("DOCUMENT", fuenteTituloColumnas));
+		celda = new PdfPCell(new Phrase("DOCUMENTO", fuenteTituloColumnas));
 		celda.setBackgroundColor(Color.lightGray);
 		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
 		celda.setVerticalAlignment(Element.ALIGN_CENTER);
@@ -54,7 +54,7 @@ Font fuenteTituloColumnas = FontFactory.getFont(FontFactory.HELVETICA_BOLD ,12,C
 		celda.setPadding(5);
 		table.addCell(celda);
 		
-		celda = new PdfPCell(new Phrase("USERNAME", fuenteTituloColumnas));
+		celda = new PdfPCell(new Phrase("USUARIO", fuenteTituloColumnas));
 		celda.setBackgroundColor(Color.lightGray);
 		celda.setHorizontalAlignment(Element.ALIGN_CENTER);
 		celda.setVerticalAlignment(Element.ALIGN_CENTER);
@@ -111,14 +111,14 @@ Font fuenteTituloColumnas = FontFactory.getFont(FontFactory.HELVETICA_BOLD ,12,C
         Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Color.BLACK);
         font.setSize(18);
          
-        Paragraph p = new Paragraph("LIST OF USERS", font);
+        Paragraph p = new Paragraph("LISTADO DE USUARIOS", font);
         p.setAlignment(Paragraph.ALIGN_CENTER);
          
         document.add(p);
          
         PdfPTable table = new PdfPTable(6);
         table.setWidthPercentage(100f);
-        table.setWidths(new float[] {1.2f, 1.4f, 1.6f, 2.5f, 1.5f , 1.3f});
+        table.setWidths(new float[] {1.2f, 1.4f, 1.8f, 2.5f, 1.5f , 1.3f});
         table.setSpacingBefore(10);
          
         writeTableHeader(table);

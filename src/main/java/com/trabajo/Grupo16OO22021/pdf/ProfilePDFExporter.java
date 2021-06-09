@@ -43,7 +43,7 @@ public class ProfilePDFExporter {
 			cell.setPadding(5);
 			table.addCell(cell);
 			
-			cell = new PdfPCell(new Phrase("DESCRIPTION", fuenteTituloColumnas));
+			cell = new PdfPCell(new Phrase("DESCRIPCION", fuenteTituloColumnas));
 			cell.setBackgroundColor(Color.lightGray);
 			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
 			cell.setVerticalAlignment(Element.ALIGN_CENTER);
@@ -80,7 +80,7 @@ public class ProfilePDFExporter {
 		    Font font = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, Color.BLACK);
 		    font.setSize(18);
 
-		    Paragraph p = new Paragraph("LIST OF PROFILES", font);
+		    Paragraph p = new Paragraph("LISTADO DE PERFILES", font);
 		    p.setAlignment(Paragraph.ALIGN_CENTER);
 		     
 		    document.add(p);
