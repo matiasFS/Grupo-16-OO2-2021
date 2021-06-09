@@ -59,7 +59,7 @@ public class RodadoService implements IRodadoService {
 	public boolean validate(RodadoModel rodadoModel) {
 		boolean dominioValido = validarPatente(rodadoModel.getDominio());
 		if (rodadoModel.getDominio().equals("") || rodadoModel.getVehiculo().equals("")
-				|| rodadoModel.getVehiculo().length() < 3||!dominioValido||this.findDominio(rodadoModel.getDominio())!=null) {
+				|| rodadoModel.getVehiculo().length() < 3||!dominioValido) {
 			return false;
 		} else {
 			return true;
