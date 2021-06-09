@@ -61,11 +61,12 @@
 					document.write('<p style="font-size: 25px;">DNI: ' + documento + '</p>');
 					document.write('<p style="font-size: 25px;">Dominio del rodado: ' + dominio + '</p>');
 					document.write('<p style="font-size: 25px;">Cantidad de dias: ' + cantDias) + '</p>';
-					if(vacaciones){
+					if(vacaciones=='true'){
 					document.write('<p style="font-size: 25px;">Por vacaciones: Si </p>');
 						
-					}else{
-						document.write('<p style="font-size: 25px;">Por vacaciones: Ni </p>');	
+					}
+					if(vacaciones=='false'){
+						document.write('<p style="font-size: 25px;">Por vacaciones: No </p>');	
 					}
 					document.write('</div>');
 				}
