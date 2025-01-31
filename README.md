@@ -114,6 +114,8 @@ Asegurarse de tener Java 8+ y MySQL instalados.
   ![12](https://github.com/user-attachments/assets/7825272c-2953-4195-b52b-d8aa1eb30f95)
   ![13](https://github.com/user-attachments/assets/5e6e3995-375a-44d2-aef8-8ff236f798cb)
 
+  Al querer modificar el usuario, la contraseña aparece así debido a la encriptación. Para poder modificar el usuario correctamente, hay que introducir la contraseña nuevamente, de forma normal.
+ 
   ![14](https://github.com/user-attachments/assets/852d94a9-b3f7-4286-94df-09540e315203)
 
   Al querer borrar un usuario aparece un mensaje de confirmación
