@@ -1,3 +1,4 @@
+<a id="readme-top"></a>
 <br />
 <div align="center">
 <h3 align="center">Gestión de permisos</h3>
@@ -6,25 +7,26 @@
 
 
 
-<!-- TABLE OF CONTENTS -->
+<!-- TABLA DE CONTENIDOS -->
 <details>
   <summary>Tabla de contenidos</summary>
   <ol>
     <li>
-      <a href="#about-the-project">Acerca del proyecto</a>
+      <a href="#acerca-del-proyecto">Acerca del proyecto</a>
       <ul>
         <li><a href="#built-with">Tecnologías utilizadas</a></li>
       </ul>
     </li>
     <li><a href="#instalacion">Instalación</a></li>
+    <li><a href="#funciones">Funciones de la plataforma</a></li>
     
-    </ol>
+   </ol>
 </details>
 
 
 
 <!-- ABOUT THE PROJECT -->
-## Sobre el proyecto
+## Acerca del proyecto
 
 Plataforma web para gestionar permisos de circulación. Permite sacar un permiso para un día o por un tiempo determinado, ver los permisos asociados y escanear un QR con la información del permiso. También se desarrolló un login para administración y auditoría.
 <p align="right">(<a href="#readme-top">Volver arriba</a>)</p>
@@ -79,8 +81,62 @@ Asegurarse de tener Java 8+ y MySQL instalados.
 <p align="right">(<a href="#readme-top">Volver arriba</a>)</p>
 
 
+<!-- FUNCIONES -->
+## Funciones de la plataforma
+
+  1. Página de incio
+     ![1](https://github.com/user-attachments/assets/1a3d8a7d-87bb-4161-8538-67317fbe3b51)
+
+  2. Gestion de permisos
+
+      Al seleccionar la pestaña "Gestión de permisos", el usuario puede registrarse, registrar su vehículo y crear un permiso.
+
+  ![2](https://github.com/user-attachments/assets/5f4f2965-9c77-4cea-af28-8d36a98dc00d)
+  ![3](https://github.com/user-attachments/assets/2627591b-deb3-4c4c-bfcd-4095a492134b)
+  ![4](https://github.com/user-attachments/assets/86410eee-d961-4064-a522-50c426cfc06b)
+  ![5](https://github.com/user-attachments/assets/701f104f-9229-482a-a9a1-2b6983e86594)
+
+  3. Buscar permiso por persona
+
+     Al seleccionar la pestaña "Permiso por persona", el usuario puede buscar los permisos utilizando su apellido y número de documento.
+
+![6](https://github.com/user-attachments/assets/91e391f5-c1a1-4e6f-ad7a-4bb5dbca5211)
+![7](https://github.com/user-attachments/assets/e5bf8e75-2bd4-43a1-a3dd-3c8d703a7589)
+![8](https://github.com/user-attachments/assets/46616bbc-ca16-44dd-a052-71be1a9fd90a)
+
+  4. Usuario con rol de administrador
+
+      El usuario con permisos de administrador puede ver, crear, editar y borrar usuarios y perfiles.
+
+  ![10](https://github.com/user-attachments/assets/333fa9c5-5043-4c71-8abf-ae280a2a7f61)
+
+   ![11](https://github.com/user-attachments/assets/1f4e26dd-0c20-48cc-b769-36016557d847)
+  ![12](https://github.com/user-attachments/assets/7825272c-2953-4195-b52b-d8aa1eb30f95)
+  ![13](https://github.com/user-attachments/assets/5e6e3995-375a-44d2-aef8-8ff236f798cb)
+
+  ![14](https://github.com/user-attachments/assets/852d94a9-b3f7-4286-94df-09540e315203)
+
+  Al querer borrar un usuario aparece un mensaje de confirmación
+ 
+  ![15](https://github.com/user-attachments/assets/d0790057-09e4-4048-a540-3ceae2432b7a)
+
+
+  5. Usuario con rol de auditor
+
+     El usuario con rol de administrador, puede ver la lista de usuarios y perfiles, exportarlas a pdf, y puede ver los permisos por persona, por fecha, por fecha y lugar, y por rodado.
+
+      ![aaa](https://github.com/user-attachments/assets/ffdad8c2-4485-4c24-a2de-34e3c470d2b6)
+      ![aaaa](https://github.com/user-attachments/assets/57f96e9f-07bb-43f3-b206-fe1a232b8579)
+      ![17](https://github.com/user-attachments/assets/ea008aeb-053e-4f19-a6fa-3f4b8e57a46a)
+
+      Al exportar la lista como pdf queda de la siguiente forma:
+     
+        ![16](https://github.com/user-attachments/assets/d5191509-cd6d-43bc-ad77-61e73e46002f)
+
+
+  
 <!-- CONTACT -->
-## Contact
+## Contacto
 
 Matias Silvestri - [Linkedin](https://www.linkedin.com/in/matias-franco-silvestri-1a037721b/) - matias.f.silvestri1@gmail.com
 
