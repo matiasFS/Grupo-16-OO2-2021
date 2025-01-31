@@ -19,7 +19,7 @@
     </li>
     <li><a href="#instalación">Instalación</a></li>
     <li><a href="#funciones-de-la-plataforma">Funciones de la plataforma</a></li>
-    
+    <li><a href="#contacto">Contacto</a></li>
    </ol>
 </details>
 
