@@ -14,10 +14,10 @@
     <li>
       <a href="#acerca-del-proyecto">Acerca del proyecto</a>
       <ul>
-        <li><a href="#tecnologias-utilizadas">Tecnologías utilizadas</a></li>
+        <li><a href="#tecnologías-utilizadas">Tecnologías utilizadas</a></li>
       </ul>
     </li>
-    <li><a href="#instalacion">Instalación</a></li>
+    <li><a href="#instalación">Instalación</a></li>
     <li><a href="#funciones-de-la-plataforma">Funciones de la plataforma</a></li>
     
    </ol>
