@@ -3,10 +3,6 @@ package com.trabajo.Grupo16OO22021;
 import java.time.LocalDate;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import com.trabajo.Grupo16OO22021.entities.PermisoDiario;
 import com.trabajo.Grupo16OO22021.services.implementation.PermisoService;
 
