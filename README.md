@@ -1,7 +1,7 @@
 <a id="readme-top"></a>
 <br />
 <div align="center">
-<h3 align="center">Gestión de permisos</h3>
+<h1 align="center">Gestión de permisos</h1>
 
 </div>
 
