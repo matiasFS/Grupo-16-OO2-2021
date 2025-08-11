@@ -125,7 +125,7 @@ Asegurarse de tener Java 8+ y MySQL instalados.
 
   5. Usuario con rol de auditor
 
-     El usuario con rol de administrador, puede ver la lista de usuarios y perfiles, exportarlas a pdf, y puede ver los permisos por persona, por fecha, por fecha y lugar, y por rodado.
+     El usuario con rol de auditor, puede ver la lista de usuarios y perfiles, exportarlas a pdf, y puede ver los permisos por persona, por fecha, por fecha y lugar, y por rodado.
 
       ![aaa](https://github.com/user-attachments/assets/ffdad8c2-4485-4c24-a2de-34e3c470d2b6)
       ![aaaa](https://github.com/user-attachments/assets/57f96e9f-07bb-43f3-b206-fe1a232b8579)
